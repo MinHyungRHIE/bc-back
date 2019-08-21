@@ -1,0 +1,9 @@
+package com.pap.bucketclass.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.pap.bucketclass.entity.Role;
+
+public interface RoleRepository extends JpaRepository<Role, String>{
+	Role findByName(String roleId);
+}

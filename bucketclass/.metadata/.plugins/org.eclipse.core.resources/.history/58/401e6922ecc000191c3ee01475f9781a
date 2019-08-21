@@ -1,0 +1,5 @@
+package com.aclass.back.entity;
+
+public class Privilege {
+
+}

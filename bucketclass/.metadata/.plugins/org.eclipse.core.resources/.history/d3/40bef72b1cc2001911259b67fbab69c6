@@ -1,0 +1,184 @@
+package com.pap.bucketclass.entity;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.validator.constraints.Email;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+@Entity
+@Table(
+		name="member",
+		uniqueConstraints = {
+				@UniqueConstraint(columnNames = {"member_Email"})
+		})
+public class Member implements  UserDetails, Serializable{
+
+	@Id
+	@Column(name="member_NO")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long memberNO;
+
+	@Column(name="member_ID")
+	private String memberID;
+	
+	@Column(name="member_Password")
+	private String memberPassword;
+	
+	@Column(name="member_Email")
+	@Email
+	private String memberEmail;
+	
+	@Column(name="member_Reg_Date")
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date memberRegDate;
+	
+	@Column(name="member_Type")
+	private Long memberType;
+	
+	@Column(name="member_isActive")
+	private Boolean memberIsActive;
+	
+	@Column(name="member_Img")
+	private String memberImg;
+	
+	@Column(name="member_Nickname")
+	private String memberNickname;
+	
+	@ManyToOne
+	@JoinColumn(name="privileges_id")
+	private Privileges privileges;
+	
+	public Privileges getPrivileges() {
+		return privileges;
+	}
+
+	public void setPrivileges(Privileges privileges) {
+		this.privileges = privileges;
+	}
+
+	public Long getMember_NO() {
+		return memberNO;
+	}
+
+	public void setMember_NO(Long member_NO) {
+		this.memberNO = member_NO;
+	}
+
+	public String getMember_Email() {
+		return memberEmail;
+	}
+
+	public void setMember_Email(String member_Email) {
+		this.memberEmail = member_Email;
+	}
+
+	public Date getMember_Reg_Date() {
+		return memberRegDate;
+	}
+
+	public void setMember_Reg_Date(Date member_Reg_Date) {
+		this.memberRegDate = member_Reg_Date;
+	}
+
+	public Long getMember_Type() {
+		return memberType;
+	}
+
+	public void setMember_Type(Long member_Type) {
+		this.memberType = member_Type;
+	}
+
+	public Boolean getMember_isActive() {
+		return memberIsActive;
+	}
+
+	public void setMember_isActive(Boolean member_isActive) {
+		this.memberIsActive = member_isActive;
+	}
+
+	public String getMember_Img() {
+		return memberImg;
+	}
+
+	public void setMember_Img(String member_Img) {
+		this.memberImg = member_Img;
+	}
+
+	public String getMember_Nickname() {
+		return memberNickname;
+	}
+
+	public void setMember_Nickname(String member_Nickname) {
+		this.memberNickname = member_Nickname;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		Collection<GrantedAuthority> authorities = new ArrayList<>();
+		return authorities;
+	}
+
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return memberPassword;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return memberID;
+	}
+	
+	public void setMember_ID(String member_ID) {
+		this.memberID = member_ID;
+	}
+
+	public void setMember_Password(String member_Password) {
+		this.memberPassword = member_Password;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	
+}
+

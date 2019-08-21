@@ -1,0 +1,39 @@
+package com.pap.bucketclass.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name="service_category")
+public class ServiceCategory {
+	
+	@Id
+	@Column(name="category_id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long categoryId;
+	
+	@Column(name="category_subject")
+	@NotNull
+	private String categorySubject;
+	
+	@Column(name="category_type")
+	@NotNull
+	private String categoryType;
+	
+	@Column(name="category_period")
+	@NotNull
+	private String categoryPeriod;
+	
+	@Column(name="category_scale")
+	@NotNull
+	private String categoryScale;
+	
+	@Column(name="category_place")
+	@NotNull
+	private String categoryPlace;
+}

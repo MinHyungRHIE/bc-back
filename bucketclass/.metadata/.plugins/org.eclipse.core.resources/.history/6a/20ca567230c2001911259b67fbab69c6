@@ -1,0 +1,79 @@
+package com.pap.bucketclass.entity;
+
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.CreationTimestamp;
+
+@Entity
+@Table(name="service_creation")
+public class ServiceCreation{ 
+	
+	@Id
+	@Column(name="service_id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long serviceId;
+	
+	@Column(name="service_title")
+	@NotNull
+	private String serviceTitle;
+	
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "address_id")
+	Set<ServiceAddress> serviceAddress = new HashSet<>();
+	
+	@Column(name="account_bank")
+	private String accountBank;
+	
+	@Column(name="account_number")
+	private String accountNumber;
+	
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id")
+	Set<ServiceCategory> serviceCategory = new HashSet<>();
+	
+	@Column(name="service_isDelete")
+	@NotNull
+	private Boolean serviceIsDelete;
+	
+	@Column(name="hashtag")
+	private String hashtag; //JSON
+	
+	@Column(name="service_modified_date")
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@NotNull
+	private LocalDateTime serviceModifiedDate;
+	
+	@Column(name="service_img_url")
+	private String serviceImgUrl; //JSON
+	
+	@Column(name="service_description")
+	private String serviceDescription;
+	
+	//member_id String
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "member_service_creation",
+            joinColumns = @JoinColumn(name = "service_id"),
+            inverseJoinColumns = @JoinColumn(name = "member_id")
+    )
+	private Set<ServiceCategory> members = new HashSet<>();
+	
+}

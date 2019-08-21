@@ -1,0 +1,32 @@
+package com.pap.bucketclass.service;
+
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.pap.bucketclass.entity.Member;
+import com.pap.bucketclass.entity.Role;
+import com.pap.bucketclass.repository.MemberRepository;
+import com.pap.bucketclass.repository.RoleRepository;
+
+@Service
+public class JoinService {
+
+	@Autowired
+	private MemberRepository memberRepo;
+
+	@Autowired
+	private RoleRepository roleRepo;
+
+	@Transactional
+	public Member JoinMember(Member member) {
+		Role role = roleRepo.findByRoleName("CUSTOMER");
+		member.setRoles(Stream.of(role).collect(Collectors.toSet()));
+		return memberRepo.save(member);
+
+	}
+}

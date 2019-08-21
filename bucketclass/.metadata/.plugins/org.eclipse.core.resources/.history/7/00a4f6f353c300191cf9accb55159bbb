@@ -1,0 +1,137 @@
+{
+  "ServiceListMain": [
+                  {
+                  "service_NO": 1,
+                  "service_Name": "커피를 내려보자",
+                  "hashTag": ["커피","아아","교육","아메리카노","공짜교육"],
+                  "service_Img_URI": ["./svc1Main.jpg", "./svc1-1.jpg", "./svc1-2.jpg"],
+                  "avg_Score": 4.1,
+                  "member_NickName": "별다방",
+                  "addr_State": "경기도 고양시",
+                  "addr_City": "일산동구",
+                  "addr_Dong": "장항동",
+                  "category_Field": 0,
+                  "category_Type": 1,
+                  "category_Period": 0,
+                  "category_Scale": 1,
+                  "category_Place": 0
+                },
+
+                {
+                  "service_NO": 2,
+                  "service_Name": "자바를 배워요",
+                  "hashTag": ["Java","자바"],
+                  "service_Img_URI": ["./svc2Main.jpg", "./svc2-1.jpg", "./svc2-2.jpg", "./svc2-3.jpg", "./svc2-4.jpg"],
+                  "avg_Score": 3.0,
+                  "member_NickName": "비트캠프",
+                  "addr_State": "서울시",
+                  "addr_City": "마포구",
+                  "addr_Dong": "백범로",
+                  "category_Field": 4,
+                  "category_Type": 1,
+                  "category_Period": 0,
+                  "category_Scale": 0,
+                  "category_Place": 0
+                },
+
+                {
+                "service_NO": 3,
+                  "service_Name": "족발 먹자!",
+                  "hashTag": ["족발","드디어","먹으려나?","소주가","예술이네"],
+                "service_Img_URI": ["./svc3Main.jpg", "./svc3-1.jpg"],
+                "avg_Score": 5.0,
+                "member_NickName": "돼지발",
+                "addr_State": "서울시",
+                "addr_City": "마포구",
+                "addr_Dong": "공덕동",
+                "category_Field": 1,
+                "category_Type": 0,
+                "category_Period": 1,
+                "category_Scale": 1,
+                "category_Place": 0
+                },
+
+                {
+                "service_NO": 4,
+                  "service_Name": "하늘공원에서 마지막 나들이",
+                  "hashTag": ["편의점라면먹고","텐트치고낮잠자고","하늘공원에서","하늘로"],
+                "service_Img_URI": ["./svc4Main.jpg", "./svc4-1.jpg", "./svc4-2.jpg", "./svc4-3.jpg"],
+                "avg_Score": 1.0,
+                "member_NickName": "수온체크",
+                "addr_State": "서울시",
+                "addr_City": "서대문구",
+                "addr_Dong": "상암동",
+                "category_Field": 5,
+                "category_Type": 0,
+                "category_Period": 1,
+                "category_Scale": 0,
+                "category_Place": 1
+                },
+
+                {
+                "service_NO": 5,
+                  "service_Name": "몸신과 함께하는 최고의 다이어트",
+                  "hashTag": ["그냥먹지마"],
+                "service_Img_URI": ["./svc5Main.jpg"],
+                "avg_Score": 1.1,
+                "member_NickName": "뱃가죽이등가죽",
+                "addr_State": "충청남 ",
+                "addr_City": "보령시",
+                "addr_Dong": "대천동",
+                "category_Field": 3,
+                "category_Type": 0,
+                "category_Period": 1,
+                "category_Scale": 1,
+                "category_Place": 1
+                },
+
+                {
+                "service_NO": 6,
+                  "service_Name": "제주도 올레길 탐방",
+                  "hashTag": ["제주도","4만원","안가면손해"],
+                "service_Img_URI": ["./svc6Main.jpg", "./svc6-1.jpg"],
+                "avg_Score": 3.0,
+                "member_NickName": "KT",
+                "addr_State": "제주도 제주시",
+                "addr_City": "조천읍",
+                "addr_Dong": "신촌리",
+                "category_Field": 1,
+                "category_Type": 0,
+                "category_Period": 1,
+                "category_Scale": 0,
+                "category_Place": 1
+                },
+
+                {
+                "service_NO": 7,
+                  "service_Name": "영어 무료 강좌",
+                  "hashTag": ["영어를","배우자","공짜라는데","진짤까?"],
+                "service_Img_URI": ["./svc7Main.jpg", "./svc7-1.jpg", "./svc7-2.jpg"],
+                "avg_Score": 2.3,
+                "member_NickName": "양꼬치엔칭따오",
+                "addr_State": "인천시",
+                "addr_City": "중구",
+                "addr_Dong": "선린동",
+                "category_Field": 2,
+                "category_Type": 1,
+                "category_Period": 0,
+                "category_Scale": 1,
+                "category_Place": 0
+                }
+                ]
+}
+
+// 서비스번호
+// 서비스명
+// 해시태그
+// 서비스 이미지 경로
+// 회원평점
+// 닉네임
+// 주소 시/도
+// 주소 시군구
+// 시도 동/리
+// 카테고리 분야
+// 카테고리 타입
+// 카테고리 기간
+// 카테고리 규모
+// 카테고리 장소

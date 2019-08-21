@@ -1,0 +1,73 @@
+package com.aclass.back.entity;
+
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.validator.constraints.Email;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+@Entity
+@Table(
+		name="member",
+		uniqueConstraints = {
+				@UniqueConstraint(columnNames = {"member_Email"})
+		})
+public class Member implements  UserDetails, Serializable{
+
+	@Id
+	@Column(name="member_NO")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long member_no;
+	
+	@Column(name = "member_ID")
+	private String member_id;
+
+	@Column(name="member_Password")
+	private String password;
+
+	@Column(name="member_Email", unique = true)
+	@Email
+	private String email;
+
+	@Column(name="Reg_Date")
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date reg_date;
+
+	@Column(name = "member_Type")
+	private int type;
+	
+	@Column(name = "member_isActive")
+	private boolean isActive;
+	
+	@Column(name = "member_Img")
+	private String image;
+	
+	@Column(name = "member_Nickname")
+	private String nickName;
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
+
+
+}
+

@@ -1,0 +1,50 @@
+package com.pap.bucketclass.entity;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import org.hibernate.validator.constraints.Email;
+
+@Entity
+@Table(name = "member", uniqueConstraints = {@UniqueConstraint(columnNames = {"member_email", "member_nickname"})})
+public class Member {
+	
+	@Id
+	@Column(name = "member_id", updatable = false, nullable = false)
+	private String memberId;
+	
+	@Column(name = "member_password")
+	private String memberPassword;
+	
+	@Email
+	@Column(name = "member_email", unique = true)
+	private String memberEmail;
+	
+	@Column(name = "member_nickname", unique = true)
+	private String memberNickname;
+	
+	@Column(name = "member_join_date")
+	private Date memberJoinDate;
+	
+	@Column(name = "member_img")
+	private String memberImg;
+	
+	@Column(name = "member_isActive")
+	private boolean memberIsActive;
+	
+	@Column(name = "career", nullable = true)
+	private String career;
+	
+	@Column(name = "certi")
+	private String certi;
+	
+	@Column(name = "introduce")
+	private String introduce;
+	
+	
+}

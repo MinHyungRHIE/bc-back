@@ -1,0 +1,11 @@
+package com.pap.bucketclass.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+@Entity
+@Table(name = "member", uniqueConstraints = {@UniqueConstraint(columnNames = {"member_email", "member_nickname"})})
+public class Member {
+
+}

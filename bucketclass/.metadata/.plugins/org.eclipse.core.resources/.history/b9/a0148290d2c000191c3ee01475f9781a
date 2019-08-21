@@ -1,0 +1,145 @@
+package com.aclass.back.entity;
+
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.validator.constraints.Email;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+@Entity
+@Table(
+		name="member",
+		uniqueConstraints = {
+				@UniqueConstraint(columnNames = {"email"})
+		})
+public class Member implements  UserDetails, Serializable{
+
+	@Id
+	@Column(name="member_id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long member_id;
+
+	@Column(name="password")
+//	@NotNull
+	private String password;
+
+	@Column(name="email", unique = true)
+	@Email
+	@NotNull
+	private String email;
+
+	@Column(name="name")
+//	@NotNull
+//	@NotBlank
+	private String username;
+
+	@Column(name="created")
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date created;
+
+	@Column(name="updated")
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date updated;
+
+	public Long getMember_id() {
+		return member_id;
+	}
+
+	public void setMember_id(Long member_id) {
+		this.member_id = member_id;
+	}
+
+	@Override
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	@Override
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+	public Date getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(Date updated) {
+		this.updated = updated;
+	}
+
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+
+}
+

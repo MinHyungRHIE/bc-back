@@ -1,0 +1,12 @@
+package com.aclass.back.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.aclass.back.entity.Member;
+
+//https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation
+@Repository
+public interface MemberRepo extends JpaRepository<Member, Long>{
+	Member findByUsername(String name);
+}

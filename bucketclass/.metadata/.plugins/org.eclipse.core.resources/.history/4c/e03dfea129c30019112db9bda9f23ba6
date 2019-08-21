@@ -1,0 +1,25 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<form method="post" action="./valid">
+		<label for="username">ID: 
+				<input type="text" name="username" id="username" />
+		</label> 
+		<label for="memberId">Password: 
+				<input type="password" name="memberId" id="memberId" />
+		</label> 
+		<label for="username">Email:
+				<input type="text" name="memberId" id="memberId" />
+		</label> 
+		<label for="username">Nickname:
+				<input type="text" name="memberId" id="memberId" />
+		</label>
+	</form>
+</body>
+</html>

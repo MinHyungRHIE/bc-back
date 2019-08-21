@@ -1,0 +1,34 @@
+package com.pap.bucketclass.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name="service_address")
+public class ServiceAddress {
+	
+	@Id
+	@Column(name="address_id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long addressId;
+	
+	@Column(name="address_state")
+	@NotNull
+	private String addressState;
+	
+	@Column(name="address_city")
+	@NotNull
+	private String addressCity;
+	
+	@Column(name="address_dong")
+	@NotNull
+	private String addressDong;
+
+	@Column(name="address_detail")
+	private String addressDetail;
+}

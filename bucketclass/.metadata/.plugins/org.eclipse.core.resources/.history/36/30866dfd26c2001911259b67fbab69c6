@@ -1,0 +1,30 @@
+package com.pap.bucketclass.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.pap.bucketclass.entity.Member;
+import com.pap.bucketclass.repository.MemberRepo;
+
+@EnableTransactionManagement(proxyTargetClass = true)
+@Service
+public class LocalUserDetailsService implements UserDetailsService {
+
+    @Autowired
+    private MemberRepo memberRepo;
+
+    @Override
+    @Transactional(readOnly = true)
+    public UserDetails loadUserByUsername(String memberID) throws UsernameNotFoundException {
+        Member user = memberRepo.findByMemberID(memberID);
+        if (user == null) {
+            throw new UsernameNotFoundException(memberID);
+        }
+        return user;
+    }
+}

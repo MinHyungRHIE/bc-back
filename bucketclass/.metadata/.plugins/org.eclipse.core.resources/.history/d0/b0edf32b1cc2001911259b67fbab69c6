@@ -1,0 +1,51 @@
+package com.pap.bucketclass.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+@Entity
+@Table(
+		name="Privileges",
+		uniqueConstraints= {
+				@UniqueConstraint(columnNames = {"name"})
+		})
+public class Privileges {
+	
+	@Id
+	@Column(name="privileges_id")
+	private String privileges_id;
+	
+	@Column(name="name")
+	private String name;
+	
+	@Column(name="description")
+	private String description;
+
+	public String getId() {
+		return privileges_id;
+	}
+
+	public void setId(String id) {
+		this.privileges_id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+}
