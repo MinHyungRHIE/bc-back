@@ -1,0 +1,76 @@
+package com.pap.bucketclass.service;
+
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.pap.bucketclass.entity.Member;
+import com.pap.bucketclass.entity.Role;
+import com.pap.bucketclass.model.SignUpModel;
+import com.pap.bucketclass.repository.MemberRepository;
+import com.pap.bucketclass.repository.RoleRepository;
+
+@Service
+public class SignUpService {
+
+	@Autowired
+	private MemberRepository memberRepo;
+
+	@Autowired
+	private RoleRepository roleRepo;
+
+	// ID중복검사
+	public boolean checkId(String memberId) {
+		System.out.println(">>>ID중복검사실시");
+		if(memberRepo.findById(memberId)!=null) {
+			System.out.println("이미 존재하는 ID");
+			return false;
+		}
+		return true;
+	}
+
+	// Email 중복검사
+	public Member checkEmail(String memberEmail, SignUpModel signup) {
+
+		System.out.println(">>>Email중복검사실시");
+		if(memberRepo.findByMemberEmail(memberEmail).equals(signup.getMemberEmail())) {
+			System.out.println("이미 존재하는 Email");
+			return null;
+		}
+		return insertMember(signup);
+	}
+	// NickName 중복검사
+	public boolean checkNickname(String memberNickname) {
+
+//		if(memberRepo.findByMemberNickname(memberNickname).equals(signup.getMemberNickname())){
+//			System.out.println("이미 존재하는 NickName");
+//			return null;
+//		}
+		if(memberRepo.findByMemberNickname(memberNickname) != null) {
+			return false;
+		}
+		return true;
+	}
+
+	@Transactional
+	public Member insertMember(SignUpModel signup) {
+		try {
+			
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		checkId(signup.getMemberId());
+		checkEmail(signup.getMemberEmail());
+		checkNickname(signup.getMemberNickname());
+		
+		Member member = signup.toMember();
+		Role role = roleRepo.findByRoleName(signup.getRoleName());
+		member.setRoles(Stream.of(role).collect(Collectors.toSet()));
+		member.setMemberIsActive(true);
+		return memberRepo.save(member);
+	}
+}

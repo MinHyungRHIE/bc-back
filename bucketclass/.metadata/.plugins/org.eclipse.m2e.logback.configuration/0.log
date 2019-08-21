@@ -5896,3 +5896,212 @@ Caused by: org.eclipse.aether.transfer.ArtifactNotFoundException: Could not find
 2019-08-21 17:11:46,132 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2019-08-21 17:11:46,190 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2019-08-21 17:11:46,190 [Worker-12: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 17:21:34,846 [Worker-4: Loading available Gradle versions] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2019-08-21 17:22:48,691 [Worker-11: Building workspace] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.pap:bucketclass:1.0-SNAPSHOT @ C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\pom.xml.
+2019-08-21 17:22:51,178 [Worker-11: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 17:22:51,179 [Worker-11: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 17:22:51,181 [Worker-11: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 17:22:51,181 [Worker-11: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 17:22:51,184 [Worker-11: Building workspace] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of bucketclass
+2019-08-21 17:22:51,185 [Worker-11: Building workspace] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for bucketclass
+2019-08-21 17:22:51,194 [Worker-11: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 17:29:34,089 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 17:29:34,089 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 17:29:34,091 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 17:29:34,091 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 17:41:14,935 [Worker-10: Resolving model org.eclipse.recommenders:index::zip:0.0.0] WARN  o.e.r.models.ModelRepository - Failed to download org.eclipse.recommenders:index::zip:0.0.0
+org.eclipse.aether.resolution.ArtifactResolutionException: Could not find artifact org.eclipse.recommenders:index:zip:0.0.0-SNAPSHOT in models (http://download.eclipse.org/recommenders/models/photon/)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolve(DefaultArtifactResolver.java:453) ~[na:na]
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifacts(DefaultArtifactResolver.java:255) ~[na:na]
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifact(DefaultArtifactResolver.java:232) ~[na:na]
+	at org.eclipse.aether.internal.impl.DefaultRepositorySystem.resolveArtifact(DefaultRepositorySystem.java:303) ~[na:na]
+	at org.eclipse.recommenders.models.ModelRepository.resolveInternal(ModelRepository.java:193) [org.eclipse.recommenders.models_2.5.4.v20180909-1132.jar:na]
+	at org.eclipse.recommenders.models.ModelRepository.resolve(ModelRepository.java:172) [org.eclipse.recommenders.models_2.5.4.v20180909-1132.jar:na]
+	at org.eclipse.recommenders.internal.models.rcp.EclipseModelRepository.resolve(EclipseModelRepository.java:168) [org.eclipse.recommenders.models.rcp_2.5.4.v20180909-1132.jar:na]
+	at org.eclipse.recommenders.internal.models.rcp.DownloadModelArchiveJob.run(DownloadModelArchiveJob.java:76) [org.eclipse.recommenders.models.rcp_2.5.4.v20180909-1132.jar:na]
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63) [org.eclipse.core.jobs_3.10.100.v20180817-1215.jar:na]
+Caused by: org.eclipse.aether.transfer.ArtifactNotFoundException: Could not find artifact org.eclipse.recommenders:index:zip:0.0.0-SNAPSHOT in models (http://download.eclipse.org/recommenders/models/photon/)
+	at org.eclipse.aether.connector.basic.ArtifactTransportListener.transferFailed(ArtifactTransportListener.java:48) ~[org.apache.maven.resolver.connector.basic_1.0.3.v20170405-0725.jar:1.0.3]
+	at org.eclipse.aether.connector.basic.BasicRepositoryConnector$TaskRunner.run(BasicRepositoryConnector.java:364) ~[org.apache.maven.resolver.connector.basic_1.0.3.v20170405-0725.jar:1.0.3]
+	at org.eclipse.aether.util.concurrency.RunnableErrorForwarder$1.run(RunnableErrorForwarder.java:76) ~[na:na]
+	at org.eclipse.aether.connector.basic.BasicRepositoryConnector$DirectExecutor.execute(BasicRepositoryConnector.java:590) ~[org.apache.maven.resolver.connector.basic_1.0.3.v20170405-0725.jar:1.0.3]
+	at org.eclipse.aether.connector.basic.BasicRepositoryConnector.get(BasicRepositoryConnector.java:258) ~[org.apache.maven.resolver.connector.basic_1.0.3.v20170405-0725.jar:1.0.3]
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.performDownloads(DefaultArtifactResolver.java:529) ~[na:na]
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolve(DefaultArtifactResolver.java:430) ~[na:na]
+	... 8 common frames omitted
+2019-08-21 17:42:38,717 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 17:42:38,718 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 17:42:38,727 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 17:42:38,727 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 17:48:14,931 [Worker-34: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 17:48:14,931 [Worker-34: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 17:48:14,941 [Worker-34: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 17:48:14,949 [Worker-34: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 17:49:09,312 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 17:49:09,313 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 17:49:09,319 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 17:49:09,324 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 17:51:54,607 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 17:51:54,607 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 17:51:54,614 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 17:51:54,619 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 17:53:02,687 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 17:53:02,687 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 17:53:02,693 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 17:53:02,698 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 17:53:21,408 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 17:53:21,408 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 17:53:21,413 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 17:53:21,419 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 17:54:15,882 [Worker-34: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 17:54:15,882 [Worker-34: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 17:54:15,892 [Worker-34: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 17:54:15,900 [Worker-34: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 18:07:50,813 [Worker-38: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:07:50,813 [Worker-38: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 18:07:50,822 [Worker-38: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:07:50,828 [Worker-38: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 18:10:46,214 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:10:46,215 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 18:10:46,224 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:10:46,231 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 18:11:21,991 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:11:21,991 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 18:11:22,001 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:11:22,009 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 18:25:20,437 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:25:20,437 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 18:25:20,445 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:25:20,450 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 18:47:07,719 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:47:07,720 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 18:47:07,744 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:47:07,752 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 18:48:25,814 [Worker-47: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:48:25,815 [Worker-47: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 18:48:25,823 [Worker-47: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:48:25,828 [Worker-47: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 18:49:24,781 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:49:24,781 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 18:49:24,788 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:49:24,792 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 18:50:46,436 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:50:46,437 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 18:50:46,445 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:50:46,451 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 18:51:00,428 [Worker-43: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:51:00,428 [Worker-43: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 18:51:00,434 [Worker-43: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:51:00,440 [Worker-43: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 18:52:39,150 [Worker-46: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:52:39,150 [Worker-46: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 18:52:39,160 [Worker-46: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:52:39,166 [Worker-46: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 18:54:55,215 [Worker-48: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:54:55,215 [Worker-48: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 18:54:55,222 [Worker-48: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:54:55,229 [Worker-48: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 18:55:07,614 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:55:07,614 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 18:55:07,622 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:55:07,627 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 18:56:42,419 [Worker-50: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:56:42,420 [Worker-50: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 18:56:42,428 [Worker-50: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:56:42,434 [Worker-50: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 18:57:50,995 [Worker-48: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:57:50,996 [Worker-48: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 18:57:51,002 [Worker-48: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:57:51,009 [Worker-48: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 18:58:07,625 [Worker-46: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:58:07,626 [Worker-46: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 18:58:07,633 [Worker-46: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:58:07,639 [Worker-46: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 18:58:50,167 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:58:50,167 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 18:58:50,174 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:58:50,182 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 18:59:21,770 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:59:21,770 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 18:59:21,780 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 18:59:21,787 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 19:00:10,634 [Worker-49: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:00:10,635 [Worker-49: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 19:00:10,641 [Worker-49: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:00:10,647 [Worker-49: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 19:00:22,403 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:00:22,403 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 19:00:22,410 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:00:22,416 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 19:03:30,298 [Worker-47: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:03:30,298 [Worker-47: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 19:03:30,305 [Worker-47: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:03:30,310 [Worker-47: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 19:05:36,343 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:05:36,344 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 19:05:36,351 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:05:36,356 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 19:05:54,149 [Worker-43: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:05:54,149 [Worker-43: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 19:05:54,158 [Worker-43: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:05:54,166 [Worker-43: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 19:08:44,720 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:08:44,721 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 19:08:44,728 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:08:44,733 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 19:09:07,950 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:09:07,950 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 19:09:07,957 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:09:07,962 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 19:11:25,669 [Worker-51: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:11:25,669 [Worker-51: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 19:11:25,675 [Worker-51: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:11:25,681 [Worker-51: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 19:13:06,246 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:13:06,246 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 19:13:06,252 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:13:06,258 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 19:13:19,733 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:13:19,734 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 19:13:19,742 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:13:19,749 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 19:14:24,917 [Worker-52: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:14:24,917 [Worker-52: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 19:14:24,924 [Worker-52: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:14:24,930 [Worker-52: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 19:15:53,579 [Worker-53: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:15:53,580 [Worker-53: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 19:15:53,586 [Worker-53: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:15:53,592 [Worker-53: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 19:15:56,670 [Worker-53: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:15:56,671 [Worker-53: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 19:15:56,679 [Worker-53: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:15:56,684 [Worker-53: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 19:16:10,556 [Worker-52: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:16:10,557 [Worker-52: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 19:16:10,564 [Worker-52: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:16:10,570 [Worker-52: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 19:16:16,358 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:16:16,358 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 19:16:16,367 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:16:16,374 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 19:16:29,190 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:16:29,191 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 19:16:29,199 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:16:29,206 [Worker-27: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 19:17:44,960 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:17:44,960 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 19:17:44,967 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:17:44,971 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 19:17:48,967 [Worker-52: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:17:48,967 [Worker-52: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 19:17:48,973 [Worker-52: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:17:48,978 [Worker-52: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 19:17:50,996 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:17:50,996 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 19:17:51,000 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:17:51,007 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-21 19:17:58,560 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:17:58,560 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\main\resources
+2019-08-21 19:17:58,566 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-21 19:17:58,571 [Worker-36: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
