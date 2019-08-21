@@ -45,7 +45,9 @@ public class SignUpService {
 	
 	// NickName 중복검사
 	public boolean checkNickname(String memberNickname) {
+		System.out.println(">>>Nickname중복검사실시");
 		if(memberRepo.findByMemberNickname(memberNickname) != null) {
+			System.out.println("이미 존재하는 Nickname");
 			return false;
 		}
 		return true;
