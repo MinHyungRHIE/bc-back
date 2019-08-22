@@ -1,15 +1,17 @@
 package com.pap.bucketclass.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pap.bucketclass.entity.ServiceCreation;
 import com.pap.bucketclass.repository.ServiceCreationRepository;
+import com.pap.bucketclass.repository.TestRegistrationRepository;
 
 @Service
 public class ServiceCreationService {
+	
+	@Autowired
+	private TestRegistrationRepository serviceRegistrationRepo;
 	
 	@Autowired
 	private ServiceCreationRepository serviceCreationRepo;

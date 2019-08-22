@@ -79,9 +79,9 @@ public class Member implements UserDetails, Serializable{
 	/*
 	 * member -- [member_service_creation] -- ServiceCreation
 	 */
-	@JsonBackReference
-	@ManyToMany(mappedBy = "members")
-	private Set<ServiceCreation> serviceCreation = new HashSet<>();
+//	@JsonBackReference
+//	@ManyToMany(mappedBy = "members")
+//	private Set<ServiceCreation> serviceCreation = new HashSet<>();
 	
 	public Boolean getMemberIsActive() {
 		return memberIsActive;
@@ -91,13 +91,13 @@ public class Member implements UserDetails, Serializable{
 		this.memberIsActive = memberIsActive;
 	}
 
-	public Set<ServiceCreation> getServiceCreation() {
-		return serviceCreation;
-	}
-
-	public void setServiceCreation(Set<ServiceCreation> serviceCreation) {
-		this.serviceCreation = serviceCreation;
-	}
+//	public Set<ServiceCreation> getServiceCreation() {
+//		return serviceCreation;
+//	}
+//
+//	public void setServiceCreation(Set<ServiceCreation> serviceCreation) {
+//		this.serviceCreation = serviceCreation;
+//	}
 
 	@Override
 	public String getPassword() {

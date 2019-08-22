@@ -35,11 +35,6 @@ public class TestRestController {
 		System.out.println("access to RestController Post-Mapping");
 		Long num = new Long(1);
 		ServiceCreation sc = serviceCreationSerivce.AccessService(num);
-		System.out.println(sc.getServiceTitle());
-		System.out.println(sc.getMembers().isEmpty());
-		System.out.println(sc.getServiceAddress().getAddressDetail());
-		System.out.println(sc.getServiceCategory().getCategorySubject());
-		System.out.println(sc.getServiceRegistrations().isEmpty());
 		return sc;
 	}
 	
