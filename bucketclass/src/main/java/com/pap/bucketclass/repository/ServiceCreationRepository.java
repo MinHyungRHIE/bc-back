@@ -7,5 +7,5 @@ import com.pap.bucketclass.entity.ServiceCreation;
 
 @Repository
 public interface ServiceCreationRepository extends JpaRepository<ServiceCreation, Long>{
-	
+	ServiceCreation findByServiceId(Long serivce_id);
 }

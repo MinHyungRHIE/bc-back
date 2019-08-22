@@ -4,16 +4,24 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.pap.bucketclass.support.BooleanToLongConverter;
 
 @Entity
 @Table(name="service_registration")
@@ -24,7 +32,13 @@ public class ServiceRegistration implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long serviceRegisterId;
 	
-	//service_id(service_creation)
+	/*
+	 * ServiceCreation -- ServiceRegistration
+	 */
+	@JsonBackReference
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "service_id", nullable = false)
+    private ServiceCreation serviceCreation;
 	
 	@Column(name="service_register_date")
 	@CreationTimestamp
@@ -33,6 +47,7 @@ public class ServiceRegistration implements Serializable{
 	private Date serviceRegisterDate;
 	
 	@Column(name="service_register_isActive")
+    @Convert(converter = BooleanToLongConverter.class)
 	@NotNull
 	private Boolean serviceRegisterIsActive;
 	
@@ -83,6 +98,13 @@ public class ServiceRegistration implements Serializable{
 	public void setServicePriceDescription(String servicePriceDescription) {
 		this.servicePriceDescription = servicePriceDescription;
 	}
-	
+
+	public ServiceCreation getServiceCreation() {
+		return serviceCreation;
+	}
+
+	public void setServiceCreation(ServiceCreation serviceCreation) {
+		this.serviceCreation = serviceCreation;
+	}
 	
 }

@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -20,13 +21,13 @@ import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.pap.bucketclass.support.BooleanToLongConverter;
 
 @Entity
 @Table(name = "member", uniqueConstraints = {@UniqueConstraint(columnNames = {"member_email", "member_nickname"})})
@@ -46,7 +47,6 @@ public class Member implements UserDetails, Serializable{
 	@Column(name = "member_nickname", unique = true, nullable = false)
 	private String memberNickname;
 	
-	
 	@Column(name = "member_join_date", nullable = false)
 	@CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -56,6 +56,7 @@ public class Member implements UserDetails, Serializable{
 	private String memberImg;
 	
 	@Column(name = "member_isActive", nullable = false)
+    @Convert(converter = BooleanToLongConverter.class)
 	private Boolean memberIsActive;
 	
 	@Column(name = "career", nullable = true)
@@ -75,10 +76,28 @@ public class Member implements UserDetails, Serializable{
 			)
 	private Set<Role> roles = new HashSet<>();
 	
-	@JsonIgnore
+	/*
+	 * member -- [member_service_creation] -- ServiceCreation
+	 */
+	@JsonBackReference
 	@ManyToMany(mappedBy = "members")
-    @LazyCollection(LazyCollectionOption.EXTRA)
 	private Set<ServiceCreation> serviceCreation = new HashSet<>();
+	
+	public Boolean getMemberIsActive() {
+		return memberIsActive;
+	}
+
+	public void setMemberIsActive(Boolean memberIsActive) {
+		this.memberIsActive = memberIsActive;
+	}
+
+	public Set<ServiceCreation> getServiceCreation() {
+		return serviceCreation;
+	}
+
+	public void setServiceCreation(Set<ServiceCreation> serviceCreation) {
+		this.serviceCreation = serviceCreation;
+	}
 
 	@Override
 	public String getPassword() {

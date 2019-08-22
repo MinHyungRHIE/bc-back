@@ -13,11 +13,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "role")
 public class Role implements Serializable {
@@ -37,9 +32,7 @@ public class Role implements Serializable {
 			)
 	private Set<Privilege> privileges = new HashSet<>();
 	
-	@JsonIgnore
     @ManyToMany(mappedBy = "roles")
-    @LazyCollection(LazyCollectionOption.EXTRA)
     private Set<Member> member = new HashSet<>();
 
 	public String getRoleId() {

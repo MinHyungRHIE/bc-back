@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -29,7 +30,6 @@ public class Privilege implements GrantedAuthority, Serializable{
 	
 	@JsonIgnore
     @ManyToMany(mappedBy = "privileges")
-    @LazyCollection(LazyCollectionOption.EXTRA)
     private Set<Role> roles = new HashSet<>();
 
 	public String getPrivilegeId() {

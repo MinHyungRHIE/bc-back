@@ -14,7 +14,7 @@ public class ServiceCreationService {
 	@Autowired
 	private ServiceCreationRepository serviceCreationRepo;
 	
-	public List<ServiceCreation> checkAllOfData() {
-		return serviceCreationRepo.findAll();
+	public ServiceCreation AccessService(Long service_id) {
+		return serviceCreationRepo.findByServiceId(service_id);
 	}
 }
