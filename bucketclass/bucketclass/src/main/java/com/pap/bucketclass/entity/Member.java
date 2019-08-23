@@ -27,8 +27,9 @@ import org.hibernate.validator.constraints.Email;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.pap.bucketclass.support.BooleanToIntegerConverter;
+import com.pap.bucketclass.support.BooleanToLongConverter;
 
 @Entity
 @Table(name = "member", uniqueConstraints = {@UniqueConstraint(columnNames = {"member_email", "member_nickname"})})
@@ -58,7 +59,7 @@ public class Member implements UserDetails, Serializable{
 	private String memberImg;
 	
 	@Column(name = "member_isActive", nullable = false)
-	@Convert(converter=BooleanToIntegerConverter.class)
+	@Convert(converter=BooleanToLongConverter.class)
 	private Boolean memberIsActive;
 	
 	@Column(name = "career", nullable = true)
@@ -78,7 +79,7 @@ public class Member implements UserDetails, Serializable{
 			)
 	private Set<Role> roles = new HashSet<>();
 	
-	@JsonIgnore
+	@JsonBackReference
 	@ManyToMany(mappedBy = "members")
     @LazyCollection(LazyCollectionOption.EXTRA)
 	private Set<ServiceCreation> serviceCreation = new HashSet<>();

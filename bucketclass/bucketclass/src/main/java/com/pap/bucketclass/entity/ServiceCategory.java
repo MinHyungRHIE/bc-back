@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="service_category")
-public class ServiceCategory implements Serializable  {
+public class ServiceCategory implements Serializable {
 	
 	@Id
 	@Column(name="category_id")

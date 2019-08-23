@@ -1,7 +1,6 @@
 #Tomcat publish data
-<<<<<<< HEAD
-#Wed Aug 21 20:40:19 KST 2019
-=======
-#Wed Aug 21 15:13:41 KST 2019
->>>>>>> parent of ff48166... dev_sa0821_signup checkId,checkEmail,checkNickname add
+#Fri Aug 23 13:31:59 KST 2019
+>>>>>>>=parent of ff48166... dev_sa0821_signup checkId,checkEmail,checkNickname add
 org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\kimseula\\.m2\\repository\\org\\springframework\\spring-web\\5.1.9.RELEASE\\spring-web-5.1.9.RELEASE.jar=WEB-INF/lib/spring-web-5.1.9.RELEASE.jar
+<<<<<<<=HEAD
+=\=\=\=\=\=\=

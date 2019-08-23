@@ -1,14 +1,19 @@
 package com.pap.bucketclass.entity;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -16,17 +21,29 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.pap.bucketclass.support.BooleanToLongConverter;
+
 @Entity
 @Table(name="service_registration")
-public class ServiceRegistration implements Serializable  {
+public class ServiceRegistration implements Serializable{
 	
 	@Id
 	@Column(name="service_register_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long serviceRegisterId;
 	
-	//service_id(service_creation)
+	/*
+	 * ServiceRegistration -- ServiceCreation
+	 */
+//	@JsonBackReference
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "service_id", nullable = false)
+//    private ServiceCreation serviceCreation;
 	
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "service_id", nullable = false)
+    private ServiceCreation  serviceCreation;
+    
 	@Column(name="service_register_date")
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
@@ -34,6 +51,7 @@ public class ServiceRegistration implements Serializable  {
 	private Date serviceRegisterDate;
 	
 	@Column(name="service_register_isActive")
+    @Convert(converter = BooleanToLongConverter.class)
 	@NotNull
 	private Boolean serviceRegisterIsActive;
 	
@@ -44,7 +62,14 @@ public class ServiceRegistration implements Serializable  {
 	@Column(name="service_price_description")
 	@NotNull
 	private String servicePriceDescription;
-
+	
+	/*
+	 * ServiceRegistration -- ServiceAddress
+	 */
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "address_id")
+	private ServiceAddress serviceAddress;
+	
 	public Long getServiceRegisterId() {
 		return serviceRegisterId;
 	}
@@ -84,6 +109,21 @@ public class ServiceRegistration implements Serializable  {
 	public void setServicePriceDescription(String servicePriceDescription) {
 		this.servicePriceDescription = servicePriceDescription;
 	}
+
+	public ServiceCreation getServiceCreation() {
+		return serviceCreation;
+	}
+
+	public void setServiceCreation(ServiceCreation serviceCreation) {
+		this.serviceCreation = serviceCreation;
+	}
 	
+	public ServiceAddress getServiceAddress() {
+		return serviceAddress;
+	}
+
+	public void setServiceAddress(ServiceAddress serviceAddress) {
+		this.serviceAddress = serviceAddress;
+	}
 	
 }

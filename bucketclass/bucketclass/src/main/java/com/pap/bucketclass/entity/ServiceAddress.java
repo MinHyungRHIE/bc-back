@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="service_address")
-public class ServiceAddress implements Serializable  {
+public class ServiceAddress implements Serializable {
 	
 	@Id
 	@Column(name="address_id")
@@ -73,6 +73,5 @@ public class ServiceAddress implements Serializable  {
 	public void setAddressDetail(String addressDetail) {
 		this.addressDetail = addressDetail;
 	}
-	
 	
 }

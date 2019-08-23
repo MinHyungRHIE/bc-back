@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,7 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -22,9 +23,12 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.pap.bucketclass.support.BooleanToLongConverter;
+
 @Entity
 @Table(name="service_creation")
-public class ServiceCreation implements Serializable { 
+public class ServiceCreation implements Serializable{ 
 	
 	@Id
 	@Column(name="service_id")
@@ -35,21 +39,14 @@ public class ServiceCreation implements Serializable {
 	@NotNull
 	private String serviceTitle;
 	
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "address_id")
-	private ServiceAddress serviceAddress;
-	
 	@Column(name="account_bank")
 	private String accountBank;
 	
 	@Column(name="account_number")
 	private String accountNumber;
 	
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id")
-    ServiceCategory serviceCategory;
-	
 	@Column(name="service_isDelete")
+    @Convert(converter = BooleanToLongConverter.class)
 	@NotNull
 	private Boolean serviceIsDelete;
 	
@@ -62,24 +59,46 @@ public class ServiceCreation implements Serializable {
 	@NotNull
 	private Date serviceModifiedDate;
 	
-	@Column(name="service_img_url")
-	private String serviceImgUrl; //JSON
+	@Column(name="service_img_uri")
+	private String serviceImgUri; //JSON
 	
 	@Column(name="service_description")
 	private String serviceDescription;
 	
-	//member_id String
-    @ManyToMany(fetch = FetchType.EAGER)
+	/*
+	 * ServiceCreation -- ServiceCategory
+	 */
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id")
+    private ServiceCategory serviceCategory;
+    
+    /*
+     * ServiceCreation -- ServiceRegistration
+     */
+    @OneToMany(mappedBy = "serviceCreation")
+    private Set<ServiceRegistration> serviceRegistrations = new HashSet<>();
+    
+	public Long getServiceId() {
+		return serviceId;
+	}
+	
+	/*
+	 * json serialize 과정에서 null로 세팅하고자 하면 @JsonIgnore 사용하면 되고, 
+	 * 순환참조에 대한 문제를 해결하고자 한다면 부모 클래스측에 @JsonManagedReference를, 
+	 * 자식측에 @JsonBackReference를 Annotation에 추가해주면 된다.
+	 * 
+	 * ServiceCreation -- [member_service_creation] -- Member
+	 */
+	@JsonManagedReference
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "member_service_creation",
             joinColumns = @JoinColumn(name = "service_id"),
             inverseJoinColumns = @JoinColumn(name = "member_id")
     )
-	private Set<ServiceCategory> members = new HashSet<>();
+	private Set<Member> members = new HashSet<>();
 
-	public Long getServiceId() {
-		return serviceId;
-	}
+
 
 	public void setServiceId(Long serviceId) {
 		this.serviceId = serviceId;
@@ -91,14 +110,6 @@ public class ServiceCreation implements Serializable {
 
 	public void setServiceTitle(String serviceTitle) {
 		this.serviceTitle = serviceTitle;
-	}
-
-	public ServiceAddress getServiceAddress() {
-		return serviceAddress;
-	}
-
-	public void setServiceAddress(ServiceAddress serviceAddress) {
-		this.serviceAddress = serviceAddress;
 	}
 
 	public String getAccountBank() {
@@ -149,14 +160,6 @@ public class ServiceCreation implements Serializable {
 		this.serviceModifiedDate = serviceModifiedDate;
 	}
 
-	public String getServiceImgUrl() {
-		return serviceImgUrl;
-	}
-
-	public void setServiceImgUrl(String serviceImgUrl) {
-		this.serviceImgUrl = serviceImgUrl;
-	}
-
 	public String getServiceDescription() {
 		return serviceDescription;
 	}
@@ -165,13 +168,30 @@ public class ServiceCreation implements Serializable {
 		this.serviceDescription = serviceDescription;
 	}
 
-	public Set<ServiceCategory> getMembers() {
+	public Set<Member> getMembers() {
 		return members;
 	}
 
-	public void setMembers(Set<ServiceCategory> members) {
+	public void setMembers(Set<Member> members) {
 		this.members = members;
 	}
+
+	public Set<ServiceRegistration> getServiceRegistrations() {
+		return serviceRegistrations;
+	}
+
+	public void setServiceRegistrations(Set<ServiceRegistration> serviceRegistrations) {
+		this.serviceRegistrations  = serviceRegistrations;
+	}
+
+	public String getServiceImgUri() {
+		return serviceImgUri;
+	}
+
+	public void setServiceImgUri(String serviceImgUri) {
+		this.serviceImgUri = serviceImgUri;
+	}
+
 	
     
 }
