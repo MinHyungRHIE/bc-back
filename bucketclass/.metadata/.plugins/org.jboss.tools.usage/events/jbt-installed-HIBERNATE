@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 #Fri Aug 23 12:58:02 KST 2019
 l=Installed plugins\: HIBERNATE
 ct=jbt
 d=1566532682790
 c=1
+=======
+#Wed Aug 21 17:11:44 KST 2019
+l=Installed plugins\: HIBERNATE
+ct=jbt
+d=1566375104463
+c=3
+>>>>>>> parent of ff48166... dev_sa0821_signup checkId,checkEmail,checkNickname add
 cmp=usage
 a=installed
 cl=HIBERNATE

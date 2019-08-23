@@ -7,6 +7,10 @@ configurationInstallLocation=/C\:/Users/kimseula/eclipse/jee-2018-09/eclipse/
 eclipse.preferences.version=1
 iconcolormode=primary
 last.download.attempt.time=1566374731104
+<<<<<<< HEAD
 lastConfiguration=1566532535099
+=======
+lastConfiguration=1566375081103
+>>>>>>> parent of ff48166... dev_sa0821_signup checkId,checkEmail,checkNickname add
 newinstall=true
 workbench.theme=Dark Gray
