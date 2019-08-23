@@ -1,7 +1,6 @@
 package com.pap.bucketclass.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,7 +23,10 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.pap.bucketclass.support.BooleanToLongConverter;
 
@@ -100,7 +102,9 @@ public class ServiceCreation implements Serializable{
     /*
      * ServiceCreation -- ServiceRegistration
      */
-    @ManyToMany(mappedBy = "serviceCreation")
+    @JsonBackReference
+	@ManyToMany(mappedBy = "serviceCreation")
+    @LazyCollection(LazyCollectionOption.EXTRA)
     private Set<ServiceRegistration> serviceRegistrations = new HashSet<>();
     
 	public Long getServiceId() {

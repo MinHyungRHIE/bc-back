@@ -19,7 +19,6 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.pap.bucketclass.support.BooleanToLongConverter;
 
@@ -35,7 +34,7 @@ public class ServiceRegistration implements Serializable{
 	/*
 	 * ServiceCreation -- ServiceRegistration
 	 */
-	@JsonBackReference
+	@JsonManagedReference
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "service_id", nullable = false)
     private ServiceCreation serviceCreation;
