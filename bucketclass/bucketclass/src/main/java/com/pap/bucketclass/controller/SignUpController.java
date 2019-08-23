@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.pap.bucketclass.entity.Member;
 import com.pap.bucketclass.model.SignUpModel;
 import com.pap.bucketclass.service.SignUpService;
 
@@ -16,24 +15,22 @@ public class SignUpController {
 
 	@Autowired
 	private SignUpService signUpService;
-	
+
 	@GetMapping("/signup")
 	public String loginForm() {
 		return "member-register";
 	}
-	
+
 	@PostMapping(
 			path="/signup",
 			produces = {
-                    MediaType.APPLICATION_JSON_UTF8_VALUE,
-                    MediaType.APPLICATION_ATOM_XML_VALUE })
-	public String signUp(@RequestBody SignUpModel signup, Member member) {
-		
+					MediaType.APPLICATION_JSON_UTF8_VALUE,
+					MediaType.APPLICATION_ATOM_XML_VALUE })
+	public String signUp(@RequestBody SignUpModel signup) {
 		if(signUpService.insertMember(signup)!=null) {
-//			signUpService.checkId(member, signup);
 			return "member-login";
 		}
-		 return "member-register";
+		return "member-register";
 	}
-	
+
 }

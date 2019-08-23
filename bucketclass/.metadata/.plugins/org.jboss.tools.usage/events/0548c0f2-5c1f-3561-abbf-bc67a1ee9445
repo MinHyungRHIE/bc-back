@@ -1,19 +1,11 @@
-<<<<<<< HEAD
-#Fri Aug 23 12:58:01 KST 2019
+#Wed Aug 21 18:10:46 KST 2019
 vl=How many times the 'Finish' button pressed during the day
 l=Wizard class name
 ct=jbt
-d=1566532681875
-=======
-#Wed Aug 21 09:46:07 KST 2019
-vl=How many times the 'Finish' button pressed during the day
-l=Wizard class name
-ct=jbt
-d=1566348367392
->>>>>>> parent of ff48166... dev_sa0821_signup checkId,checkEmail,checkNickname add
+d=1566378646213
 c=0
 cmp=usage
 a=finishWizard
 cl=org.eclipse.jdt.internal.ui.wizards.NewClassCreationWizard
 v=2.2.201
-s=0
+s=1

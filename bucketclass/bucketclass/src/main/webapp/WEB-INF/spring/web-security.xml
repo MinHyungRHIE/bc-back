@@ -12,7 +12,6 @@
         <csrf disabled="true" />
         <intercept-url pattern="/signup*" access="isAnonymous()" />
         <intercept-url pattern="/login*" access="isAnonymous()" />
-        <intercept-url pattern="/test*" access="isAnonymous()" />
         <intercept-url pattern="/**" access="isAuthenticated()" />
 
         <form-login />

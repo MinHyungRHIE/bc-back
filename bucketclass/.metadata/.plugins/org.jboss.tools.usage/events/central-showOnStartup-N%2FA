@@ -1,16 +1,8 @@
-<<<<<<< HEAD
-#Fri Aug 23 12:58:02 KST 2019
+#Wed Aug 21 17:21:44 KST 2019
 l=true|false|N/A
 ct=central
-d=1566532682305
-c=1
-=======
-#Wed Aug 21 17:11:44 KST 2019
-l=true|false|N/A
-ct=central
-d=1566375104270
-c=3
->>>>>>> parent of ff48166... dev_sa0821_signup checkId,checkEmail,checkNickname add
+d=1566375704978
+c=4
 cmp=usage
 a=showOnStartup
 cl=N/A

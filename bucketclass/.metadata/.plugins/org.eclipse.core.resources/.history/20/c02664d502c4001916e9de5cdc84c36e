@@ -1,5 +1,0 @@
-package com.pap.bucketclass.repository;
-
-public interface LoginRepository {
-
-}

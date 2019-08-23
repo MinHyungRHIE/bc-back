@@ -53,6 +53,7 @@ public class SignUpModel implements Serializable {
 	}
 
 	public Member toMember() {
+		System.out.println("asdfjasdfkljadsklfjadsklfjklsadj");
 		Member member = new Member();
 		member.setMemberId(memberId);
 		member.setMemberEmail(memberEmail);
