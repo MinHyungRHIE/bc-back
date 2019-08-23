@@ -121,6 +121,16 @@ ALTER TABLE `service_registration`
 ALTER TABLE `service_registration`
 	MODIFY COLUMN `service_register_id` INT(12) NOT NULL AUTO_INCREMENT COMMENT '서비스등록번호';
 
+-- Service_History
+ALTER TABLE `service_history`
+	ADD CONSTRAINT `PK_Service_History` -- Service_Registration 기본키
+		PRIMARY KEY (
+			`service_history_id` -- service_register_id
+		);
+        
+ALTER TABLE `service_history`
+	MODIFY COLUMN `service_history_id` INT(12) NOT NULL AUTO_INCREMENT COMMENT '서비스등록번호';
+    
 ALTER TABLE `service_registration`
 	ADD CONSTRAINT `FK_Service_History_To_Service_Registration` -- Service_History -> Service_Registration
 		FOREIGN KEY (
@@ -130,17 +140,7 @@ ALTER TABLE `service_registration`
 			`service_history_id` -- service_history_id
 		);
 
--- Service_History
-ALTER TABLE `service_histroy`
-	ADD CONSTRAINT `PK_Service_History` -- Service_Registration 기본키
-		PRIMARY KEY (
-			`service_history_id` -- service_register_id
-		);
-
-ALTER TABLE `service_histroy`
-	MODIFY COLUMN `service_history_id` INT(12) NOT NULL AUTO_INCREMENT COMMENT '서비스등록번호';
-
-ALTER TABLE `service_histroy`
+ALTER TABLE `service_history`
 	ADD CONSTRAINT `FK_Service_Registration_To_Service_History` -- Service_Registration -> Service_History
 		FOREIGN KEY (
 			`service_register_id` -- service_registration
@@ -148,6 +148,7 @@ ALTER TABLE `service_histroy`
 		REFERENCES `service_registration` ( -- service_registration
 			`service_register_id` -- service_register_id
 		);
+        
 -- Service_Address
 CREATE TABLE `service_address` (
 	`address_id`     INT(12)      NOT NULL COMMENT '주소ID', -- address_id
@@ -225,13 +226,7 @@ ALTER TABLE `privilege`
 			`privilege_id` -- privilege_id
 		);
 
--- Member_Service_Creation
-CREATE TABLE `member_service_creation` (
-	`member_id`  VARCHAR(50) NULL COMMENT 'member_id', -- member_id
-	`service_id` INT(12)     NULL COMMENT 'service_id' -- service_id
-) ENGINE = `InnoDB` DEFAULT CHARACTER SET = `utf8`;
-
--- Service_Creation
+-- service_registration
 ALTER TABLE `service_registration`
 	ADD CONSTRAINT `FK_Service_Address_TO_Service_Registration` -- Service_Address -> Service_Registration
 		FOREIGN KEY (
@@ -241,24 +236,24 @@ ALTER TABLE `service_registration`
 			`address_id` -- address_id
 		);
 
--- Service_Creation
-ALTER TABLE `service_creation`
-	ADD CONSTRAINT `FK_Service_Category_TO_Service_Creation` -- Service_Category -> Service_Creation
+-- service_init
+ALTER TABLE `service_init`
+	ADD CONSTRAINT `FK_Service_Category_TO_Service_Init` -- Service_Category -> Service_Init
 		FOREIGN KEY (
 			`category_id` -- category_id
 		)
 		REFERENCES `service_category` ( -- Service_Category
 			`category_id` -- category_id
 		);
-
--- Service_Registration
-ALTER TABLE `service_registration`
-	ADD CONSTRAINT `FK_Service_Creation_TO_Service_Registration` -- Service_Creation -> Service_Registration
+        
+-- Service_History
+ALTER TABLE `service_history`
+	ADD CONSTRAINT `FK_Service_Category_TO_Service_History` -- Service_Category -> Service_History
 		FOREIGN KEY (
-			`service_id` -- service_id
+			`category_id` -- category_id
 		)
-		REFERENCES `service_creation` ( -- Service_Creation
-			`service_id` -- service_id
+		REFERENCES `service_category` ( -- Service_Category
+			`category_id` -- category_id
 		);
 
 -- member_Role
@@ -311,16 +306,6 @@ ALTER TABLE `member_service_creation`
 			`member_id` -- member_id
 		);
 
--- Member_Service_Creation
-ALTER TABLE `member_service_creation`
-	ADD CONSTRAINT `FK_Service_Creation_TO_Member_Service_Creation` -- Service_Creation -> Member_Service_Creation
-		FOREIGN KEY (
-			`service_id` -- service_id
-		)
-		REFERENCES `service_creation` ( -- Service_Creation
-			`service_id` -- service_id
-		);
-        
  INSERT INTO `privilege` VALUE
   ('read_service', 'READ_SERVICE')
 , ('write_service', 'WRITE_SERVICE')
@@ -388,12 +373,17 @@ INSERT INTO `service_category`(
     VALUES(
     "비즈니스", "교육","정기","단체","실내");
 
-INSERT INTO `service_creation`(
-	service_title, account_bank, account_number, category_id, service_isDelete, hashTag, service_modified_date, service_img_uri, service_description)
+INSERT INTO `service_init`(
+	service_title, member_id, account_bank, account_number, category_id, service_isDelete, hashTag, service_modified_date, service_img_uri, service_description)
     VALUES(
-    "중국어 교육", "국민은행", "524231-01-234232",1, FALSE, '["커피","아아","교육","아메리카노","공짜교육"]', NOW(), NULL, "강남에 제일 핫한 알베르라는 카페에서 \n랩을 운영하고 있는 바리스타입니다. ");
+    "중국어 교육", @providerId, "국민은행", "524231-01-234232",1, FALSE, '["커피","아아","교육","아메리카노","공짜교육"]', NOW(), NULL, "강남에 제일 핫한 알베르라는 카페에서 \n랩을 운영하고 있는 바리스타입니다. ");
+
+INSERT INTO `service_history`(
+	service_title, service_register_id, member_id, account_bank, account_number, category_id, service_isDelete, hashTag, service_modified_date, service_img_uri, service_description)
+    VALUES(
+    "A중국어 교육", 1, @providerId, "A국민은행", "A524231-01-234232",1, FALSE, '["A커피","A아아","A교육","A아메리카노","A공짜교육"]', NOW(), NULL, "A강남에 제일 핫한 알베르라는 카페에서 \n랩을 운영하고 있는 바리스타입니다. ");
 
 INSERT INTO `service_registration`(
-	service_id, address_id, service_register_date, service_register_isActive, service_price, service_price_description)
+	service_id, history_id, address_id, service_register_date, service_register_isActive, service_price, service_price_description)
     VALUES(
-    1, 1, NOW(), TRUE, "50000","중국어 초특강");
+    1, 1, 1, NOW(), TRUE, "50000","중국어 초특강");
