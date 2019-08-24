@@ -16,14 +16,16 @@ public class TestCommand {
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
+	public TestCommand setName(String name) {
 		this.name = name;
+		return this;
 	}
 	public String getEmail() {
 		return email;
 	}
-	public void setEmail(String email) {
+	public TestCommand setEmail(String email) {
 		this.email = email;
+		return this;
 	}
 	
 //	public List<TestSubCommand> getTestObject() {

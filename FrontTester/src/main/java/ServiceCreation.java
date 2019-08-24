@@ -1,4 +1,4 @@
-package com.pap.bucketclass.entity;
+
 
 import java.io.Serializable;
 import java.util.Date;

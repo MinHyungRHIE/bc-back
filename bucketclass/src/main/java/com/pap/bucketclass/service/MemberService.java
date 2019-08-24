@@ -17,4 +17,8 @@ public class MemberService {
 	public List<Member> checkAllOfData() {
 		return memberRepo.findAll();
 	}
+	
+	public Member getMemberObj(String memberId) {
+		return memberRepo.findByMemberId(memberId);
+	}
 }

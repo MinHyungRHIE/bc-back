@@ -27,11 +27,11 @@ public class Privilege implements GrantedAuthority, Serializable{
 	
 	@Column(name = "privilege_name", nullable = false)
 	private String privilegeName;
-	
+	/*********************************************************************************/
 	@JsonIgnore
     @ManyToMany(mappedBy = "privileges")
     private Set<Role> roles = new HashSet<>();
-
+	/*********************************************************************************/
 	public String getPrivilegeId() {
 		return privilegeId;
 	}
@@ -60,6 +60,5 @@ public class Privilege implements GrantedAuthority, Serializable{
 	public String getAuthority() {
 		return getPrivilegeName();
 	}
-	
 	
 }

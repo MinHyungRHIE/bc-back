@@ -23,7 +23,7 @@ public class Role implements Serializable {
 	
 	@Column(name = "role_name", nullable = false)
 	private String roleName;
-	
+	/*********************************************************************************/
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "role_privilege",
@@ -34,7 +34,7 @@ public class Role implements Serializable {
 	
     @ManyToMany(mappedBy = "roles")
     private Set<Member> member = new HashSet<>();
-
+    /*********************************************************************************/
 	public String getRoleId() {
 		return roleId;
 	}
@@ -66,4 +66,5 @@ public class Role implements Serializable {
 	public void setMember(Set<Member> member) {
 		this.member = member;
 	}
+	
 }

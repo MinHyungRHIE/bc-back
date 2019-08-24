@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,42 +33,43 @@ import com.pap.bucketclass.support.BooleanToLongConverter;
 @Entity
 @Table(name = "member", uniqueConstraints = {@UniqueConstraint(columnNames = {"member_email", "member_nickname"})})
 public class Member implements UserDetails, Serializable{
-	
+
 	@Id
 	@Column(name = "member_id", updatable = false, nullable = false)
 	private String memberId;
-	
+
 	@Column(name = "member_password", nullable = false)
 	private String memberPassword;
-	
+
 	@Email
 	@Column(name = "member_email", unique = true, nullable = false)
 	private String memberEmail;
-	
+
 	@Column(name = "member_nickname", unique = true, nullable = false)
 	private String memberNickname;
-	
+
 	@Column(name = "member_join_date", nullable = false)
 	@CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date memberJoinDate;
-	
+
 	@Column(name = "member_img", nullable = true)
 	private String memberImg;
-	
+
 	@Column(name = "member_isActive", nullable = false)
-    @Convert(converter = BooleanToLongConverter.class)
+	@Convert(converter = BooleanToLongConverter.class)
 	private Boolean memberIsActive;
-	
+
 	@Column(name = "career", nullable = true)
 	private String career;
-	
+
 	@Column(name = "certi", nullable = true)
 	private String certi;
-	
-	@Column(name = "introduce", nullable = false)
+
+	@Column(name = "introduce", nullable = true)
 	private String introduce;
-	
+
+	/*********************************************************************************/
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "member_role",
@@ -75,49 +77,36 @@ public class Member implements UserDetails, Serializable{
 			inverseJoinColumns = @JoinColumn(name = "role_id")
 			)
 	private Set<Role> roles = new HashSet<>();
-	
+
 	/*
-	 * member -- [member_service_creation] -- ServiceCreation
+	 * member -- ServiceTemplate
 	 */
 	@JsonBackReference
-	@ManyToMany(mappedBy = "members")
-	private Set<ServiceCreation> serviceCreation = new HashSet<>();
+	@OneToMany(mappedBy = "member")
+	private Set<ServiceTemplate> serviceTemplates = new HashSet<>();
 	
-	public Boolean getMemberIsActive() {
-		return memberIsActive;
-	}
+	/*
+	 * member -- [wishlist] -- service
+	 */
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+			name = "wishlist",
+			joinColumns = @JoinColumn(name = "member_id"),
+			inverseJoinColumns = @JoinColumn(name = "service_id")
+			)
+	private Set<Service> services = new HashSet<>();
+	/*********************************************************************************/
 
-	public void setMemberIsActive(Boolean memberIsActive) {
-		this.memberIsActive = memberIsActive;
-	}
-
-	public Set<ServiceCreation> getServiceCreation() {
-		return serviceCreation;
-	}
-
-	public void setServiceCreation(Set<ServiceCreation> serviceCreation) {
-		this.serviceCreation = serviceCreation;
-	}
-
-	@Override
-	public String getPassword() {
-		return memberPassword;
-	}
-	
-	public void setMemberPassword(String memberPassword) {
-		this.memberPassword = memberPassword;
-	}
-
-	@Override
-	public String getUsername() {
-		return memberId;
-	}
-	
-	
+	/*
+	 * Member Attributes
+	 */
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
 
+	public void setMemberPassword(String memberPassword) {
+		this.memberPassword = memberPassword;
+	}
 	
 	public String getMemberEmail() {
 		return memberEmail;
@@ -151,11 +140,11 @@ public class Member implements UserDetails, Serializable{
 		this.memberImg = memberImg;
 	}
 
-	public boolean isMemberIsActive() {
+	public Boolean getMemberIsActive() {
 		return memberIsActive;
 	}
 
-	public void setMemberIsActive(boolean memberIsActive) {
+	public void setMemberIsActive(Boolean memberIsActive) {
 		this.memberIsActive = memberIsActive;
 	}
 
@@ -190,16 +179,37 @@ public class Member implements UserDetails, Serializable{
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
-	
+
+	public Set<ServiceTemplate> getServiceCreation() {
+		return serviceTemplates;
+	}
+
+	public void setServiceCreation(Set<ServiceTemplate> serviceTemplates) {
+		this.serviceTemplates = serviceTemplates;
+	}
+
+	/*
+	 * UserDetails 
+	 */
 	@JsonIgnore
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection<GrantedAuthority> authorities = new ArrayList<>();
-        for (Role role : getRoles()) {
-            authorities.addAll(role.getPrivileges());
-        }
-        return authorities;
-    }
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		Collection<GrantedAuthority> authorities = new ArrayList<>();
+		for (Role role : getRoles()) {
+			authorities.addAll(role.getPrivileges());
+		}
+		return authorities;
+	}	
+
+	@Override //ID
+	public String getUsername() {
+		return null;
+	}
+
+	@Override //PASSWORD
+	public String getPassword() {
+		return null;
+	}
 
 	@Override
 	public boolean isAccountNonExpired() {
@@ -220,7 +230,5 @@ public class Member implements UserDetails, Serializable{
 	public boolean isEnabled() {
 		return true;
 	}
-	
-	
-	
+
 }

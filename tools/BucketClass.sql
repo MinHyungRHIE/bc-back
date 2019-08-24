@@ -310,7 +310,7 @@ SET @providerId = 'quotia72';
 SET @customerId = 'kimseula20';
 
 INSERT INTO `member`
-	SELECT @adminId, '1234', 'pap@pap.com','pap',NOW(),NULL,TRUE,NULL,NULL,NULL FROM DUAL;
+	SELECT @adminId, '1234', 'pap@pap.com','pap',NOW(),NULL,TRUE,NULL,NULL,"%#$#dfddfdsjfka\n\n\n\n\n\n\n\n\n\n\n\n\nTetst" FROM DUAL;
 INSERT INTO `member`
 	SELECT @customerId, '1234', 'kimseula20@pap.com','queen',NOW(),NULL,TRUE,NULL,NULL,NULL FROM DUAL;
 INSERT INTO `member`
@@ -345,16 +345,3 @@ INSERT INTO `service_registration`(
 
 INSERT INTO `member_service_creation`
 	SELECT @providerId, 1 FROM DUAL;
-    
-SELECT * FROM member;
-DELETE FROM member WHERE member_id='kimseula';
-DESC member;
-
-SELECT * FROM member_role;
-
-SELECT * FROM service_creation;
-
-SELECT * FROM service_address;
-SELECT * FROM service_category;
-SELECT * FROM service_registration;
-SELECT * FROM member_service_creation;
