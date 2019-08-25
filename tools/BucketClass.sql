@@ -23,162 +23,117 @@ DROP TABLE IF EXISTS `service_registration`;
 DROP TABLE IF EXISTS `member_service_creation`;
 DROP TABLE IF EXISTS `service_creation`;
 
+-- DESC member;
 -- Member
 CREATE TABLE `member` (
-	`member_id`        VARCHAR(50)  NOT NULL COMMENT '회원아이디', -- member_id
-	`member_password`  VARCHAR(100)  NOT NULL COMMENT '비밀번호', -- member_password
-	`member_email`     VARCHAR(50)  NOT NULL COMMENT '이메일', -- member_email
-	`member_nickname`  VARCHAR(50)  NOT NULL COMMENT '닉네임', -- member_nickname
-	`member_join_date` DATETIME     NOT NULL DEFAULT NOW() COMMENT '가입일', -- member_join_date
-	`member_img`       VARCHAR(255)  NULL     COMMENT '프로필이미지', -- member_img
-	`member_isActive`  BOOLEAN      NOT NULL DEFAULT TRUE COMMENT '회원상태 (True=활성화, False=비활성화)', -- member_IsActive
-	`career`           VARCHAR(255) NULL     COMMENT '경력', -- career
-	`certi`            VARCHAR(255) NULL     COMMENT '자격증', -- certi
-	`introduce`        MEDIUMTEXT   NULL     COMMENT '자기소개' -- introduce
+	`member_id`        		VARCHAR(255)  	PRIMARY KEY  	NOT NULL COMMENT '회원아이디', -- member_id
+	`member_password` 		VARCHAR(255)                    NOT NULL COMMENT '비밀번호', -- member_password
+	`member_email`     		VARCHAR(255)  	UNIQUE KEY		NOT NULL COMMENT '이메일', -- member_email
+	`member_nickname`  		VARCHAR(255)    UNIQUE KEY 		NOT NULL COMMENT '닉네임', -- member_nickname
+	`member_join_date` 		DATETIME                        NOT NULL DEFAULT NOW() COMMENT '가입일', -- member_join_date
+	`member_img`       		VARCHAR(255)                  	NULL  	 COMMENT '프로필이미지', -- member_img
+	`member_isActive` 		BOOLEAN                         NOT NULL DEFAULT TRUE COMMENT '회원상태 (True=활성화, False=비활성화)', -- member_IsActive
+	`career`           		VARCHAR(255)                    NULL 	 COMMENT '경력', -- career
+	`certi`            		VARCHAR(255) 					NULL     COMMENT '자격증', -- certi
+	`introduce`        		MEDIUMTEXT   					NULL 	 COMMENT '자기소개' -- introduce
 ) ENGINE = `InnoDB` DEFAULT CHARACTER SET = `utf8`;
 
--- Member
-ALTER TABLE `member`
-	ADD CONSTRAINT `PK_Member` -- Member 기본키
-		PRIMARY KEY (
-			`member_id` -- member_id
-		);
-ALTER TABLE `member`
-	ADD CONSTRAINT `UK_Member` -- Member 유일키
-		UNIQUE (
-			`member_email` -- member_id
-		);
-        
--- Service_Creation
-CREATE TABLE `service_creation` (
-	`service_id`            INT(12)     NOT NULL COMMENT '서비스번호', -- service_id
-	`service_title`         VARCHAR(50) NOT NULL COMMENT '서비스명', -- service_title
-	`address_id`            INT(12)     NOT NULL COMMENT '주소ID', -- address_id
-	`account_bank`          VARCHAR(50) NULL     COMMENT '계좌은행', -- account_bank
-	`account_number`        VARCHAR(100)  NULL     COMMENT '계좌번호', -- account_number
-	`category_id`           INT(12)     NOT NULL COMMENT '카테고리번호', -- category_id
-	`service_isDelete`      BOOLEAN     NOT NULL DEFAULT FALSE COMMENT '서비스삭제상태( T:삭제됨;비활성, F:삭제;활성)', -- service_IsDelete
-	`hashTag`               JSON        NULL     COMMENT '해시태그', -- hashTag
-	`service_modified_date` DATETIME    NOT NULL DEFAULT NOW() COMMENT '최근수정일', -- service_modified_Date
-	`service_img_uri`       JSON        NULL     COMMENT '서비스 이미지 경로', -- service_img_uri
-	`service_description`   MEDIUMTEXT   NOT NULL COMMENT '서비스내용' -- service_description
+
+-- Service_Template (구, service_creation)
+CREATE TABLE `service_template` (
+	`service_template_id`  	INT(36) 		PRIMARY KEY 	NOT NULL COMMENT '서비스템플릿번호' AUTO_INCREMENT, -- service_id
+	`member_id`            	VARCHAR(255) 					NOT NULL COMMENT '멤버아이디', -- member_id
+	`service_title`        	VARCHAR(255) 					NOT NULL COMMENT '서비스명', -- service_title
+	`account_bank`         	VARCHAR(255) 					NULL  	 COMMENT '계좌은행', -- account_bank
+	`account_number`       	VARCHAR(255)  					NULL  	 COMMENT '계좌번호', -- account_number
+	`category_id`          	INT(36)     					NOT NULL COMMENT '카테고리번호', -- category_id
+	`service_isDelete`     	BOOLEAN    						NOT NULL DEFAULT FALSE COMMENT '서비스삭제상태( T:삭제됨;비활성, F:삭제;활성)', -- service_IsDelete
+	`hashTag`              	JSON        					NULL  	 COMMENT '해시태그', -- hashTag
+	`service_modified_date` DATETIME    					NOT NULL DEFAULT NOW() COMMENT '최근수정일', -- service_modified_Date
+	`service_img_uri`       JSON        					NULL  	 COMMENT '서비스 이미지 경로', -- service_img_uri
+	`service_description`   MEDIUMTEXT   					NOT NULL COMMENT '서비스내용' -- service_description
 ) ENGINE = `InnoDB` DEFAULT CHARACTER SET = `utf8`;
+-- member_id, category pk 설정해줘야함 PK값을 줘야 함.........
 
--- Service_Creation
-ALTER TABLE `service_creation`
-	ADD CONSTRAINT `PK_Service_Creation` -- Service_Creation 기본키
-		PRIMARY KEY (
-			`service_id` -- service_id
-		);
-ALTER TABLE `service_creation`
-	MODIFY COLUMN `service_id` INT(12) NOT NULL AUTO_INCREMENT COMMENT '서비스등록번호';        
+-- Service( 구 Service_Registration)
+CREATE TABLE `service` (
+	`service_id`            	INT(36)  PRIMARY KEY   		NOT NULL COMMENT '서비스번호' AUTO_INCREMENT, -- service_id
+	`member_id`             	VARCHAR(255) 				NOT NULL COMMENT '멤버아이디', -- member_id
+	`service_title`         	VARCHAR(255)	 			NOT NULL COMMENT '서비스명', -- service_title
+	`account_bank`          	VARCHAR(255) 				NULL  	 COMMENT '계좌은행', -- account_bank
+	`account_number`       		VARCHAR(255)  				NULL  	 COMMENT '계좌번호', -- account_number
+	`category_id`           	INT(36)     				NOT NULL COMMENT '카테고리번호', -- category_id
+	`service_isDelete`      	BOOLEAN     				NOT NULL DEFAULT FALSE COMMENT '서비스삭제상태( T:삭제됨;비활성, F:삭제;활성)', -- service_IsDelete
+	`hashTag`               	JSON        				NULL  	 COMMENT '해시태그', -- hashTag
+	`service_modified_date` 	DATETIME   					NOT NULL DEFAULT NOW() COMMENT '최근수정일', -- service_modified_Date
+	`service_img_uri`       	JSON        				NULL  	 COMMENT '서비스 이미지 경로', -- service_img_uri
+    `service_description`   MEDIUMTEXT   					NOT NULL COMMENT '서비스내용', -- service_description
+	`service_register_date` 	DATETIME  					NOT NULL COMMENT '서비스등록일', -- service_register_date
+	`service_register_isActive` 	BOOLEAN     				NOT NULL DEFAULT FALSE COMMENT '서비스활성상태( T:활성, F:비활성)', -- service_register_isAcive
+	`service_price`           	INT(36)     				NOT NULL COMMENT '서비스가격', -- service_price
+	`service_date_description` 	VARCHAR(255)   				NOT NULL COMMENT '서비스기간상세설명', -- service_date_description
+	`service_start_date`     	DATETIME   					NOT NULL COMMENT '서비스시작일', -- service_start_date
+	`service_end_date`       	DATETIME   					NOT NULL COMMENT '서비스종료일', -- service_end_date
+	`address_id`             	INT(36)   					NOT NULL COMMENT '주소ID' -- address_id
 
--- Service_Registration
-CREATE TABLE `service_registration` (
-	`service_register_id`       INT(12)      NOT NULL COMMENT '서비스등록번호', -- service_register_id
-	`service_id`                INT(12)      NOT NULL COMMENT '서비스번호', -- service_id
-	`service_register_Date`     DATETIME     NOT NULL DEFAULT NOW() COMMENT '서비스등록일', -- service_register_Date
-	`service_register_isActive` BOOLEAN      NOT NULL DEFAULT FALSE COMMENT '서비스삭제상태(T:활성, F:비활성)', -- service_register_IsActive
-	`service_price`             INT(8)       NOT NULL COMMENT '서비스 가격', -- service_price
-	`service_price_description` VARCHAR(128) NOT NULL COMMENT '서비스가격 설명' -- service_price_description
 ) ENGINE = `InnoDB` DEFAULT CHARACTER SET = `utf8`;
-
--- Service_Registration
-ALTER TABLE `service_registration`
-	ADD CONSTRAINT `PK_Service_Registration` -- Service_Registration 기본키
-		PRIMARY KEY (
-			`service_register_id` -- service_register_id
-		);
-
-ALTER TABLE `service_registration`
-	MODIFY COLUMN `service_register_id` INT(12) NOT NULL AUTO_INCREMENT COMMENT '서비스등록번호';
+-- category fk, 주소 fk 설정해야함. 여기서 member_id는 fk설정하지 않음........!!!!!
 
 -- Service_Address
 CREATE TABLE `service_address` (
-	`address_id`     INT(12)      NOT NULL COMMENT '주소ID', -- address_id
-	`address_state`  VARCHAR(10)  NOT NULL COMMENT '시/도', -- address_state
-	`address_city`   VARCHAR(20)  NOT NULL COMMENT '시군구', -- address_city
-	`address_dong`   VARCHAR(20)  NOT NULL COMMENT '동/리', -- address_dong
-	`address_detail` VARCHAR(100) NULL     COMMENT '자세한주소' -- address_detail
+	`address_id`     		INT(36) 		 PRIMARY KEY    NOT NULL COMMENT '주소ID' AUTO_INCREMENT, -- address_id
+	`address_state`  		VARCHAR(255)  					NOT NULL COMMENT '시/도', -- address_state
+	`address_city`   		VARCHAR(255)  					NOT NULL COMMENT '시군구', -- address_city
+	`address_dong`   		VARCHAR(255)  					NOT NULL COMMENT '동/리', -- address_dong
+	`address_detail` 		VARCHAR(255) 					NULL 	  COMMENT '자세한주소' -- address_detail
 ) ENGINE = `InnoDB` DEFAULT CHARACTER SET = `utf8`;
-
--- Service_Address
-ALTER TABLE `service_address`
-	ADD CONSTRAINT `PK_Service_Address` -- Service_Address 기본키
-		PRIMARY KEY (
-			`address_id` -- address_id
-		);
-
-ALTER TABLE `service_address`
-	MODIFY COLUMN `address_id` INT(10) NOT NULL AUTO_INCREMENT COMMENT '주소ID';
 
 -- Service_Category
 CREATE TABLE `service_category` (
-	`category_id`      INT(12)     NOT NULL COMMENT '카테고리번호', -- category_id
-	`category_subject` VARCHAR(50) NOT NULL COMMENT '분야 (요리, 예술, 외국어, 헬스/웰빙, 비즈니스, 일상생활)', -- category_subject
-	`category_type`    VARCHAR(50) NOT NULL COMMENT '타입 (체험, 교육)', -- category_type
-	`category_period`  VARCHAR(50) NOT NULL COMMENT '기간 (정기, 비정기)', -- category_period
-	`category_scale`   VARCHAR(50) NOT NULL COMMENT '규모 (단체, 개인)', -- category_scale
-	`category_place`   VARCHAR(50) NOT NULL COMMENT '장소 (실내, 실외)' -- category_place
+	`category_id`      INT(36)     PRIMARY KEY  NOT NULL COMMENT '카테고리번호' AUTO_INCREMENT, -- category_id
+	`category_subject` VARCHAR(255) 			NOT NULL COMMENT '분야 (요리, 예술, 외국어, 헬스/웰빙, 비즈니스, 일상생활)', -- category_subject
+	`category_type`    VARCHAR(255) 			NOT NULL COMMENT '타입 (체험, 교육)', -- category_type
+	`category_period`  VARCHAR(255) 			NOT NULL COMMENT '기간 (정기, 비정기)', -- category_period
+	`category_scale`   VARCHAR(255) 			NOT NULL COMMENT '규모 (단체, 개인)', -- category_scale
+	`category_place`   VARCHAR(255) 			NOT NULL COMMENT '장소 (실내, 실외)' -- category_place
 ) ENGINE = `InnoDB` DEFAULT CHARACTER SET = `utf8`;
 
--- Service_Category
-ALTER TABLE `service_category`
-	ADD CONSTRAINT `PK_Service_Category` -- Service_Category 기본키
-		PRIMARY KEY (
-			`category_id` -- category_id
-		);
-
-ALTER TABLE `service_category`
-	MODIFY COLUMN `category_id` INT(12) NOT NULL AUTO_INCREMENT COMMENT '카테고리번호';
+-- wishlist
+CREATE TABLE `wishlist` (
+	`wishlist_id`      INT(36)  		PRIMARY KEY 	NOT NULL COMMENT '찜번호' AUTO_INCREMENT, -- wishlist_id
+	`service_id`       INT(36)     						NOT NULL COMMENT '서비스 등록번호', -- service_id
+	`member_id`     	VARCHAR(255) 					NOT NULL COMMENT '회원번호', -- member_id
+	`wish_date`       DATETIME    						NOT NULL DEFAULT NOW() COMMENT '등록일' -- wish_date
+) ENGINE = `InnoDB` DEFAULT CHARACTER SET = `utf8`;
 
 -- member_Role
 CREATE TABLE `member_role` (
-	`member_id` VARCHAR(50) NULL COMMENT 'member_id', -- member_id
-	`role_id`   VARCHAR(20) NULL COMMENT 'role_id' -- role_id
+	`member_id` 	VARCHAR(255) 		NULL COMMENT 'member_id', -- member_id
+	`role_id`   	VARCHAR(255) 		NULL COMMENT 'role_id' -- role_id
 ) ENGINE = `InnoDB` DEFAULT CHARACTER SET = `utf8`;
 
 -- Role
 CREATE TABLE `role` (
-	`role_id`   VARCHAR(20) NOT NULL COMMENT 'admin, provider, customer', -- role_id
-	`role_name` VARCHAR(20) NOT NULL COMMENT 'ADMIN, PROVIDER, CUSTOMER' -- role_name
+	`role_id`       VARCHAR(255) 	PRIMARY KEY			NOT NULL COMMENT 'admin, provider, customer', -- role_id
+	`role_name`	 	VARCHAR(255) 						NOT NULL COMMENT 'ADMIN, PROVIDER, CUSTOMER' -- role_name
 ) ENGINE = `InnoDB` DEFAULT CHARACTER SET = `utf8`;
 
--- Role
-ALTER TABLE `role`
-	ADD CONSTRAINT `PK_Role` -- Role 기본키
-		PRIMARY KEY (
-			`role_id` -- role_id
-		);
 
 -- Role_Privilege
 CREATE TABLE `role_privilege` (
-	`role_id`      VARCHAR(20) NULL COMMENT 'role_id', -- role_id
-	`privilege_id` VARCHAR(20) NULL COMMENT 'privilege_id' -- privilege_id
+	`role_id`      VARCHAR(255) 		NULL COMMENT 'role_id', -- role_id
+	`privilege_id` VARCHAR(255) 		NULL COMMENT 'privilege_id' -- privilege_id
 ) ENGINE = `InnoDB` DEFAULT CHARACTER SET = `utf8`;
 
 -- Privilege
 CREATE TABLE `privilege` (
-	`privilege_id`   VARCHAR(20) NOT NULL COMMENT 'read, write', -- privilege_id
-	`privilege_name` VARCHAR(20) NOT NULL COMMENT 'READ, WRITE' -- privilege_name
+	`privilege_id`   	VARCHAR(255)	 PRIMARY KEY 	NOT NULL COMMENT 'read, write', -- privilege_id
+	`privilege_name` 	VARCHAR(255) 					NOT NULL COMMENT 'READ, WRITE' -- privilege_name
 ) ENGINE = `InnoDB` DEFAULT CHARACTER SET = `utf8`;
 
--- Privilege
-ALTER TABLE `privilege`
-	ADD CONSTRAINT `PK_Privilege` -- Privilege 기본키
-		PRIMARY KEY (
-			`privilege_id` -- privilege_id
-		);
-
--- Member_Service_Creation
-CREATE TABLE `member_service_creation` (
-	`member_id`  VARCHAR(50) NULL COMMENT 'member_id', -- member_id
-	`service_id` INT(12)     NULL COMMENT 'service_id' -- service_id
-) ENGINE = `InnoDB` DEFAULT CHARACTER SET = `utf8`;
-
--- Service_Creation
-ALTER TABLE `service_creation`
-	ADD CONSTRAINT `FK_Service_Address_TO_Service_Creation` -- Service_Address -> Service_Creation
+-- Service
+ALTER TABLE `service`
+	ADD CONSTRAINT `FK_Service_Address_TO_Service` -- Service_Address -> Service
 		FOREIGN KEY (
 			`address_id` -- address_id
 		)
@@ -186,9 +141,9 @@ ALTER TABLE `service_creation`
 			`address_id` -- address_id
 		);
 
--- Service_Creation
-ALTER TABLE `service_creation`
-	ADD CONSTRAINT `FK_Service_Category_TO_Service_Creation` -- Service_Category -> Service_Creation
+-- Service
+ALTER TABLE `service`
+	ADD CONSTRAINT `FK_Service_Category_TO_Service` -- Service_Category -> Service
 		FOREIGN KEY (
 			`category_id` -- category_id
 		)
@@ -196,14 +151,43 @@ ALTER TABLE `service_creation`
 			`category_id` -- category_id
 		);
 
--- Service_Registration
-ALTER TABLE `service_registration`
-	ADD CONSTRAINT `FK_Service_Creation_TO_Service_Registration` -- Service_Creation -> Service_Registration
+-- Service_Template
+ALTER TABLE `service_template`
+	ADD CONSTRAINT `FK_Service_Category_TO_Service_Template` -- Service_Category -> Service_Template
+		FOREIGN KEY (
+			`category_id` -- category_id
+		)
+		REFERENCES `service_category` ( -- Service_Category
+			`category_id` -- category_id
+		);
+
+ALTER TABLE `service_template`
+	ADD CONSTRAINT `FK_Member_TO_Service_Template` -- Member -> Service_Template 
+		FOREIGN KEY (
+			`member_id` -- member_id
+		)
+		REFERENCES `member` ( -- member_id
+			`member_id` -- member_id
+		);
+
+
+ALTER TABLE `wishlist`
+	ADD CONSTRAINT `FK_Service_TO_Wishlist` -- Service -> wishlist 
 		FOREIGN KEY (
 			`service_id` -- service_id
 		)
-		REFERENCES `service_creation` ( -- Service_Creation
+		REFERENCES `service` ( -- service_id
 			`service_id` -- service_id
+		);
+
+
+ALTER TABLE `wishlist`
+	ADD CONSTRAINT `FK_Member_TO_Wishlist` -- Member -> wishlist 
+		FOREIGN KEY (
+			`member_id` -- member_id
+		)
+		REFERENCES `member` ( -- member_id
+			`member_id` -- member_id
 		);
 
 -- member_Role
@@ -244,26 +228,6 @@ ALTER TABLE `role_privilege`
 		)
 		REFERENCES `privilege` ( -- Privilege
 			`privilege_id` -- privilege_id
-		);
-
--- Member_Service_Creation
-ALTER TABLE `member_service_creation`
-	ADD CONSTRAINT `FK_Member_TO_Member_Service_Creation` -- Member -> Member_Service_Creation
-		FOREIGN KEY (
-			`member_id` -- member_id
-		)
-		REFERENCES `member` ( -- Member
-			`member_id` -- member_id
-		);
-
--- Member_Service_Creation
-ALTER TABLE `member_service_creation`
-	ADD CONSTRAINT `FK_Service_Creation_TO_Member_Service_Creation` -- Service_Creation -> Member_Service_Creation
-		FOREIGN KEY (
-			`service_id` -- service_id
-		)
-		REFERENCES `service_creation` ( -- Service_Creation
-			`service_id` -- service_id
 		);
         
  INSERT INTO `privilege` VALUE
@@ -310,7 +274,7 @@ SET @providerId = 'quotia72';
 SET @customerId = 'kimseula20';
 
 INSERT INTO `member`
-	SELECT @adminId, '1234', 'pap@pap.com','pap',NOW(),NULL,TRUE,NULL,NULL,"%#$#dfddfdsjfka\n\n\n\n\n\n\n\n\n\n\n\n\nTetst" FROM DUAL;
+	SELECT @adminId, '1234', 'pap@pap.com','pap',NOW(),NULL,TRUE,NULL,NULL,NULL FROM DUAL;
 INSERT INTO `member`
 	SELECT @customerId, '1234', 'kimseula20@pap.com','queen',NOW(),NULL,TRUE,NULL,NULL,NULL FROM DUAL;
 INSERT INTO `member`
@@ -323,25 +287,3 @@ INSERT INTO `member_role`
 	SELECT @customerId, 'role_customer' FROM DUAL;
 INSERT INTO `member_role`
 	SELECT @providerId, 'role_provider' FROM DUAL;
-
-INSERT INTO `service_address`(
-	address_state, address_city, address_dong, address_detail)
-	VALUES ("경기도 고양시", "일산동구", "장항동", "105-32");
-
-INSERT INTO `service_category`(
-	category_subject, category_type, category_period, category_scale, category_place)
-    VALUES(
-    "비즈니스", "교육","정기","단체","실내");
-
-INSERT INTO `service_creation`(
-	service_title, address_id, account_bank, account_number, category_id, service_isDelete, hashTag, service_modified_date, service_img_uri, service_description)
-    VALUES(
-    "중국어 교육", 1, "국민은행", "524231-01-234232",1, FALSE, '["커피","아아","교육","아메리카노","공짜교육"]', NOW(), NULL, "강남에 제일 핫한 알베르라는 카페에서 \n랩을 운영하고 있는 바리스타입니다. ");
-
-INSERT INTO `service_registration`(
-	service_id, service_register_date, service_register_isActive, service_price, service_price_description)
-    VALUES(
-    1,NOW(), TRUE, "50000","중국어 초특강");
-
-INSERT INTO `member_service_creation`
-	SELECT @providerId, 1 FROM DUAL;

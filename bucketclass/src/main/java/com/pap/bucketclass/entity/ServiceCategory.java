@@ -16,7 +16,7 @@ public class ServiceCategory implements Serializable {
 	
 	@Id
 	@Column(name="category_id")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long categoryId;
 	
 	@Column(name="category_subject")

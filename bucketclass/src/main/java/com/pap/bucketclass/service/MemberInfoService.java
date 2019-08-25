@@ -9,7 +9,7 @@ import com.pap.bucketclass.entity.Member;
 import com.pap.bucketclass.repository.MemberRepository;
 
 @Service
-public class MemberService {
+public class MemberInfoService {
 	
 	@Autowired
 	private MemberRepository memberRepo;
