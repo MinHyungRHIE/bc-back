@@ -1,5 +1,7 @@
+
+
 function customerRegister(){
-    var mock = true;
+    var mock = false;
     var customerInfo = new Object();
     customerInfo.memberId = document.getElementById("username").value;
     customerInfo.memberPassword = document.getElementById("password1").value;
@@ -13,7 +15,7 @@ function customerRegister(){
             makeXhr(jsonCustomer);
         }
         else{
-            Apis.getRequest("#");
+            Apis.getRequest("/signup");
         }
     })
 

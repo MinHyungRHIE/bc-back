@@ -13,7 +13,6 @@
 <fullyQualifiedTypeName name="com.web.spring.login.service.MemberLogin"/>
 <fullyQualifiedTypeName name="com.web.spring.repository.MemberLoginRepo"/>
 <fullyQualifiedTypeName name="com.web.spring.entity.Member"/>
-<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseBody"/>
 <fullyQualifiedTypeName name="com.aclass.back.entity.Member"/>
@@ -43,4 +42,5 @@
 <fullyQualifiedTypeName name="com.pap.bucketclass.support.BooleanToIntegerConverter"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMethod"/>
 <fullyQualifiedTypeName name="com.pap.bucketclass.entity.Member"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
 </qualifiedTypeNameHistroy>

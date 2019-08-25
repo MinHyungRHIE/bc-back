@@ -25,7 +25,6 @@ public class SignUpService {
 
 	// ID중복검사
 	public boolean checkId(String memberId) {
-		System.out.println(">>>ID중복검사실시");
 		if(memberRepo.findById(memberId)!=null) {
 			System.out.println("이미 존재하는 ID");
 			return false;
@@ -35,7 +34,6 @@ public class SignUpService {
 
 	// Email 중복검사
 	public boolean checkEmail(String memberEmail) {
-		System.out.println(">>>Email중복검사실시");
 		if(memberRepo.findByMemberEmail(memberEmail) != null) {
 			System.out.println("이미 존재하는 Email");
 			return false;
@@ -54,9 +52,8 @@ public class SignUpService {
 	@Transactional
 	public Member insertMember(SignUpModel signup) {
 		try {
-			if(checkId(signup.getMemberId()) &&
-					checkEmail(signup.getMemberEmail()) &&
-					checkNickname(signup.getMemberNickname())) {
+			if(checkId(signup.getMemberId()) && checkEmail(signup.getMemberEmail()) && checkNickname(signup.getMemberNickname())) 
+			{
 				Member member = signup.toMember();
 				Role role = roleRepo.findByRoleName(signup.getRoleName());
 				member.setRoles(Stream.of(role).collect(Collectors.toSet()));

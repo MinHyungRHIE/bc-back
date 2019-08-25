@@ -126,7 +126,7 @@ function toggleTodo(id) {
 }
 
 function createMember(member) {
-  return getRequest('')
+  return getRequest(`/signup`);
 }
 
 const Apis = {
