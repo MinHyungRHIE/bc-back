@@ -14,6 +14,8 @@ myForm.addEventListener('submit', function(e) {
         const formData = new FormData(myForm);
         var test = loginRequest(formData).then(response => console.log('response >>>', response));
         console.log(typeof test, "////////" + test);
+    }else{
+    	alert("양식에 맞춰 작성해주세요.");
     }
 });
 
@@ -48,7 +50,6 @@ function promiseTest(value){
         alert("아이디 또는 비밀번호를 확인해주세요.");
     }
 }
-
 
 var xhr;
 

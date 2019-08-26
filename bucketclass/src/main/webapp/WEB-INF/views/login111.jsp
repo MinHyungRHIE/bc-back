@@ -85,7 +85,7 @@
                                     <i class="im im-icon-Lock-2"></i>
                                     <input type="password" class="input-text" name="password" id="password" onkeyup="loginValidation(this.value, this.id)"/>
                                 </label>
-                                <label id="pw-notify"></label>
+                                <label id="pw-notify" class="notify"></label>
                                 <span class="lost_password" class="notify">
 										<a href="#">비밀번호를 잊으셨나요?</a>
 									</span>
