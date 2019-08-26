@@ -57,6 +57,8 @@
   <mvc:resources mapping="/fonts/**" location="/WEB-INF/fonts/" />
   <mvc:resources mapping="/img/**" location="/WEB-INF/img/" />
   <mvc:resources mapping="/js/**" location="/WEB-INF/js/" />
+  
+  <mvc:view-controller path="/login" view-name="member-login"/>
 
   <!-- Resolves view names to protected .jsp resources within the /WEB-INF/views directory -->
   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

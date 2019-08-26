@@ -1,0 +1,104 @@
+const myForm = document.querySelector("#myForm");
+var logInInputCheck;
+
+// 로그인 fetch 사용
+// myForm.addEventListener('submit', function(e) {
+//     logInInputCheck = loginInputValidity();
+//     console.log(logInInputCheck);
+//     if(logInInputCheck === true && loginIdReturnValue === true){
+//         e.preventDefault();
+//         console.log(myForm);
+//         const formData = new FormData(myForm);
+//         console.log(typeof formData, "/////////" + FormData);
+//         loginRequest(formData)
+//             .then(response => {
+//                 // 로그인 성공 여부 확인
+//                 console.log('response', response);
+//             });
+//     } else{
+//         alert("양식에 맞춰 작성해주세요.");
+//     }
+// });
+
+
+// 로그인 XMLHttpRequest 사용
+myForm.addEventListener('submit', function(e){
+	console.log("1");
+    var mock = true;
+    e.preventDefault();
+    
+    function init(){
+    	
+    }
+    
+    $(function(){
+        if(mock){
+        	console.log("2");
+            startXhr();
+        } else {
+            var jsonObject = Apis.loginRequest('/signin');
+            console.log(typeof jsonObject, jsonObject);
+            promiseTest(jsonObject);
+        }
+    });
+})
+
+function promiseTest(value){
+    var id = document.getElementById("username").value;
+    var pwd = document.getElementById("password").value;
+    var jsonId = value["memberId"];
+    var jsonPw = value["memberPassword"];
+    console.log(jsonId);
+    console.log(jsonPw);
+    console.log(id, "+", pwd);
+
+    if(id === jsonId && pwd === jsonPw){
+        console.log("로그인 성공");
+    }else{
+        alert("아이디 또는 비밀번호를 확인해주세요.");
+    }
+}
+
+
+var xhr;
+
+function startXhr() {
+	console.log("3");
+    xhr = new XMLHttpRequest();
+    xhr.open("POST", "/signin");
+    xhr.send();
+
+    xhr.onreadystatechange = function () {
+        if(xhr.readyState == 4){
+            console.log("4");
+            if(xhr.status == 200){
+                console.log("데이터 불러오기 성공");
+                serializeData();
+            } else {
+                console.log("데이터 불러오기 실패");
+            }
+        }
+    }
+}
+
+function serializeData() {
+    console.log("serializeData 시작");
+    var serviceData = xhr.responseText;
+    //데이터 가져오는지 확인
+    console.log(typeof serviceData, serviceData);
+    //데이터 json으로 바꾸기
+    var serializedServiceData = JSON.parse(serviceData);
+
+    var id = document.getElementById("username").value;
+    var pwd = document.getElementById("password").value;
+
+    console.log(id, "+", pwd);
+
+    if(id === serializedServiceData["memberId"] && pwd === serializedServiceData["memberPassword"]){
+        console.log("로그인 성공");
+    }else{
+        console.log("로그인 실패");
+    }
+
+    console.log(typeof serializedServiceData, serializedServiceData);
+}

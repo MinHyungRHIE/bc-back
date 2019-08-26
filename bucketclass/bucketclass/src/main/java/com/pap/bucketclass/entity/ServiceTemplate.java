@@ -28,7 +28,7 @@ public class ServiceTemplate implements Serializable{
 	
 	@Id
 	@Column(name="service_template_id")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long serviceTemplateId;
 	
 	@Column(name="service_title")

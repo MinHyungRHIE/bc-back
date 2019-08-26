@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.pap.bucketclass.entity.Member;
 import com.pap.bucketclass.entity.Role;
+import com.pap.bucketclass.model.ResponseModel;
 import com.pap.bucketclass.model.SignUpModel;
 import com.pap.bucketclass.repository.MemberRepository;
 import com.pap.bucketclass.repository.RoleRepository;
@@ -22,37 +23,46 @@ public class SignUpService {
 
 	@Autowired
 	private RoleRepository roleRepo;
+	private ResponseModel result = new ResponseModel();
+	
 
 	// ID중복검사
-	public boolean checkId(String memberId) {
-		if(memberRepo.findById(memberId)!=null) {
+	public ResponseModel checkId(String memberId) {
+		if(memberRepo.findByMemberId(memberId) != null) {
 			System.out.println("이미 존재하는 ID");
-			return false;
+			result.setResponse("false");
+			return result;
 		}
-		return true;
-	}
-
-	// Email 중복검사
-	public boolean checkEmail(String memberEmail) {
-		if(memberRepo.findByMemberEmail(memberEmail) != null) {
-			System.out.println("이미 존재하는 Email");
-			return false;
-		}
-		return true;
+		result.setResponse("true");
+		return result;
 	}
 	
 	// NickName 중복검사
-	public boolean checkNickname(String memberNickname) {
-		if(memberRepo.findByMemberNickname(memberNickname) != null) {
-			return false;
+		public ResponseModel checkNickname(String memberNickname) {
+			if(memberRepo.findByMemberNickname(memberNickname) != null) {
+				System.out.println("이미 존재하는 Nickname");
+				result.setResponse("false");
+				return result;
+			}
+			result.setResponse("true");
+			return result;
 		}
-		return true;
-	}
 
+	// Email 중복검사 
+	public ResponseModel checkEmail(String memberEmail) {
+		if(memberRepo.findByMemberEmail(memberEmail) != null) {
+			System.out.println("이미 존재하는 Email");
+			result.setResponse("false");
+			return result;
+		}
+		result.setResponse("true");
+		return result;
+	}
+	
 	@Transactional
 	public Member insertMember(SignUpModel signup) {
 		try {
-			if(checkId(signup.getMemberId()) && checkEmail(signup.getMemberEmail()) && checkNickname(signup.getMemberNickname())) 
+			if(result.setResponse("true")) 
 			{
 				Member member = signup.toMember();
 				Role role = roleRepo.findByRoleName(signup.getRoleName());

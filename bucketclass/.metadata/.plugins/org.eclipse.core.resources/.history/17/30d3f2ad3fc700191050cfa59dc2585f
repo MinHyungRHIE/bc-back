@@ -1,0 +1,29 @@
+package com.pap.bucketclass.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.pap.bucketclass.model.LoginModel;
+import com.pap.bucketclass.repository.MemberRepository;
+import com.pap.bucketclass.repository.RoleRepository;
+
+@Service
+public class LoginService {
+	
+	@Autowired
+	private MemberRepository memberRepo;
+
+	@Autowired
+	private RoleRepository roleRepo;
+	
+	public boolean checkId(String memberId) {
+		if(memberRepo.findById(memberId) != null) {
+			return false;
+		}
+		return true;
+	}
+	
+	public compareMember(LoginModel login) {
+		
+	}
+}

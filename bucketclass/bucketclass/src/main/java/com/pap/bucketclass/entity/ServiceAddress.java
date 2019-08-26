@@ -16,7 +16,7 @@ public class ServiceAddress implements Serializable {
 	
 	@Id
 	@Column(name="address_id")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long addressId;
 	
 	@Column(name="address_state")

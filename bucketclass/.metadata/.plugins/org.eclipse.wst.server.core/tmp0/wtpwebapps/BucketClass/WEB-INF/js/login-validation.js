@@ -1,5 +1,14 @@
-function loginIdValidity(val){
+var loginIdReturnValue;
 
+function loginValidation(val, id){
+    if(id === "username"){
+        loginIdReturnValue = loginIdValidity(val);
+    }else if(id === "password"){
+        loginIdReturnValue = passwordInputValidity("pw-notify");
+    }
+}
+
+function loginIdValidity(val){
     //아이디 유효성 검사 (영문소문자, 숫자만 허용)
     for (var i = 0; i < val.length; i++) {
         var ch = val.charAt(i);
@@ -7,8 +16,7 @@ function loginIdValidity(val){
             document.getElementById("id-notify").innerHTML = "아이디는 대소문자, 숫자만 입력가능합니다.";
             document.getElementById("id-notify").style.color="red";
             return false;
-        }
-        else{
+        } else{
             document.getElementById("id-notify").innerHTML="";
         }
     }
@@ -22,15 +30,21 @@ function loginIdValidity(val){
 
     else{
         document.getElementById("id-notify").innerHTML="";
+        return true;
     }
 }
 
+function passwordInputValidity(tag){
+    document.getElementById(tag).innerHTML = "";
+    return true;
+}
+
 function loginInputValidity(){
-    var id = document.getElementById("username"); // 입력 받은 아이디
-    var pw = document.getElementById("password"); // 입력 받은 비밀번호
+    var id = document.getElementById("username").value; // 입력 받은 아이디
+    var pw = document.getElementById("password").value; // 입력 받은 비밀번호
 
     // 아이디 입력여부 검사
-    if (id.value === "") {
+    if (id.length === 0) {
         document.getElementById("id-notify").innerHTML = "아이디를 입력하지 않았습니다.";
         document.getElementById("id-notify").style.color = "red";
         id.focus();
@@ -41,7 +55,7 @@ function loginInputValidity(){
     }
 
     // 비밀번호 입력여부 검사
-    if (pw.value === "") {
+    if (pw.length === 0) {
         document.getElementById("pw-notify").innerHTML = "비밀번호를 입력하지 않았습니다.";
         document.getElementById("pw-notify").style.color = "red";
         pw.focus();
@@ -49,6 +63,7 @@ function loginInputValidity(){
         return false;
     } else {
         document.getElementById("pw-notify").innerHTML = "";
+        return true;
     }
 }
 

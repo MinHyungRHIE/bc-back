@@ -1,0 +1,60 @@
+package com.pap.bucketclass.model;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Set;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.pap.bucketclass.entity.Role;
+
+public class LoginModel implements UserDetails {
+	
+	private String memberId;
+	private String memberPassword;
+	private Set<Role> roles;
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		ArrayList<SimpleGrantedAuthority> grants = new ArrayList<SimpleGrantedAuthority>();
+		
+		for (Role role : roles) {
+			grants.add(new SimpleGrantedAuthority(role));
+		}
+		
+		return null;
+	}
+	
+	@Override
+	public String getPassword() {
+		return memberPassword;
+	}
+	@Override
+	public String getUsername() {
+		return memberId;
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	
+
+}

@@ -28,7 +28,7 @@ public class Wishlist implements Serializable{
 	
 	@Id
 	@Column(name="wishlist_id")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long serviceTemplateId;
 	
 	@Column(name="wish_date")

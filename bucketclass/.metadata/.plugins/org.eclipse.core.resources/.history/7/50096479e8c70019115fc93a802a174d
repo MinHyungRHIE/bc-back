@@ -1,0 +1,10 @@
+package com.pap.bucketclass.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.pap.bucketclass.repository.MemberRepository;
+
+public class ProvideMyPageService {
+	@Autowired
+	private MemberRepository memberRepo;
+}

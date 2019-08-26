@@ -31,7 +31,7 @@ public class Service implements Serializable{
 	
 	@Id
 	@Column(name="service_id")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long serviceId;
 
 	@Column(name="member_id")

@@ -1,0 +1,50 @@
+package com.pap.bucketclass.support;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+
+import javax.persistence.AttributeConverter;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pap.bucketclass.model.StAnswerModel;
+
+public class JsonCollectionToStringConverter <T extends Object> implements AttributeConverter<Collection<T>, String> {
+
+		private final ObjectMapper objectMapper;
+
+		public JsonCollectionToStringConverter() {
+			this.objectMapper = new ObjectMapper();
+		}
+
+		@Override
+		// DB to Server
+		public String convertToDatabaseColumn(Collection<T> attribute) {
+			String jsonString = null;
+			try {
+				// convert collection of POJO to json
+				jsonString = objectMapper.writeValueAsString(attribute);
+			} catch (JsonProcessingException ex) {
+				ex.printStackTrace();
+			}
+			return jsonString;
+		}
+
+		@Override
+		// Server to DB
+		public Collection<T> convertToEntityAttribute(String dbData) {
+			Collection<T> objectArray = new ArrayList<>();
+			try {
+				// convert json to collection of POJO
+				// TypeReference<> 에서 JSON을 사용하는 StAnswer 넣음
+				objectArray = objectMapper.readValue(dbData, new TypeReference<StAnswerModel>() {});
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			} catch (NullPointerException ex) {
+				ex.printStackTrace();
+			}
+			return objectArray;
+		}
+	}

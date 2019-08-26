@@ -77,7 +77,7 @@
                             <p class="form-row form-row-wide">
                                 <label for="username">아이디:
                                     <i class="im im-icon-Male"></i>
-                                    <input type="text" class="input-text" id="username" value="" onkeyup="idValidity(this.value)"/>
+                                    <input type="text" class="input-text" id="username" value="" onkeyup="registerValidation(this.value, this.id)"/>
                                 </label>
                                 <label id="id-notify" class="notify"></label>
                             </p>
@@ -85,7 +85,7 @@
                             <p class="form-row form-row-wide">
                                 <label for="nickname">닉네임:
                                     <i class="im im-icon-Male-2"></i>
-                                    <input type="text" class="input-text" id="nickname" value="" onkeyup="nickValidity(this.value)"/>
+                                    <input type="text" class="input-text" id="nickname" value="" onkeyup="registerValidation(this.value, this.id)"/>
                                 </label>
                                 <label id="nick-notify" class="notify"></label>
                             </p>
@@ -93,7 +93,7 @@
                             <p class="form-row form-row-wide">
                                 <label for="email">이메일:
                                     <i class="im im-icon-Mail"></i>
-                                    <input type="text" class="input-text" name="email" id="email" value="" onkeyup="emailValidity(this.value)"/>
+                                    <input type="text" class="input-text" name="email" id="email" value="" onkeyup="registerValidation(this.value, this.id)"/>
                                 </label>
                                 <label id="email-notify" class="notify"></label>
                             </p>
@@ -101,7 +101,7 @@
                             <p class="form-row form-row-wide">
                                 <label for="password1">비밀번호:
                                     <i class="im im-icon-Lock-2"></i>
-                                    <input class="input-text" type="password" name="password1" id="password1" onkeyup="pw1Validity(this.value)"/>
+                                    <input class="input-text" type="password" name="password1" id="password1" onkeyup="registerValidation(this.value, this.id)"/>
                                 </label>
                                 <label id="pw1-notify" class="notify"></label>
                             </p>
@@ -109,14 +109,14 @@
                             <p class="form-row form-row-wide">
                                 <label for="password2">비밀번호 확인:
                                     <i class="im im-icon-Lock-2"></i>
-                                    <input class="input-text" type="password" name="password2" id="password2" onkeyup="pw2Validity(this.value)"/>
+                                    <input class="input-text" type="password" name="password2" id="password2" onkeyup="registerValidation(this.value, this.id)"/>
                                 </label>
                                 <label id="pw2-notify" class="notify"></label>
                             </p>
 
                             <div>
-                                <input type="button" class="button border fw margin-top-10" name="user"
-                                       onclick="registerInputValidity(); customerRegister()" value="이용자로 가입"/>
+                                <input type="button" id="userRegist" class="button border fw margin-top-10" name="user"
+                                       onclick="registerInputValidity();" value="이용자로 가입"/>
                                 <input type="button" class="button border fw margin-top-10" name="provider"
                                        onclick="registerInputValidity();" value="제공자로 가입"
                                        style="background-color : #4682B4"/>

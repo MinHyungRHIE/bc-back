@@ -1,0 +1,38 @@
+package com.pap.bucketclass.service;
+
+import java.nio.file.AccessDeniedException;
+import java.util.Set;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.pap.bucketclass.entity.Member;
+import com.pap.bucketclass.entity.Role;
+import com.pap.bucketclass.repository.MemberRepository;
+
+@Service
+public class ProviderMemberService {
+	
+	@Autowired
+	private LocalMemberDetailsService memberDetailService;
+	
+	@Autowired
+	private MemberRepository memberRepo;
+	
+	public Member getMemberMe(String memberId) {
+		return (Member) memberDetailService.loadUserByUsername(memberId);
+	}
+	
+	@Transactional
+	public Member create(String username, Member user) {
+		Member current = (Member) memberDetailService.loadUserByUsername(username);
+
+        if (containRoleByName(current.getRoles(), "ROLE_ADMIN")) {
+            return memberRepo.save(user);
+        }
+        throw new AccessDeniedException("To-do forbidden error 403”");
+	}
+	
+}

@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/main-color.css" id="colors">
-    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/main-color.css" id="colors">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
 </head>
 
 <body>
@@ -70,11 +70,11 @@
 
                     <!-- class="category-box-content" -->
                     <div class="tab-content" id="tab1" style="display: none;">
-                        <form method="post" class="login">
+                        <form method="post" class="login" id="myForm" name="myForm">
                             <p class="form-row form-row-wide">
                                 <label for="username">아이디:
                                     <i class="im im-icon-Male"></i>
-                                    <input type="text" class="input-text" name="username" id="username" value="" onkeyup="loginIdValidity(this.value)"/>
+                                    <input type="text" class="input-text" name="username" id="username" onkeyup="loginValidation(this.value, this.id)"/>
                                 </label>
                                 <label id="id-notify" class="notify"></label>
                             </p>
@@ -82,16 +82,16 @@
                             <p class="form-row form-row-wide">
                                 <label for="password">비밀번호:
                                     <i class="im im-icon-Lock-2"></i>
-                                    <input type="password" class="input-text" name="password" id="password" value=""/>
+                                    <input type="password" class="input-text" name="password" id="password" onkeyup="loginValidation(this.value, this.id)"/>
                                 </label>
                                 <label id="pw-notify"></label>
-                                <span class="lost_password">
+                                <span class="lost_password" class="notify">
 										<a href="#">비밀번호를 잊으셨나요?</a>
 									</span>
                             </p>
 
                             <div class="form-row">
-                                <input type="button" class="button border margin-top-5" name="login" onclick="loginInputValidity(); initLogin();" value="로그인"/>
+                                <input type="submit" class="button border margin-top-5" name="login" value="로그인"/>
                                 <div class="checkboxes margin-top-10">
                                     <input id="remember-me" type="checkbox" name="check">
                                     <label for="remember-me">로그인 상태 유지</label>
@@ -184,7 +184,6 @@
 <script type="text/javascript" src="../js/custom.js"></script>
 <script type="text/javascript" src="../js/member-login.js"></script>
 <script type="text/javascript" src="../js/apis.js"></script>
-
 <!-- Style Switcher -->
 <script src="../js/switcher.js"></script>
 </body>

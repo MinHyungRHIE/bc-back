@@ -1,0 +1,58 @@
+package com.pap.bucketclass.service;
+
+import static com.pap.bucketclass.support.Utils.containRoleByName;
+
+import java.nio.file.AccessDeniedException;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.pap.bucketclass.entity.Member;
+import com.pap.bucketclass.repository.MemberRepository;
+
+@Service
+public class ProviderMemberService {
+	
+	@Autowired
+	private LocalMemberDetailsService memberDetailService;
+	
+	@Autowired
+	private MemberRepository memberRepo;
+	
+	public Member getMemberMe(String memberId) {
+		return (Member) memberDetailService.loadUserByUsername(memberId);
+	}
+	
+	@Transactional
+	public Member createTemplate(String username, Member user) {
+		Member current = (Member) memberDetailService.loadUserByUsername(username);
+
+        if (containRoleByName(current.getRoles(), "ROLE_PROVIDER")) {
+            return memberRepo.save(user);
+        }
+        try {
+			throw new AccessDeniedException("To-do forbidden error 403”");
+		} catch (AccessDeniedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Transactional
+	public Page<Member> listOf(String memberId, Pageable pageable){
+		Member current = (Member) memberDetailService.loadUserByUsername(memberId);
+		
+		if(containRoleByName(current.getRoles(), "ROLE_PROVIDER")) {
+			return memberRepo.findAll(pageable);
+		}
+		try {
+			throw new AccessDeniedException("To-do forbidden error 403”");
+		} catch (AccessDeniedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+}

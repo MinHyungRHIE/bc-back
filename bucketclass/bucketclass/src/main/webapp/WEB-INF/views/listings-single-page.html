@@ -567,10 +567,10 @@ $(".time-slot").each(function() {
 </div>
 <!-- Style Switcher / End -->
 <script>
-    var mock = true;
+    var test = true;
 
     $(document).ready(function(){
-        if(mock){
+        if(test){
             startXhr();
         } else {
             Apis.getRequest('/list');
@@ -606,7 +606,7 @@ $(".time-slot").each(function() {
     function showServiceItem(serviceData) {
 
     	console.log(serviceData);
-    	if(mock){
+    	if(test){
     		serviceNo = 0;
 		} else{
     		serviceNo = '${service_NO}';
