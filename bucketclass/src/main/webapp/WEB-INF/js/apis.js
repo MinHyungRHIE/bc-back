@@ -4,7 +4,7 @@
 }());
 
 function baseUrl(path) {
-  const BASE_URL = 'http://localhost:9999';
+  /*const BASE_URL = 'http://localhost:9999';*/
   return `${path}`;
 }
 
@@ -27,7 +27,8 @@ function getRequest(path) {
     // credentials: 'same-origin', // include, *same-origin, omit
     // redirect: 'follow', // manual, *follow, error
     // referrer: 'no-referrer' // no-referrer, *client
-  }).then(response => response.json());
+  })
+  /*.then(response => response.json());*/
 }
 
 function patchRequest(path, body = {}) {
@@ -65,7 +66,7 @@ function postRequest(path, body = {}) {
     console.log(data, "데이터 전송 성공!!!!!");
   }
   // Default options are marked with *
-  return fetch(baseUrl(path), {
+  return fetch (baseUrl(path), {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     // mode: 'cors', // no-cors, cors, *same-origin
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -76,8 +77,7 @@ function postRequest(path, body = {}) {
     // redirect: 'follow', // manual, *follow, error
     // referrer: 'no-referrer', // no-referrer, *client
     body: data // body data type must match "Content-Type" header
-  })
-  //.then(response => response.json());
+  }).then(response => response.json());
 }
 
 function putRequest(path, body = {}) {

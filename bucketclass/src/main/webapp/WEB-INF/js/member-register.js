@@ -10,34 +10,39 @@ function customerRegister(){
 
     console.log(typeof customerInfoObject, customerInfoObject);
 
-    let signUpResult = Apis.createMember(customerInfoObject);
-
-    console.log(signUpResult);
-    
-    if(signUpResult === "\"success\""){
-        alert("SignUp Success!");
-        Apis.getRequest(`/`);
+    let signUpResult = Apis.createMember(customerInfoObject).then(response => {
+    	console.log(response);
+    if(response.response === "success"){
+        console.log("회원가입 성공");
+        Apis.getRequest('/test').then( response =>{
+        	console.log(response);
+        });
     } else {
-        alert("회원가입 실패");
-    }
+    	console.log("여긴와?")
+        console.log("회원가입 실패");
+    }});
+
+    
+    
+
 }
-
-var xhr;
-
-function makeXhr(val){
-    xhr=new XMLHttpRequest();
-    xhr.open('POST', "http://localhost:9999/signup");
-    xhr.setRequestHeader('Content-type', 'application/json');
-    xhr.send(val);
-
-    xhr.onreadystatechange = function(){
-        if(xhr.readyState == 4){
-            console.log("4");
-            if(xhr.status == 200){
-                console.log("데이터 보내기 성공");
-            } else {
-                console.log("데이터 보내기 실패");
-            }
-        }
-    }
-}
+//
+//var xhr;
+//
+//function makeXhr(val){
+//    xhr=new XMLHttpRequest();
+//    xhr.open('POST', "http://localhost:9999/signup");
+//    xhr.setRequestHeader('Content-type', 'application/json');
+//    xhr.send(val);
+//
+//    xhr.onreadystatechange = function(){
+//        if(xhr.readyState == 4){
+//            console.log("4");
+//            if(xhr.status == 200){
+//                console.log("데이터 보내기 성공");
+//            } else {
+//                console.log("데이터 보내기 실패");
+//            }
+//        }
+//    }
+//}

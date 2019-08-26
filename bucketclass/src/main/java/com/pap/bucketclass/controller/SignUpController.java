@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pap.bucketclass.entity.Member;
+import com.pap.bucketclass.model.ResponseModel;
 import com.pap.bucketclass.model.SignUpModel;
 import com.pap.bucketclass.service.MemberService;
 
@@ -43,25 +44,27 @@ public class SignUpController {
 					}
 			)
 	@ResponseBody
-	public String create(@RequestBody SignUpModel model) {
+	public ResponseModel create(@RequestBody SignUpModel model) {
 		System.out.println(model.toString());
+		ResponseModel resObj = new ResponseModel();
 		try {
 			Member member = memberService.insertMember(model);
-			return "success";
+			resObj.setResponse("success");
+			return resObj;
 		}catch(Exception e) {
-			return "fail";
+			resObj.setResponse("fail");
+			return resObj;
 		}
 	}
 	
 	@RequestMapping(
-			path="/",
-			method=RequestMethod.GET,
-			produces= {
-					MediaType.APPLICATION_JSON_UTF8_VALUE,
-					MediaType.APPLICATION_ATOM_XML_VALUE
-					}
+			path="/test",
+			method=RequestMethod.GET
 			)
 	public String goToMain() {
-		return "index";
+		System.out.println("들어왔나");
+		return "login";
 	}
+	
+
 }
