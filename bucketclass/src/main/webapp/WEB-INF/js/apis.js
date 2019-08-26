@@ -57,7 +57,8 @@ function patchRequest(path, body = {}) {
 
 function postRequest(path, body = {}) {
   let contentType, data;
-  if (typeof body === 'FormData') {
+//  if (typeof body === 'FormData') {
+	if (typeof body === 'FormData') {
     contentType = 'application/x-www-form-urlencoded; charset=UTF-8';
     data = body;
   } else {
@@ -108,7 +109,9 @@ function putRequest(path, body = {}) {
 }
 
 function loginRequest(credential) {
-  return postRequest('../login.json', credential);
+  return postRequest('../login', credential).then(response => {
+	console.log(typeof response, "////////" + response)
+  });
 }
 
 function createTodo(todo) {

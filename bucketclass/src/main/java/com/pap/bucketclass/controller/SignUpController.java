@@ -20,11 +20,11 @@ public class SignUpController {
 	MemberService memberService;
 	
 	@RequestMapping(
-			path="/login",
+			value="/login",
 			method=RequestMethod.GET
 			)
 	public String loginForm() {
-		return "login";
+		return "login111";
 	}
 	
 	@RequestMapping(
