@@ -74,22 +74,28 @@
                         <form method="post" class="register">
                             <p class="form-row form-row-wide">
                                 <label for="username">아이디:
+                                    <button id="validate_id" class="button border fw margin-top" style=" float : right; width:40px; height: 38px;">중복확인</button>
                                     <i class="im im-icon-Male"></i>
-                                    <input type="text" class="input-text" id="username" value="" onkeyup="registerValidation(this.value, this.id)"/>
+                                    <!--                                    <input type="text" class="input-text" id="username" name="username" value="" onkeyup="registerValidation(this.value, this.id)"-->
+                                    <!--                                           style="padding-right: 0px; width: 246.99074000000002px;">-->
+                                    ​
+                                    <input type="text" class="input-text" id="username" name="username" value="" onkeyup="registerValidation(this.value, this.id)"/>
                                 </label>
                                 <label id="id-notify" class="notify"></label>
                             </p>
-
+                            ​
                             <p class="form-row form-row-wide">
                                 <label for="nickname">닉네임:
+                                    <button id="validate_nickname" style=" float : right">중복확인</button>
                                     <i class="im im-icon-Male-2"></i>
-                                    <input type="text" class="input-text" id="nickname" value="" onkeyup="registerValidation(this.value, this.id)"/>
+                                    <input type="text" class="input-text" id="nickname" name="nickname" value="" onkeyup="registerValidation(this.value, this.id)"/>
                                 </label>
                                 <label id="nick-notify" class="notify"></label>
                             </p>
 
                             <p class="form-row form-row-wide">
                                 <label for="email">이메일:
+                                    <button id="validate_email" style=" float : right">중복확인</button>
                                     <i class="im im-icon-Mail"></i>
                                     <input type="text" class="input-text" name="email" id="email" value="" onkeyup="registerValidation(this.value, this.id)"/>
                                 </label>
@@ -194,6 +200,34 @@
 <!-- Wrapper / End -->
 
 <!-- Scripts -->
+<!-----------------------------------------아이디 닉네임 중복검사---------------------------------------->
+<!--<script>-->
+<!--    $(document).ready(function() {-->
+<!--        //아이디 중복체크-->
+<!--        $("#username").onkeyup(function() {-->
+<!--            //사용자가 입력한 아이디-->
+<!--            var userid = $("#username").val();-->
+<!--            var param = "username=" + userid;-->
+<!--            if (userid.length >= 4) { //최소 글자수 이상-->
+<!--                //아이디 체크-->
+<!--                $.ajax({-->
+<!--                    type : "post",-->
+<!--                    url : "/web02/member_servlet/idcheck.do",-->
+<!--                    data : param,-->
+<!--                    success : function(result) {-->
+<!--                        $("#span_id").html(result);-->
+<!--                    }-->
+<!--                })-->
+<!--            }-->
+<!--        });-->
+<!--        //버튼클릭 이벤트-->
+<!--        $("#btnJoin").click(function() {-->
+<!--            //폼데이터를 서버에 제출-->
+<!--            document.form1.submit();-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+
 <script type="text/javascript" src="../js/jquery-2.2.0.min.js"></script>
 <script type="text/javascript" src="../js/mmenu.min.js"></script>
 <script type="text/javascript" src="../js/chosen.min.js"></script>

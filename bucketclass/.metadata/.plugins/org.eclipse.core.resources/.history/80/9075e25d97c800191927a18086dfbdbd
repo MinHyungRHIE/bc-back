@@ -1,0 +1,84 @@
+package com.pap.bucketclass.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.pap.bucketclass.entity.Member;
+import com.pap.bucketclass.model.ResponseModel;
+import com.pap.bucketclass.model.SignUpModel;
+import com.pap.bucketclass.service.SignUpService;
+
+@Controller
+public class SignUpController {
+
+	@Autowired
+	private SignUpService signUpService;
+	private ResponseModel model;
+	
+
+	@GetMapping("/signup")
+	public String signUpForm() {
+		return "member-register";
+	}
+
+	@RequestMapping(path="/signup", method=RequestMethod.POST,
+			produces= {
+					MediaType.APPLICATION_JSON_UTF8_VALUE,
+					MediaType.APPLICATION_ATOM_XML_VALUE})
+	@ResponseBody
+	public ResponseModel create(@RequestBody SignUpModel model) {
+		ResponseModel resObj = new ResponseModel();
+		try {
+			Member member = signUpService.insertMember(model);
+			resObj.setRes("success");
+			return resObj;
+		}catch(Exception e) {
+			resObj.setRes("fail");
+			return resObj;
+		}
+	}
+	
+	@RequestMapping(
+			path = "signup/check-id/{id}",
+			method = RequestMethod.GET
+			)
+	public @ResponseBody String checkId(String memberId) {
+		if(signUpService.checkId(memberId)) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+	@RequestMapping(value = "/signup/check-email/{email}", method=RequestMethod.GET)
+	public @ResponseBody ResponseModel checkEmail(@PathVariable("email") String email) {
+		ResponseModel response = new ResponseModel();
+		if(signUpService.checkEmail(email)) {
+			response.setRes("success");
+			return response;
+		}else {
+			response.setRes("fail");
+			return response;
+		}
+	}
+	
+	@RequestMapping(
+			path = "signup/check-id",
+			method = RequestMethod.GET
+			)
+	public @ResponseBody String checkNickname(String memberNickname) {
+		if(signUpService.checkNickname(memberNickname)) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+}

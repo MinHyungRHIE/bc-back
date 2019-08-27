@@ -1,0 +1,23 @@
+package com.pap.bucketclass.model;
+
+import java.io.Serializable;
+
+public class RequestModel implements Serializable{
+	
+	private String nickname;
+	private String id;
+	private String email;
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	
+	
+	
+	
+	
+}

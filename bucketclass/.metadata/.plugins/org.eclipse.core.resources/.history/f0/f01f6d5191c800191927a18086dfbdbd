@@ -1,0 +1,60 @@
+package com.pap.bucketclass.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.pap.bucketclass.entity.Member;
+import com.pap.bucketclass.model.ResponseModel;
+import com.pap.bucketclass.model.SignUpModel;
+import com.pap.bucketclass.service.SignUpService;
+
+@Controller
+public class SignUpController {
+
+	@Autowired
+	private SignUpService signUpService;
+
+	@GetMapping("/signup")
+	public String signUpForm() {
+		return "member-register";
+	}
+
+	@RequestMapping(
+			path="/signup",
+			method=RequestMethod.POST,
+			produces= {
+					MediaType.APPLICATION_JSON_UTF8_VALUE,
+					MediaType.APPLICATION_ATOM_XML_VALUE
+			}
+			)
+	@ResponseBody
+	public ResponseModel create(@RequestBody SignUpModel model) {
+		ResponseModel resObj = new ResponseModel();
+		try {
+			Member member = signUpService.insertMember(model);
+			resObj.setRes("success");
+			return resObj;
+		}catch(Exception e) {
+			resObj.setRes("fail");
+			return resObj;
+		}
+	}
+	
+	@RequestMapping(
+			path = "signup/check-id",
+			method = RequestMethod.GET
+			)
+	public String checkId(@RequestParam("memberId")String memberId, Model model) {
+		model.addAttribute("memberid", memberId);
+		return "signup/check-id";
+	}
+	
+}

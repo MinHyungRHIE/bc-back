@@ -21,6 +21,8 @@ function deleteRequest(path) {
 }
 
 function getRequest(path) {
+	
+	console.log(path);
   return fetch(baseUrl(path), {
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
     // mode: 'cors', // no-cors, cors, *same-origin
@@ -33,8 +35,8 @@ function getRequest(path) {
 
 function patchRequest(path, body = {}) {
   let contentType, data;
-  if (body instanceof FormData) {
-    contentType = 'multipart/form-data';
+  if (typeof body === 'FormData') {
+    contentType = 'application/x-www-form-urlencoded; charset=UTF-8';
     data = body;
   } else {
     contentType = 'application/json; charset=UTF-8';
@@ -43,45 +45,47 @@ function patchRequest(path, body = {}) {
   // Default options are marked with *
   return fetch(baseUrl(path), {
     method: 'PATCH', // *GET, POST, PUT, DELETE, etc.
-  // mode: ‘cors’, // no-cors, cors, *same-origin
-  cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-  // credentials: ‘same-origin’, // include, *same-origin, omit
-  headers: {
-  'Content-Type': contentType
-  },
-  // redirect: ‘follow’, // manual, *follow, error
-  // referrer: ‘no-referrer’, // no-referrer, *client
-  body: data // body data type must match “Content-Type” header
-}).then(response => response.json());
+    // mode: 'cors', // no-cors, cors, *same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    // credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+      'Content-Type': contentType
+    },
+    // redirect: 'follow', // manual, *follow, error
+    // referrer: 'no-referrer', // no-referrer, *client
+    body: data // body data type must match "Content-Type" header
+  }).then(response => response.json());
 }
 
 function postRequest(path, body = {}) {
   let contentType, data;
-  if (body instanceof FormData) {
-    contentType = 'multipart/form-data';
+  if (typeof body === 'FormData') {
+    contentType = 'application/x-www-form-urlencoded; charset=UTF-8';
     data = body;
   } else {
     contentType = 'application/json; charset=UTF-8';
     data = JSON.stringify(body);
+    console.log(data, "데이터 전송 성공!!!!!");
   }
   // Default options are marked with *
   return fetch(baseUrl(path), {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
-  // mode: ‘cors’, // no-cors, cors, *same-origin
-  cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-  // credentials: ‘same-origin’, // include, *same-origin, omit
-  headers: {
-  'Content-Type': contentType
-  },
-  // redirect: ‘follow’, // manual, *follow, error
-  // referrer: ‘no-referrer’, // no-referrer, *client
-  body: data // body data type must match “Content-Type” header
-}).then(response => response.json());
+    // mode: 'cors', // no-cors, cors, *same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    // credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+      'Content-Type': contentType
+    },
+    // redirect: 'follow', // manual, *follow, error
+    // referrer: 'no-referrer', // no-referrer, *client
+    body: data // body data type must match "Content-Type" header
+  }).then(response => response.json());
 }
+
 function putRequest(path, body = {}) {
   let contentType, data;
-  if (body instanceof FormData) {
-    contentType = 'multipart/form-data';
+  if (typeof body === 'FormData') {
+    contentType = 'application/x-www-form-urlencoded; charset=UTF-8';
     data = body;
   } else {
     contentType = 'application/json; charset=UTF-8';
@@ -90,23 +94,38 @@ function putRequest(path, body = {}) {
   // Default options are marked with *
   return fetch(baseUrl(path), {
     method: 'PUT', // *GET, POST, PUT, DELETE, etc.
-  // mode: ‘cors’, // no-cors, cors, *same-origin
-  // cache: ‘no-cache’, // *default, no-cache, reload, force-cache, only-if-cached
-  // credentials: ‘same-origin’, // include, *same-origin, omit
-  // mode: ‘cors’, // no-cors, cors, *same-origin
-  cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-  // credentials: ‘same-origin’, // include, *same-origin, omit
-  headers: {
-  'Content-Type': contentType
-  },
-  // redirect: ‘follow’, // manual, *follow, error
-  // referrer: ‘no-referrer’, // no-referrer, *client
-  body: data // body data type must match “Content-Type” header
-}).then(response => response.json());
+    // mode: 'cors', // no-cors, cors, *same-origin
+    // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    // credentials: 'same-origin', // include, *same-origin, omit
+    // mode: 'cors', // no-cors, cors, *same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    // credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+      'Content-Type': contentType
+    },
+    // redirect: 'follow', // manual, *follow, error
+    // referrer: 'no-referrer', // no-referrer, *client
+    body: data // body data type must match "Content-Type" header
+  }).then(response => response.json());
+}
+
+function getValidationRequest(path) {
+	
+	
+	
+	
+  return fetch(baseUrl(path), {
+    method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    // mode: 'cors', // no-cors, cors, *same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    // credentials: 'same-origin', // include, *same-origin, omit
+    // redirect: 'follow', // manual, *follow, error
+    // referrer: 'no-referrer' // no-referrer, *client
+  }).then(response => response.json());
 }
 
 function loginRequest(credential) {
-  return postRequest('/signin', credential);
+  return postRequest('../login.json', credential);
 }
 
 function createTodo(todo) {
@@ -133,8 +152,20 @@ function createMember(member) {
   return postRequest('/signup', member);
 }
 
-function getMemberInfo(path){
-  return loginRequest(path);
+function ValidateId(content) {
+	
+	console.log(content)
+  return getRequest('/signup/check-id/'+ content)
+}
+
+function ValidateNickName(content) {
+  return getValidationRequest('/signup/check-nickname/' + content);
+}
+
+function ValidateEmail(content) {
+	
+	
+  return getValidationRequest('/signup/check-email/' + content);
 }
 
 const Apis = {
@@ -144,9 +175,12 @@ const Apis = {
   postRequest,
   putRequest,
   loginRequest,
+  getValidationRequest,
 
+  ValidateId,
+  ValidateNickName,
+  ValidateEmail,
   createMember,
-  getMemberInfo,
   createTodo,
   deleteTodo,
   listTodo,

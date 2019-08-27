@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+    
 <!DOCTYPE html>
 <head>
 
@@ -17,7 +19,7 @@
 </head>
 
 <body class="transparent-header">
-
+<security:authorize access="hasRole('ROLE_CUSTOMER')">
 <!-- Wrapper -->
 <div id="wrapper">
 
@@ -928,7 +930,7 @@ strings: ["Attractions"," Restaurants"," Hotels"],
 		
 </div>
 <!-- Style Switcher / End -->
-
+</security:authorize>
 
 </body>
 </html>

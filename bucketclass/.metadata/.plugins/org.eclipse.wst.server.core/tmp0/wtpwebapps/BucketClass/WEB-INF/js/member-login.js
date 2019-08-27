@@ -5,17 +5,14 @@ var logInInputCheck;
 myForm.addEventListener('submit', function(e) {
     logInInputCheck = loginInputValidity();
     console.log(logInInputCheck);
-    e.preventDefault();
     if(logInInputCheck === true && loginIdReturnValue === true){
-        
+        e.preventDefault();
         // var loginObject = new Object();
         // loginObject.memberId = document.getElementById("username").value;
         // loginObject.memberPassword = document.getElementById("password").value;
         const formData = new FormData(myForm);
-        var test = loginRequest(formData).then(response => console.log('response >>>', response));
-        console.log(typeof test, "////////" + test);
-    }else{
-    	alert("양식에 맞춰 작성해주세요.");
+        console.log("타입확인" + typeof formData)
+        loginRequest(formData).then(response => console.log(response));
     }
 });
 
@@ -50,6 +47,7 @@ function promiseTest(value){
         alert("아이디 또는 비밀번호를 확인해주세요.");
     }
 }
+
 
 var xhr;
 

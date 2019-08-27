@@ -3,14 +3,15 @@ package com.pap.bucketclass.model;
 import java.io.Serializable;
 
 public class ResponseModel implements Serializable{
-	private String response;
+	
+	private String res;
 
-	public String getResponse() {
-		return response;
+	public String getRes() { 
+		return res;
 	}
 
-	public boolean setResponse(String response) {
-		this.response = response;
-		return true;
+	public void setRes(String res) {
+		this.res = res;
 	}
+
 }

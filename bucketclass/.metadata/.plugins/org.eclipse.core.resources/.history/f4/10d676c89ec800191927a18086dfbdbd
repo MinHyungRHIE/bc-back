@@ -1,0 +1,93 @@
+package com.pap.bucketclass.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.pap.bucketclass.entity.Member;
+import com.pap.bucketclass.model.ResponseModel;
+import com.pap.bucketclass.model.SignUpModel;
+import com.pap.bucketclass.service.SignUpService;
+
+@Controller
+public class SignUpController {
+
+	@Autowired
+	private SignUpService signUpService;
+	
+	private ResponseModel response = new ResponseModel();
+	
+	@GetMapping("/signup")
+	public String signUpForm() {
+		return "member-register";
+	}
+
+	@RequestMapping(path="/signup", method=RequestMethod.POST,
+			produces= {
+					MediaType.APPLICATION_JSON_UTF8_VALUE,
+					MediaType.APPLICATION_ATOM_XML_VALUE})
+	@ResponseBody
+	public ResponseModel create(@RequestBody SignUpModel model) {
+		try {
+			Member member = signUpService.insertMember(model);
+			response.setRes("success");
+			return response;
+		}catch(Exception e) {
+			response.setRes("fail");
+			return response;
+		}
+	}
+	
+	@RequestMapping(
+			value = "/signup/check-id/{id}",
+			method = RequestMethod.GET
+			)
+	public @ResponseBody ResponseModel checkId(@PathVariable("id")String memberId) {
+		
+		
+//		Boolean result = true;
+//		return new ResponseEntity<Boolean>(result, null, HttpStatus.OK);
+//		ResponseEntity response = new ResponseEntity<String>("", null, HttpStatus.OK);
+		if(signUpService.checkId(memberId)) {
+			response.setRes("success");
+			return response;
+		}else {
+			response.setRes("fail");
+			return response;
+		}
+	}
+	
+	@RequestMapping(value = "/signup/check-email/{email}", method=RequestMethod.GET)
+	public @ResponseBody ResponseModel checkEmail(@PathVariable("email") String email) {
+		if(signUpService.checkEmail(email)) {
+			response.setRes("success");
+			return response;
+		}else {
+			response.setRes("fail");
+			return response;
+		}
+	}
+	
+	@RequestMapping(
+			path = "signup/check-nickname/{nickname}",
+			method = RequestMethod.GET
+			)
+	public @ResponseBody ResponseModel checkNickname(@PathVariable("nickname") String memberNickname) {
+		if(signUpService.checkNickname(memberNickname)) {
+			response.setRes("success");
+			return response;
+		}else {
+			response.setRes("fail");
+			return response;
+		}
+	}
+	
+}

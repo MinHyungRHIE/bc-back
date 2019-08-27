@@ -11,6 +11,9 @@
     <http auto-config="true" use-expressions="true">
         <csrf disabled="true" />
         <intercept-url pattern="/signup**" access="isAnonymous()" />
+        <intercept-url pattern="/signup/check-id/*" access="isAnonymous()" />
+        <intercept-url pattern="/signup/check-email/*" access="isAnonymous()" />
+        <intercept-url pattern="/signup/check-nickname/*" access="isAnonymous()" />
         <intercept-url pattern="/login**" access="isAnonymous()" />
         <intercept-url pattern="/mypage/provider**" access="hasRole('ROLE_PROVIDER')" />
         <intercept-url pattern="/mypage/customer**" access="hasRole('ROLE_CUSTOMER')" />
@@ -24,7 +27,7 @@
         <http-basic />
 
         <logout logout-success-url="/login"
-                logout-url="/perform_logout" />
+                logout-url="/logout" />
     </http>
             
     <beans:bean id="passwordEncoder" 
@@ -38,12 +41,5 @@
             <password-encoder ref="passwordEncoder" />
         </authentication-provider>
     </authentication-manager>
-    
-
-
-
-
-
-
 
 </beans:beans>

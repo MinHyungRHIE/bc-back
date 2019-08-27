@@ -23,46 +23,40 @@ public class SignUpService {
 
 	@Autowired
 	private RoleRepository roleRepo;
-	private ResponseModel result = new ResponseModel();
 	
 
 	// ID중복검사
-	public ResponseModel checkId(String memberId) {
+	public Boolean checkId(String memberId) {
 		if(memberRepo.findByMemberId(memberId) != null) {
 			System.out.println("이미 존재하는 ID");
-			result.setResponse("false");
-			return result;
+			return false;
 		}
-		result.setResponse("true");
-		return result;
+		return true;
 	}
 	
 	// NickName 중복검사
-		public ResponseModel checkNickname(String memberNickname) {
+		public Boolean checkNickname(String memberNickname) {
 			if(memberRepo.findByMemberNickname(memberNickname) != null) {
 				System.out.println("이미 존재하는 Nickname");
-				result.setResponse("false");
-				return result;
+				return false;
 			}
-			result.setResponse("true");
-			return result;
+			return true;
 		}
 
 	// Email 중복검사 
-	public ResponseModel checkEmail(String memberEmail) {
+	public Boolean checkEmail(String memberEmail) {
 		if(memberRepo.findByMemberEmail(memberEmail) != null) {
 			System.out.println("이미 존재하는 Email");
-			result.setResponse("false");
-			return result;
+			return false;
 		}
-		result.setResponse("true");
-		return result;
+		return true;
 	}
 	
 	@Transactional
 	public Member insertMember(SignUpModel signup) {
 		try {
-			if(result.setResponse("true")) 
+			ResponseModel response = new ResponseModel();
+			if(response.getRes().equals("success")) 
 			{
 				Member member = signup.toMember();
 				Role role = roleRepo.findByRoleName(signup.getRoleName());

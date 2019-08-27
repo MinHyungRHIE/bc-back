@@ -4,12 +4,15 @@ var nickReturnValue;
 var emailReturnValue;
 var pw1ReturnValue;
 var pw2ReturnValue;
+var checkIdValidate = false;
+var checkNickValidate = false;
+var checkEmailValidate = false;
 
 function registerValidation(val, id){
     if(id === "username"){
-        idReturnValue = idValidity(val, "id-notify", "#id-notify", "아이디");
+        idReturnValue = idValidity(val, "id-notify", "아이디는 ", "member_id");
     } else if(id === "nickname"){
-        nickReturnValue = idValidity(val, "nick-notify", "#nick-notify");
+        nickReturnValue = idValidity(val, "nick-notify", "닉네임은 ", "member_nickname");
     } else if(id === "email"){
         emailReturnValue = emailValidity(val);
     } else if(id === "password1"){
@@ -19,14 +22,12 @@ function registerValidation(val, id){
     }
 }
 
-
-
-function idValidity(val, tag, overlapTag) {
+function idValidity(val, tag, Division) {
     //아이디 유효성 검사 (영문소문자, 숫자만 허용)
     for (var i = 0; i < val.length; i++) {
         var ch = val.charAt(i);
         if (!(ch >= '0' && ch <= '9') && !(ch >= 'a' && ch <= 'z') && !(ch >= 'A' && ch <= 'Z')) {
-            document.getElementById(tag).innerHTML = "대소문자, 숫자만 입력가능합니다.";
+            document.getElementById(tag).innerHTML = Division + "대소문자, 숫자만 입력가능합니다.";
             document.getElementById(tag).style.color = "red";
             return false;
         } else {
@@ -36,44 +37,13 @@ function idValidity(val, tag, overlapTag) {
 
     //아이디 길이 체크 (4~12자)
     if (val.length < 4 || val.length > 12) {
-        document.getElementById(tag).innerHTML = "4~12자까지 입력해주세요.";
+        document.getElementById(tag).innerHTML = Division + "4~12자까지 입력가능합니다.";
         document.getElementById(tag).style.color = "red";
         return false;
     } else {
         document.getElementById(tag).innerHTML = "";
         return true;
     }
-
-    if(idReturnValue === true){
-        $(function(){
-            $("#"+tag).blur(function(){
-                $.ajax({
-                    type:"POST",
-                    url:"checkSignup",
-                    data:{
-                        "member_ID":$("#"+tag).val()
-                    },
-                    success:function(data){	//data : checkSignup에서 넘겨준 결과값
-                        if($.trim(data)=="YES"){
-                            if($(overlapTag).val()!=''){
-                                document.getElementById(tag).innerHTML = "사용가능 한 아이디입니다..";
-                                document.getElementById(tag).style.color = "red";
-                            }
-                        }else{
-                            if($(overlapTag).val()!=''){
-                                document.getElementById(tag).innerHTML = "중복되는 아이디 입니다.";
-                                document.getElementById(tag).style.color = "red";
-                                $(overlapTag).val('');
-                                $(overlapTag).focus();
-                                return false;
-                            }
-                        }
-                    }
-                })
-            })
-        });
-    }
-    ////////////////////// 여기에 중복검사 추가 ////////////////////////////////
 } // idvalidate
 
 function pwValidity(val) {
@@ -192,9 +162,24 @@ function registerInputValidity() {
     }
 
     if(idReturnValue === true && nickReturnValue === true && emailReturnValue === true &&
-        pw1ReturnValue === true && pw2ReturnValue === true && inputReturnValue === true){
+        pw1ReturnValue === true && pw2ReturnValue === true && inputReturnValue === true &&
+        checkIdValidate === true && checkNickValidate === true && checkEmailValidate === true){
         customerRegister();
-    } else {
+    }
+
+    else if(checkIdValidate === false){
+        alert("아이디 중복검사를 해주세요.")
+    }
+
+    else if(checkNickValidate === false){
+        alert("닉네임 중복검사를 해주세요.")
+    }
+
+    else if(checkEmailValidate === false){
+        alert("이메일 중복검사를 해주세요.")
+    }
+
+    else {
         alert("양식에 맞춰 작성해주세요.");
     }
 } // registerInputValidity

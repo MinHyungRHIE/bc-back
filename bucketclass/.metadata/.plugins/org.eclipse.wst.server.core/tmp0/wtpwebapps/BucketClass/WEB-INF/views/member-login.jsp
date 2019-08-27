@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/main-color.css" id="colors">
-    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/main-color.css" id="colors">
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
 </head>
 
 <body>
@@ -28,7 +28,7 @@
 
                     <!-- Logo -->
                     <div id="logo">
-                        <a href="main.html"><img src="../img/logo.png" alt=""></a>
+                        <a href="index.html"><img src="../img/logo.png" alt=""></a>
                     </div>
                     <div class="clearfix"></div>
                     <!-- Main Navigation / End -->
@@ -70,7 +70,7 @@
 
                     <!-- class="category-box-content" -->
                     <div class="tab-content" id="tab1" style="display: none;">
-                        <form method="post" class="login" id="myForm" name="myForm">
+                        <form method="post" class="login" action="/login" id="myForm" name="myForm">
                             <p class="form-row form-row-wide">
                                 <label for="username">아이디:
                                     <i class="im im-icon-Male"></i>
@@ -84,7 +84,7 @@
                                     <i class="im im-icon-Lock-2"></i>
                                     <input type="password" class="input-text" name="password" id="password" onkeyup="loginValidation(this.value, this.id)"/>
                                 </label>
-                                <label id="pw-notify"></label>
+                                <label id="pw-notify" class="notify"></label>
                                 <span class="lost_password" class="notify">
 										<a href="#">비밀번호를 잊으셨나요?</a>
 									</span>
