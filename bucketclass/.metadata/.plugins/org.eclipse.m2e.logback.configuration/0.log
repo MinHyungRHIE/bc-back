@@ -8140,3 +8140,11 @@ Caused by: org.eclipse.aether.transfer.ArtifactNotFoundException: Could not find
 2019-08-27 18:37:06,570 [Worker-130: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2019-08-27 18:37:06,579 [Worker-130: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2019-08-27 18:37:06,587 [Worker-130: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-27 18:40:32,164 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-27 18:40:32,164 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-08-27 18:40:32,173 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-27 18:40:32,180 [Worker-133: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-27 18:43:19,352 [Worker-109: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-27 18:43:19,352 [Worker-109: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-08-27 18:43:19,358 [Worker-109: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-27 18:43:19,364 [Worker-109: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources

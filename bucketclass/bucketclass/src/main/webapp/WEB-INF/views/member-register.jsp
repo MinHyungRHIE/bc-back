@@ -213,14 +213,12 @@
 	<script>
 	const username = document.querySelector('#validate_id');
 	username.addEventListener("click", function (e){
-		Apis.getRequest('/signup/check-id/' + username.value).then(response =>{ 
+		Apis.getRequest('/signup/check-id/' + username.value).then(response => { 
 		console.log("response >>> " + response);
 			if(response === true){
 				alert("사용 가능한 아이디입니다.");
-				e.preventDefault();
 			} else {
 				alert("사용 불가");
-				e.preventDefault();
 			}	
 		})
 	})
