@@ -125,7 +125,7 @@ function getValidationRequest(path) {
 }
 
 function loginRequest(credential) {
-  return postRequest('../login.json', credential);
+  return postRequest('../login', credential);
 }
 
 function createTodo(todo) {

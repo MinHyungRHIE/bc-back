@@ -8376,3 +8376,7 @@ Caused by: org.eclipse.aether.transfer.ArtifactNotFoundException: Could not find
 2019-08-27 19:53:03,152 [Worker-176: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2019-08-27 19:53:03,161 [Worker-176: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2019-08-27 19:53:03,168 [Worker-176: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
+2019-08-27 20:15:07,150 [Worker-197: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-27 20:15:07,150 [Worker-197: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2019-08-27 20:15:07,159 [Worker-197: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-08-27 20:15:07,171 [Worker-197: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\bucketclass\bucketclass\src\test\resources
