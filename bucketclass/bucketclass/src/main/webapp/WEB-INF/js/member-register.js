@@ -33,8 +33,6 @@ function checkValidate_Id() {
 //    window.parent.location.href = '/check-id/'+id;
 
     
-    console.log(typeof id, id);
-    
     
     
 //    Apis.ValidateId(id)

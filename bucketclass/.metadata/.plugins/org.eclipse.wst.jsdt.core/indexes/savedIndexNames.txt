@@ -3,7 +3,6 @@ INDEX VERSION 1.4+C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\
 3880604175.index
 4054691750.index
 4100274770.index
-3721405860.index
 1111146306.index
 297725332.index
 3752965739.index
