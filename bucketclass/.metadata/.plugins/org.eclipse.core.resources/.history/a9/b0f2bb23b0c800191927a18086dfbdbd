@@ -58,10 +58,7 @@ public class SignUpController {
 		}
 	}
 	
-	@RequestMapping(
-			value = "/signup/check-email/{email}", 
-			method=RequestMethod.GET
-			)
+	@RequestMapping(value = "/signup/check-email/{email}", method=RequestMethod.GET)
 	public @ResponseBody ResponseEntity checkEmail(@PathVariable("email") String email) {
 		if(signUpService.checkEmail(email)) {
 			return new ResponseEntity<Boolean>(true, null, HttpStatus.OK);

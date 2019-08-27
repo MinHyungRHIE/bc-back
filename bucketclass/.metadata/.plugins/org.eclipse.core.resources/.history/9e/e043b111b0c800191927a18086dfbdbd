@@ -56,17 +56,25 @@ public class SignUpController {
 		} else {
 			return new ResponseEntity<Boolean>(false, null, HttpStatus.OK);
 		}
+		
+//		ResponseEntity response = new ResponseEntity<String>("", null, HttpStatus.OK);
+//		if(signUpService.checkId(memberId)) {
+//			response.setRes("success");
+//			return response;
+//		}else {
+//			response.setRes("fail");
+//			return response;
+//		}
 	}
 	
-	@RequestMapping(
-			value = "/signup/check-email/{email}", 
-			method=RequestMethod.GET
-			)
-	public @ResponseBody ResponseEntity checkEmail(@PathVariable("email") String email) {
+	@RequestMapping(value = "/signup/check-email/{email}", method=RequestMethod.GET)
+	public @ResponseBody ResponseModel checkEmail(@PathVariable("email") String email) {
 		if(signUpService.checkEmail(email)) {
-			return new ResponseEntity<Boolean>(true, null, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<Boolean>(false, null, HttpStatus.OK);
+			response.setRes("success");
+			return response;
+		}else {
+			response.setRes("fail");
+			return response;
 		}
 	}
 	
@@ -74,11 +82,13 @@ public class SignUpController {
 			path = "signup/check-nickname/{nickname}",
 			method = RequestMethod.GET
 			)
-	public @ResponseBody ResponseEntity checkNickname(@PathVariable("nickname") String memberNickname) {
+	public @ResponseBody ResponseModel checkNickname(@PathVariable("nickname") String memberNickname) {
 		if(signUpService.checkNickname(memberNickname)) {
-			return new ResponseEntity<Boolean>(true, null, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<Boolean>(false, null, HttpStatus.OK);
+			response.setRes("success");
+			return response;
+		}else {
+			response.setRes("fail");
+			return response;
 		}
 	}
 	
