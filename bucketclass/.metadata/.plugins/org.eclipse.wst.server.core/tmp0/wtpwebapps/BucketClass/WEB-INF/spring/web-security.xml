@@ -15,8 +15,10 @@
         <intercept-url pattern="/signup/check-email/*" access="isAnonymous()" />
         <intercept-url pattern="/signup/check-nickname/*" access="isAnonymous()" />
         <intercept-url pattern="/login**" access="isAnonymous()" />
-        <intercept-url pattern="/mypage/provider**" access="hasRole('ROLE_PROVIDER')" />
-        <intercept-url pattern="/mypage/customer**" access="hasRole('ROLE_CUSTOMER')" />
+        <intercept-url pattern="/provider/mypage**" access="isAnonymous()" />
+        <intercept-url pattern="/customer/mypage**" access="isAnonymous()" />
+        <!-- <intercept-url pattern="/provider/mypage**" access="hasRole('ROLE_PROVIDER')" />
+        <intercept-url pattern="/customer/mypage**" access="hasRole('ROLE_CUSTOMER')" /> -->
         <intercept-url pattern="/css/**" access="isAnonymous()" />
         <intercept-url pattern="/img/**" access="isAnonymous()" />
         <intercept-url pattern="/js/**" access="isAnonymous()" />
@@ -33,11 +35,11 @@
     <beans:bean id="passwordEncoder" 
 				class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 
-    <beans:bean id="userDetailsService"
+    <beans:bean id="memberDetailsService"
                 class="com.pap.bucketclass.service.LocalMemberDetailsService" />
                     
     <authentication-manager>
-        <authentication-provider user-service-ref="userDetailsService">
+        <authentication-provider user-service-ref="memberDetailsService">
             <password-encoder ref="passwordEncoder" />
         </authentication-provider>
     </authentication-manager>

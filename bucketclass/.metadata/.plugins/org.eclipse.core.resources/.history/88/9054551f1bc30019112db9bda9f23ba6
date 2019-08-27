@@ -1,5 +1,0 @@
-package com.pap.bucketclass.support;
-
-public class BooleanToIntegerConverter {
-
-}
