@@ -3,9 +3,13 @@ package com.pap.bucketclass.model;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.pap.bucketclass.entity.ServiceAddress;
 
 public class PostServiceModel implements Serializable{
 
+	@JsonProperty("serviceTemplateId")
+	private String serviceTemplateId;
+	
 	@JsonProperty("servicePrice")
 	private String servicePrice;
 	
@@ -30,6 +34,14 @@ public class PostServiceModel implements Serializable{
 	@JsonProperty("addressDetail")
 	private String addressDetail;
 	
+	public String getServiceTemplateId() {
+		return serviceTemplateId;
+	}
+
+	public void setServiceTemplateId(String serviceTemplateId) {
+		this.serviceTemplateId = serviceTemplateId;
+	}
+
 	public String getServicePrice() {
 		return servicePrice;
 	}
@@ -93,10 +105,20 @@ public class PostServiceModel implements Serializable{
 	public void setAddressDetail(String addressDetail) {
 		this.addressDetail = addressDetail;
 	}
+	
+	public ServiceAddress toServiceAddress() {
+		ServiceAddress serviceAddress = new ServiceAddress();
+		serviceAddress.setAddressState(addressState);
+		serviceAddress.setAddressCity(addressCity);
+		serviceAddress.setAddressDong(addressDong);
+		serviceAddress.setAddressDetail(addressDetail);
+		return serviceAddress;
+	}
 
 	@Override
 	public String toString() {
-		return " servicePrice : " + servicePrice
+		return  " serviceId : " + serviceTemplateId
+				+ "\n servicePrice : " + servicePrice
 				+ "\n serviceDateDescription : " + serviceDateDescription
 				+ "\n serviceStartDate : " + serviceStartDate
 				+ "\n serviceEndDate : " + serviceEndDate

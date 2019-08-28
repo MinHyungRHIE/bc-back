@@ -105,9 +105,9 @@ public class TESTController {
 					MediaType.APPLICATION_JSON_UTF8_VALUE,
 					MediaType.APPLICATION_ATOM_XML_VALUE
 			})
-	public @ResponseBody PostServiceModel createService(@RequestBody PostServiceModel model) {
+	public @ResponseBody Services createService(@RequestBody PostServiceModel model) {
 		System.out.println(model.toString());
-		return model;
+		return serviceRegistSerivce.insertServices(model);
 	}
 
 	/********************

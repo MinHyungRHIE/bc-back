@@ -33,7 +33,7 @@ public class Services implements Serializable{
 	
 	@Id
 	@Column(name="service_id")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long serviceId;
 
 	@Column(name="member_id")
@@ -54,7 +54,6 @@ public class Services implements Serializable{
 	
 	@Column(name="service_isDelete")	
     @Convert(converter = BooleanToLongConverter.class)
-	@NotNull
 	private Boolean serviceIsDelete;
 	
 	@Column(name="hashTag")
@@ -80,8 +79,8 @@ public class Services implements Serializable{
 	private Date serviceRegisterDate;
 	
 	@Column(name="service_register_isActive")
-    @Convert(converter = BooleanToLongConverter.class)
 	@NotNull
+    @Convert(converter = BooleanToLongConverter.class)
 	private Boolean serviceRegisterIsActive;
 	
 	@Column(name="service_price")
@@ -122,7 +121,7 @@ public class Services implements Serializable{
 	@ManyToMany(mappedBy = "services")
 	private Set<Member> members = new HashSet<>();
     /*********************************************************************************/
-
+	
 	public Long getServiceId() {
 		return serviceId;
 	}
@@ -268,18 +267,20 @@ public class Services implements Serializable{
 	}
     
 	/*서비스 저장하기 위한 Methods*/
-	public void getNewDateToPostService(PostServiceModel newInputModel) {
+	public void setNewDataToPostService(PostServiceModel newInputModel) {
 		this.servicePrice = ConverterPackage.convertStringToPriceFormat(newInputModel.getServicePrice());
 		this.serviceDateDescription = newInputModel.getServiceDateDescription();
 		this.serviceStartDate = ConverterPackage.convertDateStringToTimestamp(newInputModel.getServiceStartDate());
 		this.serviceEndDate = ConverterPackage.convertDateStringToTimestamp(newInputModel.getServiceEndDate());
 	}
 	
-	public void getDateFromTemplate(ServiceTemplate templateModel) {
+	public void setDateFromTemplate(ServiceTemplate templateModel) {
 		this.serviceTitle = templateModel.getServiceTitle();
 		this.accountBank = templateModel.getAccountBank();
 		this.accountNumber = templateModel.getAccountNumber();
+		this.serviceIsDelete = templateModel.getServiceIsDelete();
 		this.hashTag = templateModel.getHashTag();
+		this.serviceModifiedDate = templateModel.getServiceModifiedDate();
 		this.serviceImgUri = templateModel.getServiceImgUri();
 		this.serviceDescription = templateModel.getServiceDescription();
 	}

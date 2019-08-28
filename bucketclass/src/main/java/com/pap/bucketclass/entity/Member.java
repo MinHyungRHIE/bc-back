@@ -205,12 +205,12 @@ public class Member implements UserDetails, Serializable{
 
 	@Override //ID
 	public String getUsername() {
-		return null;
+		return memberId;
 	}
 
 	@Override //PASSWORD
 	public String getPassword() {
-		return null;
+		return memberPassword;
 	}
 
 	@Override
