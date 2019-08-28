@@ -1,10 +1,8 @@
 package com.pap.bucketclass.service;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pap.bucketclass.entity.Member;
 import com.pap.bucketclass.entity.ServiceCategory;
@@ -15,7 +13,7 @@ import com.pap.bucketclass.repository.ServiceCategoryRepository;
 import com.pap.bucketclass.repository.ServiceTemplateRepository;
 
 @Service
-public class MakeTemplateService{
+public class TemplateService{
 	
 	@Autowired
 	private ServiceTemplateRepository serviceTemplateRepo;
@@ -28,14 +26,11 @@ public class MakeTemplateService{
 	
 	@Transactional
 	public void createTemplate(CreateTemplateModel templateModel) {
-		ServiceTemplate serviceTemplate = templateModel.toServiceTemplate();
 		ServiceCategory serviceCategory = templateModel.toServiceCategory();
-		Member member = memberRepo.findByMemberId("quotia72");
-		System.out.println(templateModel.toString());
-		serviceCategoryRepo.save(serviceCategory);
+		ServiceTemplate serviceTemplate = templateModel.toServiceTemplate();
+		serviceTemplate.setServiceCategory(serviceCategoryRepo.save(serviceCategory));
 		serviceTemplate.setServiceIsDelete(false);
-		serviceTemplate.setServiceCategory(serviceCategory);
-		serviceTemplate.setMember(member);
+		serviceTemplate.setMember(memberRepo.findByMemberId("quotia72")); //나중에 세션으로부터 정보를 얻어올 USERNAME
 		serviceTemplateRepo.save(serviceTemplate);
 	}
 	

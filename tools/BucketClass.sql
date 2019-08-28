@@ -18,10 +18,10 @@ DROP TABLE IF EXISTS `privilege`;
 
 DROP TABLE IF EXISTS `service_address`;
 DROP TABLE IF EXISTS `service_category`;
-DROP TABLE IF EXISTS `service_registration`;
+DROP TABLE IF EXISTS `service`;
+DROP TABLE IF EXISTS `service_template`;
 
-DROP TABLE IF EXISTS `member_service_creation`;
-DROP TABLE IF EXISTS `service_creation`;
+DROP TABLE IF EXISTS `wishlist`;
 
 -- DESC member;
 -- Member
@@ -48,7 +48,7 @@ CREATE TABLE `service_template` (
 	`account_number`       	VARCHAR(255)  					NULL  	 COMMENT '계좌번호', -- account_number
 	`category_id`          	INT(36)     					NOT NULL COMMENT '카테고리번호', -- category_id
 	`service_isDelete`     	BOOLEAN    						NOT NULL DEFAULT FALSE COMMENT '서비스삭제상태( T:삭제됨;비활성, F:삭제;활성)', -- service_IsDelete
-	`hashTag`              	JSON        					NULL  	 COMMENT '해시태그', -- hashTag
+	`hashTag`              	VARCHAR(255)    				NULL  	 COMMENT '해시태그', -- hashTag 	--JSON
 	`service_modified_date` DATETIME    					NOT NULL DEFAULT NOW() COMMENT '최근수정일', -- service_modified_Date
 	`service_img_uri`       JSON        					NULL  	 COMMENT '서비스 이미지 경로', -- service_img_uri
 	`service_description`   MEDIUMTEXT   					NOT NULL COMMENT '서비스내용' -- service_description
@@ -64,13 +64,13 @@ CREATE TABLE `service` (
 	`account_number`       		VARCHAR(255)  				NULL  	 COMMENT '계좌번호', -- account_number
 	`category_id`           	INT(36)     				NOT NULL COMMENT '카테고리번호', -- category_id
 	`service_isDelete`      	BOOLEAN     				NOT NULL DEFAULT FALSE COMMENT '서비스삭제상태( T:삭제됨;비활성, F:삭제;활성)', -- service_IsDelete
-	`hashTag`               	JSON        				NULL  	 COMMENT '해시태그', -- hashTag
+	`hashTag`               	VARCHAR(255)   				NULL  	 COMMENT '해시태그', -- hashTag 	--JSON
 	`service_modified_date` 	DATETIME   					NOT NULL DEFAULT NOW() COMMENT '최근수정일', -- service_modified_Date
-	`service_img_uri`       	JSON        				NULL  	 COMMENT '서비스 이미지 경로', -- service_img_uri
-    `service_description`   MEDIUMTEXT   					NOT NULL COMMENT '서비스내용', -- service_description
-	`service_register_date` 	DATETIME  					NOT NULL COMMENT '서비스등록일', -- service_register_date
-	`service_register_isActive` 	BOOLEAN     				NOT NULL DEFAULT FALSE COMMENT '서비스활성상태( T:활성, F:비활성)', -- service_register_isAcive
-	`service_price`           	INT(36)     				NOT NULL COMMENT '서비스가격', -- service_price
+	`service_img_uri`       	VARCHAR(255)   				NULL  	 COMMENT '서비스 이미지 경로', -- service_img_uri 	--JSON
+    `service_description` 	    MEDIUMTEXT   				NOT NULL COMMENT '서비스내용', -- service_description
+	`service_register_date` 	DATETIME  					NOT NULL DEFAULT NOW() COMMENT '서비스등록일', -- service_register_date
+	`service_register_isActive`	BOOLEAN     				NOT NULL DEFAULT TRUE COMMENT '서비스활성상태( T:활성, F:비활성)', -- service_register_isAcive
+	`service_price`           	VARCHAR(255)   				NOT NULL COMMENT '서비스가격', -- service_price
 	`service_date_description` 	VARCHAR(255)   				NOT NULL COMMENT '서비스기간상세설명', -- service_date_description
 	`service_start_date`     	DATETIME   					NOT NULL COMMENT '서비스시작일', -- service_start_date
 	`service_end_date`       	DATETIME   					NOT NULL COMMENT '서비스종료일', -- service_end_date
@@ -287,3 +287,30 @@ INSERT INTO `member_role`
 	SELECT @customerId, 'role_customer' FROM DUAL;
 INSERT INTO `member_role`
 	SELECT @providerId, 'role_provider' FROM DUAL;
+
+
+-- USE back;
+
+-- DROP TABLE IF EXISTS jsontest;
+-- CREATE TABLE jsontest(
+-- 	jack JSON
+-- );
+
+-- INSERT INTO jsontest VALUES ('
+-- 	{
+-- 		"pid": 101, 
+-- 		"name": "name1"
+-- 	}
+-- ');
+
+-- INSERT INTO jsontest VALUES('
+-- 	{
+-- 		"name" : "mhRHIE",
+--         "age" : "27",
+--         "message" : ["JACK1","JACK2","JACK3"]
+--     }
+-- ');
+
+-- INSERT INTO jsontest VALUES('["JACK1","JACK2","JACK3"]');
+
+-- SELECT * FROM jsontest;

@@ -13,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "role")
 public class Role implements Serializable {
@@ -32,6 +34,7 @@ public class Role implements Serializable {
 			)
 	private Set<Privilege> privileges = new HashSet<>();
 	
+	@JsonBackReference
     @ManyToMany(mappedBy = "roles")
     private Set<Member> member = new HashSet<>();
     /*********************************************************************************/

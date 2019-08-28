@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -23,11 +22,14 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.pap.bucketclass.model.PostServiceModel;
 import com.pap.bucketclass.support.BooleanToLongConverter;
+import com.pap.bucketclass.util.ConverterPackage;
 
 @Entity
 @Table(name="service")
-public class Service implements Serializable{
+public class Services implements Serializable{
 	
 	@Id
 	@Column(name="service_id")
@@ -50,7 +52,7 @@ public class Service implements Serializable{
 	@NotNull
 	private String accountNumber;
 	
-	@Column(name="service_isDelete")
+	@Column(name="service_isDelete")	
     @Convert(converter = BooleanToLongConverter.class)
 	@NotNull
 	private Boolean serviceIsDelete;
@@ -84,7 +86,7 @@ public class Service implements Serializable{
 	
 	@Column(name="service_price")
 	@NotNull
-	private Integer servicePrice;
+	private String servicePrice;
 	
 	@Column(name="service_date_description")
 	@NotNull
@@ -217,11 +219,11 @@ public class Service implements Serializable{
 		this.serviceRegisterIsActive = serviceRegisterIsActive;
 	}
 
-	public Integer getServicePrice() {
+	public String getServicePrice() {
 		return servicePrice;
 	}
 
-	public void setServicePrice(Integer servicePrice) {
+	public void setServicePrice(String servicePrice) {
 		this.servicePrice = servicePrice;
 	}
 
@@ -265,4 +267,21 @@ public class Service implements Serializable{
 		this.serviceAddress = serviceAddress;
 	}
     
+	/*서비스 저장하기 위한 Methods*/
+	public void getNewDateToPostService(PostServiceModel newInputModel) {
+		this.servicePrice = ConverterPackage.convertStringToPriceFormat(newInputModel.getServicePrice());
+		this.serviceDateDescription = newInputModel.getServiceDateDescription();
+		this.serviceStartDate = ConverterPackage.convertDateStringToTimestamp(newInputModel.getServiceStartDate());
+		this.serviceEndDate = ConverterPackage.convertDateStringToTimestamp(newInputModel.getServiceEndDate());
+	}
+	
+	public void getDateFromTemplate(ServiceTemplate templateModel) {
+		this.serviceTitle = templateModel.getServiceTitle();
+		this.accountBank = templateModel.getAccountBank();
+		this.accountNumber = templateModel.getAccountNumber();
+		this.hashTag = templateModel.getHashTag();
+		this.serviceImgUri = templateModel.getServiceImgUri();
+		this.serviceDescription = templateModel.getServiceDescription();
+	}
+	
 }

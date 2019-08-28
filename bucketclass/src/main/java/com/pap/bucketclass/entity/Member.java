@@ -28,6 +28,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.pap.bucketclass.support.BooleanToLongConverter;
 
 @Entity
@@ -70,6 +71,7 @@ public class Member implements UserDetails, Serializable{
 	private String introduce;
 
 	/*********************************************************************************/
+	@JsonManagedReference
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "member_role",
@@ -86,7 +88,7 @@ public class Member implements UserDetails, Serializable{
 	private Set<ServiceTemplate> serviceTemplates = new HashSet<>();
 	
 	/*
-	 * member -- [wishlist] -- service
+	 * member -- [wishlist] -- services
 	 */
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
@@ -94,7 +96,7 @@ public class Member implements UserDetails, Serializable{
 			joinColumns = @JoinColumn(name = "member_id"),
 			inverseJoinColumns = @JoinColumn(name = "service_id")
 			)
-	private Set<Service> services = new HashSet<>();
+	private Set<Services> services = new HashSet<>();
 	/*********************************************************************************/
 
 	/*
@@ -180,11 +182,11 @@ public class Member implements UserDetails, Serializable{
 		this.roles = roles;
 	}
 
-	public Set<ServiceTemplate> getServiceCreation() {
+	public Set<ServiceTemplate> getServiceTemplates() {
 		return serviceTemplates;
 	}
 
-	public void setServiceCreation(Set<ServiceTemplate> serviceTemplates) {
+	public void setServiceTemplates(Set<ServiceTemplate> serviceTemplates) {
 		this.serviceTemplates = serviceTemplates;
 	}
 

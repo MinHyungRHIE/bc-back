@@ -84,7 +84,7 @@
 
 	<!-- Resolves view names to protected .jsp resources within the /WEB-INF/views 
 		directory -->
-	<mvc:view-controller path="/login" view-name="login111" />
+	<mvc:view-controller path="/login" view-name="login" />
 	
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

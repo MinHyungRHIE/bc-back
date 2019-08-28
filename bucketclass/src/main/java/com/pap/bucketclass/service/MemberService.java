@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pap.bucketclass.entity.Member;
 import com.pap.bucketclass.entity.Role;
@@ -22,14 +23,18 @@ public class MemberService {
 	@Autowired
 	private RoleRepository roleRepo;
 	
-	public List<Member> checkAllOfData() {
+	//모든 멤버정보 보기
+	public List<Member> selectAll() {
 		return memberRepo.findAll();
 	}
 	
-	public Member getMemberObj(String memberId) {
+	//멤버 아이디로 찾기
+	public Member selectOne(String memberId) {
 		return memberRepo.findByMemberId(memberId);
 	}
 	
+	//회원가입
+	@Transactional
 	public Member insertMember(SignUpModel model) {
 		Member member = model.toMember();
 		Role role = roleRepo.findByRoleName(model.getRoleName());

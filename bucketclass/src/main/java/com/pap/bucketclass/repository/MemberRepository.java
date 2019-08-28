@@ -9,5 +9,4 @@ import com.pap.bucketclass.entity.Member;
 @Repository
 public interface MemberRepository extends JpaRepository<Member, String>{
 	Member findByMemberId(String memberId);
-	
 }

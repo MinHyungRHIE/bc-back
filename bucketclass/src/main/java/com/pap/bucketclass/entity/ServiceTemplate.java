@@ -47,6 +47,7 @@ public class ServiceTemplate implements Serializable{
 	private Boolean serviceIsDelete;
 	
 	@Column(name="hashTag")
+//	@Convert(converter = JsonToStringConverter.class)
 	private String hashTag; //JSON
 	
 	@Column(name="service_modified_date")
@@ -56,6 +57,7 @@ public class ServiceTemplate implements Serializable{
 	private Date serviceModifiedDate;
 	
 	@Column(name="service_img_uri")
+//	@Convert(converter = JsonToStringConverter.class)
 	private String serviceImgUri; //JSON
 	
 	@Column(name="service_description")

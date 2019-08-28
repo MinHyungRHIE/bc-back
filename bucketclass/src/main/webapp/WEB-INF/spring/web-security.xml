@@ -17,11 +17,11 @@
         <intercept-url pattern="/fonts/**" access="isAnonymous()" />
         <intercept-url pattern="/login**" access="isAnonymous()" />
         <intercept-url pattern="/signup**" access="isAnonymous()" />
-<!--         <intercept-url pattern="/test*" access="isAnonymous()" /> -->
+        <intercept-url pattern="/service-register**" access="isAnonymous()" />
+        <intercept-url pattern="/template-register**" access="isAnonymous()" />
+        <intercept-url pattern="/service-listing**" access="isAnonymous()" />
+        <intercept-url pattern="/rmtest/**" access="isAnonymous()" />
         <intercept-url pattern="/**" access="isAuthenticated()" />
-
-<!--         <intercept-url pattern="/**" access="isAuthenticated()" /> -->
-        
 
         <form-login login-page="/login" />
         <http-basic />

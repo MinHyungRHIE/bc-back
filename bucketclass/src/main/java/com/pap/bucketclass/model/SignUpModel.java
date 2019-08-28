@@ -4,17 +4,29 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.pap.bucketclass.entity.Member;
 import com.pap.bucketclass.entity.Role;
 
 @Entity
 public class SignUpModel implements Serializable{
 	
+	@JsonProperty("memberId")
 	private String memberId;
+	
+	@JsonProperty("memberPassword")
 	private String memberPassword;
+	
+	@JsonProperty("confirmPassword")
 	private String confirmPassword;
+	
+	@JsonProperty("memberEmail")
 	private String memberEmail;
+	
+	@JsonProperty("memberNickname")
 	private String memberNickname;
+	
+	@JsonProperty("roleName")
 	private String roleName;
 	
 	public String getMemberId() {
