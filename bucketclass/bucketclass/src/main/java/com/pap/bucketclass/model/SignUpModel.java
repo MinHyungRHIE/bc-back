@@ -8,6 +8,7 @@ public class SignUpModel implements Serializable {
 	
 	private String memberId;
 	private String memberPassword;
+	private String confirmPassword;
 	private String memberEmail;
 	private String memberNickname;
 	private String roleName;
@@ -26,6 +27,14 @@ public class SignUpModel implements Serializable {
 
 	public void setMemberPassword(String memberPassword) {
 		this.memberPassword = memberPassword;
+	}
+	
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
 
 	public String getMemberEmail() {
@@ -60,6 +69,16 @@ public class SignUpModel implements Serializable {
 		member.setMemberPassword(memberPassword);
 		
 		return member;
+	}
+	
+	@Override
+	public String toString() {
+		return " memberId : " + memberId 
+				+"\n memberNickname : " + memberNickname 
+				+"\n memberEmail : " + memberEmail
+				+"\n memberPassword : " + memberPassword 
+				+"\n confirmPassword : " + confirmPassword 
+				+"\n roleName : " + roleName;
 	}
 
 }

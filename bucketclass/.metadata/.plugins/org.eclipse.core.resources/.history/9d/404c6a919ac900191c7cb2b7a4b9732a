@@ -1,0 +1,8 @@
+package com.pap.bucketclass.service;
+
+public class Snippet {
+	public static void main(String[] args) {
+		"isAnonymous()"
+	}
+}
+

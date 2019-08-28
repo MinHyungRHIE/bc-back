@@ -2,7 +2,6 @@ package com.pap.bucketclass.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +18,7 @@ public class CustomerMyPageController {
 
 	@Autowired
 	private CustomerMyPageService customerService;
-	@Autowired
+	
 	private CustomerMyPageModel customerModel;
 
 	@GetMapping("/customer/mypage")
@@ -29,11 +28,12 @@ public class CustomerMyPageController {
 
 	// 메인에서 이용자가 mypage 버튼을 눌렀을 때 들어오는 경로
 	@GetMapping(value="/customer/mypage/{id}")
+	@ResponseBody
 	public Member CustomerMyPage(@PathVariable("id") String memberId) {
 		Member member = customerService.loadMember(memberId);
 		System.out.println(member.getUsername());
-		if(member.getUsername() == memberId) {
-			return customerService.loadMember(memberId);
+		if(member.getUsername().equals(memberId)) {
+			return member;
 		}
 		else {
 			return null;

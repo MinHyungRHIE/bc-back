@@ -1,6 +1,6 @@
 package com.pap.bucketclass.service;
 
-import static com.pap.bucketclass.support.Utils.containRoleByName;
+import static com.pap.bucketclass.util.RoleFilter.containRoleByName;
 
 import javax.transaction.Transactional;
 
@@ -28,6 +28,6 @@ public class CustomerMyPageService {
 		}else {
 			throw new AccessDeniedException("403 error");
 		}
-		return memberRepo.save(found);
+		return found;
 	}
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LoginController {
 	
 	@RequestMapping(
-			value="/signin",
+			value="/login",
 			method=RequestMethod.GET
 			)
 	public String loginForm() {

@@ -1,7 +1,5 @@
 package com.pap.bucketclass.repository;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,5 +14,4 @@ public interface MemberRepository extends JpaRepository<Member, String>{
 	// 회원가입시 Nickname 중복검사
 	Member findByMemberNickname(String memberNickname);
 	
-	public List<String> readAuthority(String memberId);
 }

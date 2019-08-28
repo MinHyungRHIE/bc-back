@@ -4,36 +4,20 @@ import java.io.Serializable;
 
 public class RequestModel implements Serializable{
 	
-	private String nickname;
-	private String id;
-	private String email;
+	private String req;
 
-	public String getNickname() {
-		return nickname;
+	public String getReq() {
+		return req;
 	}
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setMemberId(String req) {
+		this.req = req;
 	}
-
-	public String getId() {
-		return id;
+	public void setMemberEmail(String req) {
+		this.req = req;
 	}
-
-	public void setId(String id) {
-		this.id = id;
+	public void setMemberNickname(String req) {
+		this.req = req;
 	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	
-	
-	
 	
 }

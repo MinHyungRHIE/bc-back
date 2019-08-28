@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pap.bucketclass.entity.Member;
+import com.pap.bucketclass.model.RequestModel;
 import com.pap.bucketclass.model.ResponseModel;
 import com.pap.bucketclass.model.SignUpModel;
 import com.pap.bucketclass.service.SignUpService;
@@ -59,11 +60,11 @@ public class SignUpController {
 	}
 	
 	@RequestMapping(
-			value = "/signup/check-email/{email}", 
-			method=RequestMethod.GET
+			value = "/signup/check-email", 
+			method=RequestMethod.POST
 			)
-	public @ResponseBody ResponseEntity checkEmail(@PathVariable("email") String email) {
-		if(signUpService.checkEmail(email)) {
+	public @ResponseBody ResponseEntity checkEmail(@RequestBody RequestModel model) {
+		if(signUpService.checkEmail(model.getReq())) {
 			return new ResponseEntity<Boolean>(true, null, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Boolean>(false, null, HttpStatus.OK);
