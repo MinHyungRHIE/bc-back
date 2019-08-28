@@ -23,7 +23,7 @@ public class SignUpService {
 
 	@Autowired
 	private RoleRepository roleRepo;
-	
+
 
 	// ID중복검사
 	public Boolean checkId(String memberId) {
@@ -33,15 +33,15 @@ public class SignUpService {
 		}
 		return true;
 	}
-	
+
 	// NickName 중복검사
-		public Boolean checkNickname(String memberNickname) {
-			if(memberRepo.findByMemberNickname(memberNickname) != null) {
-				System.out.println("이미 존재하는 Nickname");
-				return false;
-			}
-			return true;
+	public Boolean checkNickname(String memberNickname) {
+		if(memberRepo.findByMemberNickname(memberNickname) != null) {
+			System.out.println("이미 존재하는 Nickname");
+			return false;
 		}
+		return true;
+	}
 
 	// Email 중복검사 
 	public Boolean checkEmail(String memberEmail) {
@@ -51,13 +51,11 @@ public class SignUpService {
 		}
 		return true;
 	}
-	
+
 	@Transactional
 	public Member insertMember(SignUpModel signup) {
 		try {
-			ResponseModel response = new ResponseModel();
-			if(response.getRes().equals("success")) 
-			{
+			if(checkId(signup.getMemberId()) && checkEmail(signup.getMemberEmail()) && checkNickname(signup.getMemberNickname())) {
 				Member member = signup.toMember();
 				Role role = roleRepo.findByRoleName(signup.getRoleName());
 				member.setRoles(Stream.of(role).collect(Collectors.toSet()));

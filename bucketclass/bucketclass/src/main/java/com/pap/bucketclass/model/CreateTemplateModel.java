@@ -1,102 +1,153 @@
 package com.pap.bucketclass.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.pap.bucketclass.entity.ServiceCategory;
 import com.pap.bucketclass.entity.ServiceTemplate;
 
 public class CreateTemplateModel implements Serializable{
 	
+	@JsonProperty("service_title")
 	private String serviceTitle;
+	
+	@JsonProperty("account_bank")
 	private String accountBank;
+	
+	@JsonProperty("account_number")
 	private String accountNumber;
+	
+	@JsonProperty("hashTag")
+//	private List<String> hashTag;
 	private String hashTag;
+	
+	@JsonProperty("service_img_uri")
+//	private List<String> serviceImgUri;
 	private String serviceImgUri;
+	
+	@JsonProperty("service_description")
 	private String serviceDescription;
+	
+	@JsonProperty("category_subject")
 	private String categorySubject;
+	
+	@JsonProperty("category_type")
 	private String categoryType;
+	
+	@JsonProperty("category_period")
 	private String categoryPeriod;
+	
+	@JsonProperty("category_scale")
 	private String categoryScale;
+	
+	@JsonProperty("category_place")
 	private String categoryPlace;
 	
 	public String getServiceTitle() {
 		return serviceTitle;
 	}
-	public CreateTemplateModel setServiceTitle(String serviceTitle) {
+
+	public void setServiceTitle(String serviceTitle) {
 		this.serviceTitle = serviceTitle;
-		return this;
 	}
+
 	public String getAccountBank() {
 		return accountBank;
 	}
-	public CreateTemplateModel setAccountBank(String accountBank) {
+
+	public void setAccountBank(String accountBank) {
 		this.accountBank = accountBank;
-		return this;
 	}
+
 	public String getAccountNumber() {
 		return accountNumber;
 	}
-	public CreateTemplateModel setAccountNumber(String accountNumber) {
+
+	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
-		return this;
 	}
+
+//	public List<String> getHashTag() {
+//		return hashTag;
+//	}
+//
+//	public void setHashTag(List<String> hashTag) {
+//		this.hashTag = hashTag;
+//	}
+//
+//	public List<String> getServiceImgUri() {
+//		return serviceImgUri;
+//	}
+//
+//	public void setServiceImgUri(List<String> serviceImgUri) {
+//		this.serviceImgUri = serviceImgUri;
+//	}
+
 	public String getHashTag() {
 		return hashTag;
 	}
-	public CreateTemplateModel setHashTag(String hashTag) {
+
+	public void setHashTag(String hashTag) {
 		this.hashTag = hashTag;
-		return this;
 	}
+
 	public String getServiceImgUri() {
 		return serviceImgUri;
 	}
-	public CreateTemplateModel setServiceImgUri(String serviceImgUri) {
+
+	public void setServiceImgUri(String serviceImgUri) {
 		this.serviceImgUri = serviceImgUri;
-		return this;
 	}
+	
 	public String getServiceDescription() {
 		return serviceDescription;
 	}
-	public CreateTemplateModel setServiceDescription(String serviceDescription) {
+
+	public void setServiceDescription(String serviceDescription) {
 		this.serviceDescription = serviceDescription;
-		return this;
 	}
+
 	public String getCategorySubject() {
 		return categorySubject;
 	}
-	public CreateTemplateModel setCategorySubject(String categorySubject) {
+
+	public void setCategorySubject(String categorySubject) {
 		this.categorySubject = categorySubject;
-		return this;
 	}
+
 	public String getCategoryType() {
 		return categoryType;
 	}
-	public CreateTemplateModel setCategoryType(String categoryType) {
+
+	public void setCategoryType(String categoryType) {
 		this.categoryType = categoryType;
-		return this;
 	}
+
 	public String getCategoryPeriod() {
 		return categoryPeriod;
 	}
-	public CreateTemplateModel setCategoryPeriod(String categoryPeriod) {
+
+	public void setCategoryPeriod(String categoryPeriod) {
 		this.categoryPeriod = categoryPeriod;
-		return this;
 	}
+
 	public String getCategoryScale() {
 		return categoryScale;
 	}
-	public CreateTemplateModel setCategoryScale(String categoryScale) {
+
+	public void setCategoryScale(String categoryScale) {
 		this.categoryScale = categoryScale;
-		return this;
 	}
+
 	public String getCategoryPlace() {
 		return categoryPlace;
 	}
-	public CreateTemplateModel setCategoryPlace(String categoryPlace) {
+
+	public void setCategoryPlace(String categoryPlace) {
 		this.categoryPlace = categoryPlace;
-		return this;
 	}
-	
+
 	public ServiceCategory toServiceCategory() {
 		ServiceCategory serviceCategory = new ServiceCategory();
 		serviceCategory.setCategorySubject(categorySubject);
@@ -112,29 +163,18 @@ public class CreateTemplateModel implements Serializable{
 		serviceTemplate.setServiceTitle(serviceTitle);
 		serviceTemplate.setAccountBank(accountBank);
 		serviceTemplate.setAccountNumber(accountNumber);
-		serviceTemplate.setHashTag(hashTag);
-		serviceTemplate.setServiceImgUri(serviceImgUri);
+//		serviceTemplate.setHashTag(hashTag);
+//		serviceTemplate.setServiceImgUri(serviceImgUri);
 		serviceTemplate.setServiceDescription(serviceDescription);
 		return serviceTemplate;
 	}
+	
 	@Override
 	public String toString() {
-//		private String serviceTitle;
-//		private String accountBank;
-//		private String accountNumber;
-//		private String hashTag;
-//		private String serviceImgUri;
-//		private String serviceDescription;
-//		private String categorySubject;
-//		private String categoryType;
-//		private String categoryPeriod;
-//		private String categoryScale;
-//		private String categoryPlace;
 		return " serviceTitle : " + serviceTitle + "\n accountBank : " + accountBank + "\n accountNumber : " + accountNumber
 				+"\n hashTag : " + hashTag + "\n serviceImgUri : " + serviceImgUri + "\n serviceDescription : " + serviceDescription
 				+"\n categorySubject : " + categorySubject + "\n categoryType : " + categoryType
 				+ "\n categoryPeriod : " + categoryPeriod + "\n categoryScale : " + categoryScale + "\n categoryPlace : " +categoryPlace;
 	}
-	
 	
 }

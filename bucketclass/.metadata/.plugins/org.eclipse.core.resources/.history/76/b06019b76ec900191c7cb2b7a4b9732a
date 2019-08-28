@@ -1,0 +1,38 @@
+package com.pap.bucketclass.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.pap.bucketclass.entity.Member;
+import com.pap.bucketclass.model.CustomerMyPageModel;
+import com.pap.bucketclass.service.CustomerMyPageService;
+
+@Controller
+public class CustomerMyPageController {
+	
+	@Autowired
+	private CustomerMyPageService customerService;
+	@Autowired
+	private CustomerMyPageModel customerModel;
+	
+	@GetMapping(value="/customer/mypage/{id}")
+	public Member CustomerMyPage(@PathVariable("id") String memberId) {
+		return customerService.loadMember(memberId);
+	}
+	
+	@PostMapping(value="/customer/mypage/update", 
+			produces= {
+					MediaType.APPLICATION_JSON_UTF8_VALUE,
+					MediaType.APPLICATION_ATOM_XML_VALUE})
+	@ResponseBody
+	public Member UpdateMypage(@RequestBody CustomerMyPageModel customerModel) {
+		return null;
+	}
+	
+}

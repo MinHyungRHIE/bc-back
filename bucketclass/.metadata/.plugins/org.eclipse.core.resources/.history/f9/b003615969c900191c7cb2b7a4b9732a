@@ -1,0 +1,26 @@
+package com.pap.bucketclass.service;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.pap.bucketclass.entity.Member;
+import com.pap.bucketclass.repository.MemberRepository;
+
+@Service
+public class CustomerMyPageService {
+	
+	@Autowired
+	private LocalMemberDetailsService memberDetailsService;
+
+	@Transactional
+	public Member loadMember(String principal, String memberId) {
+		Member member = (Member)memberDetailsService.loadUserByUsername(memberId);
+		Member found = null;
+		if(containRoleByName(member.getRoles(), "ROLE_CUSTOMER")) {
+			
+		}
+	}
+	
+}

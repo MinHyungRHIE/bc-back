@@ -1,0 +1,9 @@
+package com.pap.bucketclass.model;
+
+public class CustomerMyPageModel {
+	private String memberPassword;
+	private String memberEmail;
+	private String memberNickname;
+	private String memberImg;
+	private String introduce;
+}

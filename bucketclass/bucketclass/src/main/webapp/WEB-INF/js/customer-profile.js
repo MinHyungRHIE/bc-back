@@ -3,6 +3,7 @@
 //내 프로필 정보수정 버튼 클릭하면 입력한 데이터가 저장되고, 알림창 하나 뜨는 함수 구현
 //내프로필정보수정 버튼 클릭하면 이벤트 실행->function button_myprofile 실행
 
+
 document.getElementById('buttonProfile').addEventListener('click', button_myprofile);
 
 function button_myprofile(){

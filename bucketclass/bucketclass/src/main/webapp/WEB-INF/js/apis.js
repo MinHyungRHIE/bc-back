@@ -163,8 +163,6 @@ function ValidateNickName(content) {
 }
 
 function ValidateEmail(content) {
-
-
 	return getValidationRequest('/signup/check-email/' + content);
 }
 

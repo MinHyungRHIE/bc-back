@@ -15,17 +15,23 @@
         <intercept-url pattern="/signup/check-email/*" access="isAnonymous()" />
         <intercept-url pattern="/signup/check-nickname/*" access="isAnonymous()" />
         <intercept-url pattern="/login**" access="isAnonymous()" />
-        <intercept-url pattern="/provider/mypage**" access="isAnonymous()" />
-        <intercept-url pattern="/customer/mypage**" access="isAnonymous()" />
-        <!-- <intercept-url pattern="/provider/mypage**" access="hasRole('ROLE_PROVIDER')" />
-        <intercept-url pattern="/customer/mypage**" access="hasRole('ROLE_CUSTOMER')" /> -->
+<!--         <intercept-url pattern="/provider/mypage/**" access="isAnonymous()" />
+        <intercept-url pattern="/customer/mypage/**" access="isAnonymous()" /> -->
+        <intercept-url pattern="/provider/mypage**" access="hasRole('ROLE_PROVIDER')" />
+        <intercept-url pattern="/customer/mypage**" access="hasRole('ROLE_CUSTOMER')" />
         <intercept-url pattern="/css/**" access="isAnonymous()" />
         <intercept-url pattern="/img/**" access="isAnonymous()" />
         <intercept-url pattern="/js/**" access="isAnonymous()" />
         <intercept-url pattern="/fonts/**" access="isAnonymous()" />
         <intercept-url pattern="/**" access="isAuthenticated()" />
 
-        <form-login login-page="/login" />
+        <form-login
+        	 
+        	login-page="/login" 
+        	default-target-url="/index" 
+        	authentication-failure-handler-ref="AuthenticationFailureHandler"
+        	authentication-success-handler-ref="AuthenticationSuccessHandler"
+        />
         <http-basic />
 
         <logout logout-success-url="/login"

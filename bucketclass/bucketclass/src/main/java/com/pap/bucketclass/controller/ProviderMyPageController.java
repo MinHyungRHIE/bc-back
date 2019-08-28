@@ -2,36 +2,30 @@ package com.pap.bucketclass.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.pap.bucketclass.model.ProviderMyPageModel;
+import com.pap.bucketclass.entity.Member;
 import com.pap.bucketclass.service.ProviderMyPageService;
 
-@Controller
+@RestController
 public class ProviderMyPageController {
 	
-//	@Autowired
-//	private ProviderMyPageService providerService;
+	@Autowired
+	private ProviderMyPageService providerService;
 	
 	
-	@GetMapping("/provider/mypage")
-	public String providerMyPage() {
-		return "provider-mypage";
-	}
-	
-	
-//	@RequestMapping(path="/provider/mypage", method=RequestMethod.POST,
-//			produces= {
-//					MediaType.APPLICATION_JSON_UTF8_VALUE,
-//					MediaType.APPLICATION_ATOM_XML_VALUE})
-//	@ResponseBody
-//	public String ProviderMyPage(@RequestBody ProviderMyPageModel model) {
+//	@GetMapping("/provider/mypage")
+//	public String providerMyPage() {
 //		return "provider-mypage";
 //	}
 	
+	@GetMapping(value="/provider/mypage/{id}",
+			produces= {
+					MediaType.APPLICATION_JSON_UTF8_VALUE,
+					MediaType.APPLICATION_ATOM_XML_VALUE})
+	public Member ProviderMyPage(@RequestParam("id") String memberId) {
+		return providerService.loadMember(memberId);
+	}
 }

@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.pap.bucketclass.entity.ServiceTemplate;
 @Repository
 public interface ServiceTemplateRepository extends JpaRepository<ServiceTemplate, String> {
-
+	public ServiceTemplate findByServiceTemplateId(Long serviceTemplateId);
 }

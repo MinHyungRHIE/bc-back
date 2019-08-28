@@ -9,7 +9,7 @@ import javax.persistence.AttributeConverter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pap.bucketclass.model.StAnswerModel;
+import com.pap.bucketclass.model.StAnswer;
 
 public class JsonCollectionToStringConverter <T extends Object> implements AttributeConverter<Collection<T>, String> {
 
@@ -20,7 +20,6 @@ public class JsonCollectionToStringConverter <T extends Object> implements Attri
 		}
 
 		@Override
-		// DB to Server
 		public String convertToDatabaseColumn(Collection<T> attribute) {
 			String jsonString = null;
 			try {
@@ -33,13 +32,12 @@ public class JsonCollectionToStringConverter <T extends Object> implements Attri
 		}
 
 		@Override
-		// Server to DB
 		public Collection<T> convertToEntityAttribute(String dbData) {
 			Collection<T> objectArray = new ArrayList<>();
 			try {
 				// convert json to collection of POJO
 				// TypeReference<> 에서 JSON을 사용하는 StAnswer 넣음
-				objectArray = objectMapper.readValue(dbData, new TypeReference<StAnswerModel>() {});
+				objectArray = objectMapper.readValue(dbData, new TypeReference<StAnswer>() {});
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			} catch (NullPointerException ex) {
