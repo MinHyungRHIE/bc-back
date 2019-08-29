@@ -38,7 +38,6 @@
                 <!-- Right Side Content / End -->
                 <div class="right-side">
                     <div class="header-widget">
-                        <a href="/login" class="sign-in">로그인</a>
                         <a href="/signup" class="sign-in">회원가입</a>
                     </div>
                 </div>

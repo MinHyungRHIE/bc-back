@@ -1,0 +1,44 @@
+package com.pap.bucketclass.controller;
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.pap.bucketclass.entity.Member;
+import com.pap.bucketclass.entity.Role;
+
+@Controller
+public class MainController {
+
+	@GetMapping("/")
+	public ModelAndView loginToMain(Authentication auth, ModelMap modelMap) {
+		if(auth != null) {
+			Object principal = auth.getPrincipal();
+			Set<Role> userRole = new HashSet<>();
+			if(principal != null && principal instanceof Member){
+				userRole = ((Member)principal).getRoles();
+			}
+			System.out.println(userRole);
+			String roleStr = null; 
+			Iterator<Role> itr = userRole.iterator();
+			int cnt = 0;
+			while(itr.hasNext()) {
+				roleStr = itr.next().getRoleName();
+				cnt++;
+			}
+			System.out.println("실행횟수 : " + cnt);
+			System.out.println("담은값 : " + roleStr);
+
+
+			return new ModelAndView("main",new ModelMap("rolename",roleStr));
+		}
+		return new ModelAndView("main",null);
+	}
+
+}

@@ -30,7 +30,7 @@
 		
 		
 		<!-- test uri -->
-		<intercept-url pattern="/test/**" access="isAuthenticated()" />
+		<intercept-url pattern="/test/**" access="permitAll" />
 		<!-- <intercept-url pattern="/**" access="isAuthenticated()" /> -->
 		
 

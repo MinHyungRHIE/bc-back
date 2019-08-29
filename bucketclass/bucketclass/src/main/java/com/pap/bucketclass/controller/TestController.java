@@ -123,4 +123,29 @@ public class TestController {
 	public @ResponseBody List<Member> reqTest2(@RequestBody RequestModel model) {
 		return memberService.selectAll();
 	}
+	
+	@RequestMapping(
+			path="/test/MyPageData",
+			method= RequestMethod.GET)
+	public String reqTest3() {
+		return "testMyPage";
+	}
+	
+	@RequestMapping(
+			path="/test/MyPageData",
+			method= RequestMethod.POST,
+			produces= {
+					MediaType.APPLICATION_JSON_UTF8_VALUE,
+					MediaType.APPLICATION_ATOM_XML_VALUE
+			})
+	public @ResponseBody List<Member> reqTest4(@RequestBody RequestModel model) {
+		return memberService.selectAll();
+	}
+	
+	@RequestMapping(
+			path="/test/5",
+			method= RequestMethod.POST)
+	public @ResponseBody RequestModel reqTest5(@RequestBody RequestModel model) {
+		return model;
+	}
 }

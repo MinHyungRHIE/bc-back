@@ -1,5 +1,5 @@
 function viewCustomerMyPage() {
-    location.href = "../views/customer-mypage.jsp";
+    Apis.getRequest(`/customer/mypage`);
 };
 
 function viewBookmark() {

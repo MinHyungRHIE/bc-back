@@ -1,0 +1,38 @@
+package com.pap.bucketclass.controller;
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.pap.bucketclass.entity.Member;
+import com.pap.bucketclass.entity.Role;
+import com.pap.bucketclass.model.ResponseModel;
+
+@Controller
+public class MainController {
+
+	@GetMapping("/")
+	public String loginToMain(Authentication auth) {
+		Object principal = auth.getPrincipal();
+		Set<Role> userRole = new HashSet<>();
+		if(principal != null && principal instanceof Member){
+			userRole = ((Member)principal).getRoles();
+		}
+		System.out.println(userRole);
+		ResponseModel model = new ResponseModel();
+		String roleStr = null; 
+		Iterator<Role> itr = userRole.iterator();
+		int cnt = 0;
+		while(itr.hasNext()) {
+			roleStr = itr.next().getRoleName();
+		}
+		model.setRes(res);
+
+		return "main";
+	}
+
+}
