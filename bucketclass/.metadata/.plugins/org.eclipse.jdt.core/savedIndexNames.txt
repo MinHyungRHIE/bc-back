@@ -78,6 +78,7 @@ INDEX VERSION 1.131+C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PA
 3431489974.index
 3698278747.index
 1572172568.index
+108067929.index
 957216444.index
 614012588.index
 3129558924.index

@@ -141,14 +141,15 @@ nickname.addEventListener("keyup", function (e){
 });
 
 /*-----------------------------------------이메일 중복검사----------------------------------------*/
-const email = document.getElementById('#email');
-const jsonEmail = new Object();
-jsonEmail.memberEmail = email.value;
+const email = document.getElementById('email');
 email.addEventListener("keyup", function (e){
+    const jsonEmail = new Object();
+    jsonEmail.memberEmail = email.value;
+    console.log(jsonEmail);
     if(emailCorrectCheck === true){
         Apis.emailDuplicateCheck(jsonEmail).then(response => {
             console.log("response >>> " + response);
-            if(response.res === "success"){
+            if(response.res === true){
                 document.getElementById("email-notify").innerHTML = "사용가능한 이메일 입니다.";
                 document.getElementById("email-notify").style.color = "blue";
                 emailDupliCheck = true;
