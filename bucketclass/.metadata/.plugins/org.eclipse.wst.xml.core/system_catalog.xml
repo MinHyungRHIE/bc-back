@@ -204,4 +204,6 @@
   <public publicId="-//Hibernate/Hibernate Configuration DTD 3.0//EN" uri="file:/C:/Users/kimseula/eclipse/jee-2018-09/eclipse/../../../.p2/pool/plugins/org.hibernate.eclipse.mapper_5.4.2.v20180913-1147/dtd/hibernate-configuration-3.0.dtd" webURL="http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd"/>
   <public publicId="-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" uri="file:/C:/Users/kimseula/eclipse/jee-2018-09/eclipse/../../../.p2/pool/plugins/org.hibernate.eclipse.mapper_5.4.2.v20180913-1147/dtd/hibernate-reverse-engineering-3.0.dtd"/>
   <public publicId="-//Red Hat, Inc.//DTD Meta 1.0//EN" uri="file:/C:/Users/kimseula/.p2/pool/plugins/org.jboss.tools.common.model_3.10.1.v20180802-1505/schema/meta.dtd"/>
+  <system systemId="http://update.zeroturnaround.com/jrebel/rebel-2_1.xsd" uri="jar:file:/C:/Users/kimseula/.p2/pool/plugins/org.zeroturnaround.eclipse_2019.1.5.RELEASE.jar!/xsd/rebel-2_1.xsd"/>
+  <system systemId="http://update.zeroturnaround.com/jrebel/rebel-2_2.xsd" uri="jar:file:/C:/Users/kimseula/.p2/pool/plugins/org.zeroturnaround.eclipse_2019.1.5.RELEASE.jar!/xsd/rebel-2_2.xsd"/>
 </catalog>

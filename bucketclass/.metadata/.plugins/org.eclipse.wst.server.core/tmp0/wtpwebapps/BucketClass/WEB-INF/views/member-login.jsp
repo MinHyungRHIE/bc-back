@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/main-color.css" id="colors">
-    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/main-color.css" id="colors">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
 </head>
 
 <body>
@@ -28,7 +28,7 @@
 
                     <!-- Logo -->
                     <div id="logo">
-                        <a href="index.html"><img src="../img/logo.png" alt=""></a>
+                        <a href="/"><img src="/img/logo.png" alt=""></a>
                     </div>
                     <div class="clearfix"></div>
                     <!-- Main Navigation / End -->
@@ -38,8 +38,8 @@
                 <!-- Right Side Content / End -->
                 <div class="right-side">
                     <div class="header-widget">
-                        <a href="member-login.html" class="sign-in">로그인</a>
-                        <a href="member-register.html" class="sign-in">회원가입</a>
+                        <a href="/login" class="sign-in">로그인</a>
+                        <a href="/signup" class="sign-in">회원가입</a>
                     </div>
                 </div>
                 <!-- Right Side Content / End -->
@@ -110,7 +110,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-5 col-sm-6">
-                    <img class="footer-logo" src="../img/logo.png" alt="">
+                    <img class="footer-logo" src="/img/logo.png" alt="">
                     <br><br>
                     <p>Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros. Nunc ut
                         lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper.</p>
@@ -170,21 +170,21 @@
 <!-- Wrapper / End -->
 
 <!-- Scripts -->
-<script type="text/javascript" src="../js/login-validation.js"></script>
-<script type="text/javascript" src="../js/jquery-2.2.0.min.js"></script>
-<script type="text/javascript" src="../js/mmenu.min.js"></script>
-<script type="text/javascript" src="../js/chosen.min.js"></script>
-<script type="text/javascript" src="../js/slick.min.js"></script>
-<script type="text/javascript" src="../js/rangeslider.min.js"></script>
-<script type="text/javascript" src="../js/magnific-popup.min.js"></script>
-<script type="text/javascript" src="../js/waypoints.min.js"></script>
-<script type="text/javascript" src="../js/counterup.min.js"></script>
-<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
-<script type="text/javascript" src="../js/tooltips.min.js"></script>
-<script type="text/javascript" src="../js/custom.js"></script>
-<script type="text/javascript" src="../js/member-login.js"></script>
-<script type="text/javascript" src="../js/apis.js"></script>
+<script type="text/javascript" src="/js/login-validation.js"></script>
+<script type="text/javascript" src="/js/jquery-2.2.0.min.js"></script>
+<script type="text/javascript" src="/js/mmenu.min.js"></script>
+<script type="text/javascript" src="/js/chosen.min.js"></script>
+<script type="text/javascript" src="/js/slick.min.js"></script>
+<script type="text/javascript" src="/js/rangeslider.min.js"></script>
+<script type="text/javascript" src="/js/magnific-popup.min.js"></script>
+<script type="text/javascript" src="/js/waypoints.min.js"></script>
+<script type="text/javascript" src="/js/counterup.min.js"></script>
+<script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/js/tooltips.min.js"></script>
+<script type="text/javascript" src="/js/custom.js"></script>
+<%--<script type="text/javascript" src="/js/member-login.js"></script>--%>
+<script type="text/javascript" src="/js/apis.js"></script>
 <!-- Style Switcher -->
-<script src="../js/switcher.js"></script>
+<script src="/js/switcher.js"></script>
 </body>
 </html>

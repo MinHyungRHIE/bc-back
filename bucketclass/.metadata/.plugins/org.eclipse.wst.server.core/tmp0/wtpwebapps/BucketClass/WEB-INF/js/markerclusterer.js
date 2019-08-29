@@ -1183,7 +1183,7 @@ ClusterIcon.prototype.onRemove = function() {
 ClusterIcon.prototype.setSums = function(sums) {
   this.sums_ = sums;
   this.text_ = sums.text;
-  this.index_ = sums.index;
+  this.index_ = sums.main;
   if (this.div_) {
     this.div_.innerHTML = sums.text;
   }
@@ -1196,7 +1196,7 @@ ClusterIcon.prototype.setSums = function(sums) {
  * Sets the icon to the the styles.
  */
 ClusterIcon.prototype.useStyle = function() {
-  var index = Math.max(0, this.sums_.index - 1);
+  var index = Math.max(0, this.sums_.main - 1);
   index = Math.min(this.styles_.length - 1, index);
   var style = this.styles_[index];
   this.url_ = style['url'];

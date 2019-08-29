@@ -20,7 +20,6 @@
 		<!-- public uri -->
 		<intercept-url pattern="/signup/**" access="isAnonymous()" />
 		<intercept-url pattern="/login/**" access="isAnonymous()" />
-		<intercept-url pattern="/main" access="isAnonymous()" />
 		<intercept-url pattern="/service-listing/**" access="isAnonymous()" />
 		
 		<!-- control privilege uri -->
@@ -32,7 +31,7 @@
 		
 		<!-- test uri -->
 		<intercept-url pattern="/test/**" access="isAuthenticated()" />
-		<intercept-url pattern="/**" access="isAuthenticated()" />
+		<!-- <intercept-url pattern="/**" access="isAuthenticated()" /> -->
 		
 
 		<form-login 
@@ -41,7 +40,7 @@
        default-target-url="/" />
 		<http-basic />
 
-		<logout logout-success-url="/login" logout-url="/logout" />
+		<logout logout-success-url="/" logout-url="/logout" />
 	</http>
 
 <!-- 	<beans:bean id="passwordEncoder"

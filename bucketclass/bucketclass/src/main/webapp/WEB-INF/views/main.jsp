@@ -12,9 +12,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <!-- CSS -->
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/main-color.css" id="colors">
-<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/main-color.css" id="colors">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
 
 </head>
 
@@ -35,7 +35,7 @@
 
 				<!-- Logo -->
 				<div id="logo">
-					<a href="main.html"><img src="../img/logo.png" alt=""></a>
+					<a onclick="goToMain();"><img src="../img/logo.png" alt=""></a>
 				</div>
 
 				<div class="clearfix"></div>
@@ -54,12 +54,12 @@
                                <li><a action="/logout"><i class="sl sl-icon-power"></i> 로그아웃</a></li>
                             </ul>
                        </sec:authorize>
-                       <sec:authorize access="hasRole('ROLE_PROVIDER)">
+                       <sec:authorize access="isAuthenticated()">
                            <div class="user-name"><span><img src="" alt=""></span> memberId + 님, 안녕하세요!</div>
                            <ul>
                                 <li><a onclick="viewProviderMyPage();"><i class="sl sl-icon-settings"></i> 마이페이지</a></li>
                                <li><a onclick="viewMyListing();"><i class="fa fa-calendar-check-o"></i> 나의 수업 관리</a></li>
-                               <li><a action="/logout"><i class="sl sl-icon-power"></i> 로그아웃</a></li>
+                               <li><a action="/logout" href="/logout"><i class="sl sl-icon-power"></i> 로그아웃</a></li>
                             </ul>
                             </div><a onclick="viewAddListing();" class="button border with-icon">수업 개설하기<i class="sl sl-icon-plus"></i></a></div>
                        </sec:authorize>

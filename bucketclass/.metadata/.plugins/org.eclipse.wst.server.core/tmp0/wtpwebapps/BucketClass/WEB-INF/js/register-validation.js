@@ -148,8 +148,8 @@ email.addEventListener("keyup", function (e){
     console.log(jsonEmail);
     if(emailCorrectCheck === true){
         Apis.emailDuplicateCheck(jsonEmail).then(response => {
-            console.log("response >>> " + response);
-            if(response.res === true){
+            console.log(typeof response, response);
+            if(response === true){
                 document.getElementById("email-notify").innerHTML = "사용가능한 이메일 입니다.";
                 document.getElementById("email-notify").style.color = "blue";
                 emailDupliCheck = true;
@@ -163,12 +163,13 @@ email.addEventListener("keyup", function (e){
 });
 
 // 입력 여부 확인
-function registerInputValidity() {
+function registerInputValidity(tagId) {
     var id = document.getElementById("username");
     var pw = document.getElementById("password1");
     var pw2 = document.getElementById("password2");
     var nickname = document.getElementById("nickname");
     var email = document.getElementById("email");
+    var role = tagId;
 
     // 아이디 입력여부 검사
     if (id.value === "") {
@@ -233,8 +234,12 @@ function registerInputValidity() {
     // 모든 조건 만족 할 경우 데이터전송
     if(idCorrectCheck === true && nickCorrectCheck === true && emailCorrectCheck === true &&
         pw1CorrectCheck === true && pw2CorrectCheck === true && emptyCheck === true &&
-        idDupliCheck === true && nickDupliCheck === true){
-        customerRegister(); // 데이터 전송
+        idDupliCheck === true && nickDupliCheck === true && emailDupliCheck ===true){
+        if(role === "customerRegist"){
+            customerRegister();
+        }else{
+            providerRegister();
+        }
     }
 
     else if(idDupliCheck === false){
