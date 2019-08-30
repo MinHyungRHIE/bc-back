@@ -9,18 +9,22 @@ public class RequestModel implements Serializable {
 	public String getReq() {
 		return req;
 	}
-
+	
 	public void setReq(String req) {
 		this.req = req;
 	}
 	
-
-	public void setRe(String req) {
+	public void setNickname(String req) {
 		this.req = req;
 	}
 	
 
-	public void setReqq(String req) {
+	public void setMemberId(String req) {
+		this.req = req;
+	}
+	
+
+	public void setMemberEmail(String req) {
 		this.req = req;
 	}
 

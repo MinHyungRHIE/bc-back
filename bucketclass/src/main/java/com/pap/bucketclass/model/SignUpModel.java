@@ -88,10 +88,12 @@ public class SignUpModel implements Serializable{
 	
 	@Override
 	public String toString() {
-		return " memberId : " + memberId + "\n memberNickname : " 
-				+ memberNickname + "\n memberEmail : " + memberEmail
+		return " memberId : " + memberId 
+				+"\n memberNickname : " + memberNickname 
+				+"\n memberEmail : " + memberEmail
 				+"\n memberPassword : " + memberPassword 
-				+ "\n confirmPassword : " + confirmPassword + "\n roleName : " + roleName;
+				+"\n confirmPassword : " + confirmPassword 
+				+"\n roleName : " + roleName;
 	}
 
 }

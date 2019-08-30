@@ -39,7 +39,8 @@ function passwordInputValidity(tag){
     return true;
 }
 
-function loginInputValidity(){
+// 로그인 입력 여부 확인
+document.getElementById("loginInputCheck").addEventListener('click', function(e){
     var id = document.getElementById("username").value; // 입력 받은 아이디
     var pw = document.getElementById("password").value; // 입력 받은 비밀번호
 
@@ -65,7 +66,7 @@ function loginInputValidity(){
         document.getElementById("pw-notify").innerHTML = "";
         return true;
     }
-}
+});
 
 
 

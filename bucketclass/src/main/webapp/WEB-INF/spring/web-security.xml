@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/security"
+<beans:beans 
+	   xmlns="http://www.springframework.org/schema/security"
        xmlns:beans="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
@@ -11,36 +12,47 @@
     <http auto-config="true" use-expressions="true">
         <csrf disabled="true" />
         
-        <intercept-url pattern="/css/**" access="isAnonymous()" />
-        <intercept-url pattern="/js/**" access="isAnonymous()" />
-        <intercept-url pattern="/img/**" access="isAnonymous()" />
-        <intercept-url pattern="/fonts/**" access="isAnonymous()" />
-        <intercept-url pattern="/login**" access="isAnonymous()" />
-        <intercept-url pattern="/signup**" access="isAnonymous()" />
-        <intercept-url pattern="/service-register**" access="isAnonymous()" />
-        <intercept-url pattern="/template-register**" access="isAnonymous()" />
-        <intercept-url pattern="/service-listing**" access="isAnonymous()" />
-        <intercept-url pattern="/rmtest/**" access="isAnonymous()" />
-        <intercept-url pattern="/**" access="isAuthenticated()" />
-
-        <form-login login-page="/login" />
+        <!-- static files -->
+        <intercept-url pattern="/css/**" access="permitAll" />
+        <intercept-url pattern="/js/**" access="permitAll" />
+        <intercept-url pattern="/img/**" access="permitAll" />
+        <intercept-url pattern="/fonts/**" access="permitAll" />
+        
+        <!-- public uri -->
+        <intercept-url pattern="/signup/**" access="isAnonymous()" />
+        <intercept-url pattern="/login/**" access="isAnonymous()" />
+        <intercept-url pattern="/service-listing/**" access="permitAll" />
+        
+        <!-- control privilege uri -->  
+		<intercept-url pattern="/provider/**" access="isAuthenticated()" />
+        <intercept-url pattern="/customer/**" access="isAuthenticated()" /> 
+		
+        <!-- my test uri -->
+        <intercept-url pattern="/test/**" access="permitAll" />
+        <!-- <intercept-url pattern="/**" access="isAuthenticated()" /> -->
+	 	<!-- always-use-default-target="true" --> 
+ 		<form-login 
+ 		login-page="/login" 
+ 		default-target-url="/" />
         <http-basic />
 
         <logout logout-success-url="/login"
-                logout-url="/perform_logout" />
+                logout-url="/logout" />
                 
     </http>
 
-	<beans:bean id="userDetailsService"
-                class="com.pap.bucketclass.service.LocalUserDetailsService" />
+	<beans:bean id="memberDetailsService"
+                class="com.pap.bucketclass.service.LocalMemberDetailsService" />
 
 <!-- 	<beans:bean id="passwordEncoder" 
 				class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" /> -->
+<!-- 	<beans:bean id="passwordEncoder" 
+				class="org.springframework.security.crypto.password.StandardPasswordEncoder" /> -->
 	<beans:bean id="passwordEncoder" 
-				class="org.springframework.security.crypto.password.StandardPasswordEncoder" />
+				class="com.pap.bucketclass.config.SimplePasswordEncoder" />
 
     <authentication-manager>
-        <authentication-provider user-service-ref="userDetailsService">
+        <authentication-provider user-service-ref="memberDetailsService">
             <password-encoder ref="passwordEncoder" />
         </authentication-provider>
     </authentication-manager>

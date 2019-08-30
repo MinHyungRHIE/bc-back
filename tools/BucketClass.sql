@@ -91,11 +91,11 @@ CREATE TABLE `service_address` (
 -- Service_Category
 CREATE TABLE `service_category` (
 	`category_id`      INT(36)     PRIMARY KEY  NOT NULL COMMENT '카테고리번호' AUTO_INCREMENT, -- category_id
-	`category_subject` VARCHAR(255) 			NOT NULL COMMENT '분야 (요리, 예술, 외국어, 헬스/웰빙, 비즈니스, 일상생활)', -- category_subject
-	`category_type`    VARCHAR(255) 			NOT NULL COMMENT '타입 (체험, 교육)', -- category_type
-	`category_period`  VARCHAR(255) 			NOT NULL COMMENT '기간 (정기, 비정기)', -- category_period
-	`category_scale`   VARCHAR(255) 			NOT NULL COMMENT '규모 (단체, 개인)', -- category_scale
-	`category_place`   VARCHAR(255) 			NOT NULL COMMENT '장소 (실내, 실외)' -- category_place
+	`category_subject` VARCHAR(255) 			NULL COMMENT '분야 (요리, 예술, 외국어, 헬스/웰빙, 비즈니스, 일상생활)', -- category_subject
+	`category_type`    VARCHAR(255) 			NULL COMMENT '타입 (체험, 교육)', -- category_type
+	`category_period`  VARCHAR(255) 			NULL COMMENT '기간 (정기, 비정기)', -- category_period
+	`category_scale`   VARCHAR(255) 			NULL COMMENT '규모 (단체, 개인)', -- category_scale
+	`category_place`   VARCHAR(255) 			NULL COMMENT '장소 (실내, 실외)' -- category_place
 ) ENGINE = `InnoDB` DEFAULT CHARACTER SET = `utf8`;
 
 -- wishlist

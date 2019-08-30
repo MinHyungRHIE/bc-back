@@ -9,39 +9,39 @@ import com.pap.bucketclass.entity.ServiceTemplate;
 
 public class CreateTemplateModel implements Serializable{
 	
-	@JsonProperty("service_title")
+	@JsonProperty("servicetitle")
 	private String serviceTitle;
 	
-	@JsonProperty("account_bank")
+	@JsonProperty("accountbank")
 	private String accountBank;
 	
-	@JsonProperty("account_number")
+	@JsonProperty("accountnumber")
 	private String accountNumber;
 	
 	@JsonProperty("hashTag")
-//	private List<String> hashTag;
-	private String hashTag;
+	private List<String> hashTag;
+//	private String hashTag;
 	
-	@JsonProperty("service_img_uri")
+	@JsonProperty("serviceimguri")
 //	private List<String> serviceImgUri;
 	private String serviceImgUri;
 	
-	@JsonProperty("service_description")
+	@JsonProperty("servicedescription")
 	private String serviceDescription;
 	
-	@JsonProperty("category_subject")
+	@JsonProperty("categorysubject")
 	private String categorySubject;
 	
-	@JsonProperty("category_type")
+	@JsonProperty("categorytype")
 	private String categoryType;
 	
-	@JsonProperty("category_period")
+	@JsonProperty("categoryperiod")
 	private String categoryPeriod;
 	
-	@JsonProperty("category_scale")
+	@JsonProperty("categoryscale")
 	private String categoryScale;
 	
-	@JsonProperty("category_place")
+	@JsonProperty("categoryplace")
 	private String categoryPlace;
 	
 	public String getServiceTitle() {
@@ -84,11 +84,11 @@ public class CreateTemplateModel implements Serializable{
 //		this.serviceImgUri = serviceImgUri;
 //	}
 
-	public String getHashTag() {
+	public List<String> getHashTag() {
 		return hashTag;
 	}
 
-	public void setHashTag(String hashTag) {
+	public void setHashTag(List<String> hashTag) {
 		this.hashTag = hashTag;
 	}
 

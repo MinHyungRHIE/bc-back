@@ -1,5 +1,6 @@
 package com.pap.bucketclass.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pap.bucketclass.entity.Member;
 import com.pap.bucketclass.entity.Services;
-import com.pap.bucketclass.model.PostServiceModel;
 import com.pap.bucketclass.model.CreateTemplateModel;
+import com.pap.bucketclass.model.PostServiceModel;
 import com.pap.bucketclass.model.RequestModel;
 import com.pap.bucketclass.model.ResponseModel;
 import com.pap.bucketclass.model.SignUpModel;
@@ -23,7 +24,7 @@ import com.pap.bucketclass.service.ServiceRegistSerivce;
 import com.pap.bucketclass.service.TemplateService;
 
 @Controller
-public class TESTController {
+public class TestController {
 
 
 	@Autowired
@@ -42,7 +43,7 @@ public class TESTController {
 	 *로그인 테스트*
 	 ***********/
 	@RequestMapping(
-			value="/login",
+			value="/test/login",
 			method=RequestMethod.GET
 			)
 	public String loginForm() {
@@ -53,7 +54,7 @@ public class TESTController {
 	 *회원가입 테스트*
 	 *************/
 	@RequestMapping(
-			path="/signup",
+			path="/test/signup",
 			method=RequestMethod.GET
 			)
 	public String signUpForm() {
@@ -61,7 +62,7 @@ public class TESTController {
 	}
 
 	@RequestMapping(
-			path="/signup",
+			path="/test/signup",
 			method=RequestMethod.POST,
 			produces= {
 					MediaType.APPLICATION_JSON_UTF8_VALUE,
@@ -84,7 +85,7 @@ public class TESTController {
 	 *서비스 템플릿 등록 테스트*
 	 ********************/
 	@RequestMapping(
-			path="/template-register",
+			path="/test/template-register",
 			method= RequestMethod.POST,
 			produces= {
 					MediaType.APPLICATION_JSON_UTF8_VALUE,
@@ -99,7 +100,7 @@ public class TESTController {
 	 *서비스 실제  등록 테스트*
 	 *******************/
 	@RequestMapping(
-			path="/service-register",
+			path="/test/service-register",
 			method= RequestMethod.POST,
 			produces= {
 					MediaType.APPLICATION_JSON_UTF8_VALUE,
@@ -115,7 +116,7 @@ public class TESTController {
 	 ********************/
 	@RequestMapping(
 //			path="/service-listing/{page}",
-			path="/service-listing",
+			path="/test/service-listing",
 			method= RequestMethod.POST,
 			produces= {
 					MediaType.APPLICATION_JSON_UTF8_VALUE,
@@ -144,7 +145,7 @@ public class TESTController {
 	 *Request Model 테스트*
 	 *********************/
 	@RequestMapping(
-			path="/rmtest",
+			path="/test/1",
 			method= RequestMethod.POST,
 			produces= {
 					MediaType.APPLICATION_JSON_UTF8_VALUE,
@@ -156,13 +157,38 @@ public class TESTController {
 	}
 
 	@RequestMapping(
-			path="/rmtest/test",
-			method= RequestMethod.POST,
+			path="/test/2",
+			method= RequestMethod.GET,
 			produces= {
 					MediaType.APPLICATION_JSON_UTF8_VALUE,
 					MediaType.APPLICATION_ATOM_XML_VALUE
 			})
-	public @ResponseBody List<Member> reqTest2(@RequestBody RequestModel model) {
+	public @ResponseBody List<Member> reqTest2() {
 		return memberService.selectAll();
+	}
+	
+	@RequestMapping(
+			path="/test/3",
+			method= RequestMethod.GET)
+	public String reqTest3() {
+		return "index";
+	}
+	
+	@RequestMapping(
+			path="/test/4",
+			method= RequestMethod.GET)
+	@ResponseBody
+	public String reqTest4(Principal princial) {
+		return princial.getName();
+	}
+	
+	/*********************
+	 *Request Model 테스트*
+	 *********************/
+	@RequestMapping(
+			path="/test/img1",
+			method= RequestMethod.GET) 
+	public String reqTest5() {
+		return "imageUploadTest";
 	}
 }

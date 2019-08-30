@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.pap.bucketclass.entity.Services;
 @Repository
 public interface ServiceRepository extends JpaRepository<Services, Long> {
-
+	public Services findByServiceId(Long serviceId);
 }

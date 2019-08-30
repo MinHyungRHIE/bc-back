@@ -1,24 +1,22 @@
 const myForm = document.querySelector("#myForm");
+const loginButton = document.querySelector("#loginButton");
 var logInInputCheck;
 
 // 로그인 fetch 사용
-myForm.addEventListener('submit', function(e) {
-    logInInputCheck = loginInputValidity();
-    console.log(logInInputCheck);
-    e.preventDefault();
-    if(logInInputCheck === true && loginIdReturnValue === true){
-        
-        // var loginObject = new Object();
-        // loginObject.memberId = document.getElementById("username").value;
-        // loginObject.memberPassword = document.getElementById("password").value;
-        const formData = new FormData(myForm);
-        var test = loginRequest(formData).then(response => console.log('response >>>', response));
-        console.log(typeof test, "////////" + test);
-    }else{
-    	alert("양식에 맞춰 작성해주세요.");
-    }
-});
-
+// myForm.addEventListener('submit', function(e){
+//     console.log("asdasdasd");
+// logInInputCheck = loginInputValidity();
+// console.log(logInInputCheck);
+// if(logInInputCheck === true && loginIdReturnValue === true){
+//     e.preventDefault();
+//     // var loginObject = new Object();
+//     // loginObject.memberId = document.getElementById("username").value;
+//     // loginObject.memberPassword = document.getElementById("password").value;
+//     const formData = new FormData(myForm);
+//     console.log("타입확인" + typeof formData)
+//     loginRequest(formData).then(response => console.log(response));
+// }
+// });
 
 // // 로그인 XMLHttpRequest 사용
 // myForm.addEventListener('submit', function(e){

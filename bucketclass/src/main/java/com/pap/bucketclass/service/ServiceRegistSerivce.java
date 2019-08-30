@@ -28,13 +28,16 @@ public class ServiceRegistSerivce {
 	private MemberRepository memberRepo;
 	
 	@Transactional
-	public Services insertServices(PostServiceModel model) {
-		
+	public ServiceTemplate seachExistTemplateForGetId(PostServiceModel model) {
+		return serviceTemplateRepo.findByServiceTemplateId(new Long(model.getServiceTemplateId()));
+	}
+	
+	@Transactional
+	public Services insertServices(PostServiceModel model, ServiceTemplate serviceTemplate) {
+		//There's no relation between services and serviceTemplate, just need data.
 		Services services = new Services();
 		services.setNewDataToPostService(model);
 		
-		//There's no relation between services and serviceTemplate, just need data.
-		ServiceTemplate serviceTemplate = serviceTemplateRepo.findByServiceTemplateId(new Long(model.getServiceTemplateId()));
 		services.setDateFromTemplate(serviceTemplate); 
 		
 		ServiceAddress savedServiceAddress = serviceAddressRepo.save(model.toServiceAddress());

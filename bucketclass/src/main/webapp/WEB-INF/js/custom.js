@@ -231,7 +231,7 @@ $(document).ready(function(){
 	$(window).resize(fullscreenFix);
 	fullscreenFix();
 
-	/* resize background images */
+	/* resize background img */
 	function backgroundResize(){
 	    var windowH = $(window).height();
 	    $(".parallax").each(function(i){
@@ -1406,7 +1406,7 @@ $(document).ready(function(){
 
         var action = $(this).attr('action');
 
-        $('#contact #submit').after('<img src="images/loader.gif" class="loader" />');
+        $('#contact #submit').after('<img src="img/loader.gif" class="loader" />');
 
         $('#submit')
             .prop('disabled',true)

@@ -13,7 +13,7 @@ import com.pap.bucketclass.repository.MemberRepository;
 
 @EnableTransactionManagement(proxyTargetClass = true)
 @Service
-public class LocalUserDetailsService implements UserDetailsService {
+public class LocalMemberDetailsService implements UserDetailsService {
 
     @Autowired
     private MemberRepository memberRepo;
