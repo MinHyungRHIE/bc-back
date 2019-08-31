@@ -4,8 +4,8 @@
 }());
 
 function baseUrl(path) {
-	 const BASE_URL = 'http://localhost:9999';
-	 return `${BASE_URL}${path}`;
+	const BASE_URL = 'http://localhost:9999';
+	return `${BASE_URL}${path}`;
 }
 
 function deleteRequest(path) {
@@ -139,12 +139,12 @@ function providerProfile(content){
 	return getRequest(content);
 }
 
-function updateProviderProfile(content) {
-	return postRequest('/provider/mypage', content);
+function updateProviderProfile(object) {
+	return patchRequest('/provider/mypage/update', object);
 }
 
-function updateCustomerProfile(content){
-	return postRequest('/customer/mypage', content);
+function updateCustomerProfile(object){
+	return patchRequest('/customer/mypage/update', object);
 }
 
 function emailDuplicateCheck(content){
@@ -182,6 +182,7 @@ const Apis = {
 		listTodo,
 		updateTodo,
 		toggleTodo,
+		
 		emailDuplicateCheck,
 		providerProfile,
 		updateProviderProfile,

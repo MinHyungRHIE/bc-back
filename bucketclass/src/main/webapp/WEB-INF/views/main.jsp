@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,7 +103,8 @@
 									</select>
 								</div>
 
-								<a href="/service-listing"><button class="button">검색</button></a>
+								<button class="button"
+									onclick="window.location.href='listings-half-screen-map-list.html'">검색</button>
 
 							</div>
 						</div>
@@ -605,54 +607,35 @@
 	<script type="text/javascript" src="/js/apis.js"></script>
 	<script src="/js/redirect.js"></script>
 	<script>
-		let getRoleName = '${rolename}' ;
+		let getRoleName = '${rolename}';
 		let getNickName = '${nick}'
 		if (getRoleName === "ROLE_CUSTOMER") {
 
-			var headerContentCustomer = '<div class="user-name"><span><img src="" alt=""></span>[이용자]'+getNickName+'님, 안녕하세요!</div>'
+			var headerContentCustomer = '<div class="user-name"><span><img src="" alt=""></span>[이용자]'
+					+ getNickName
+					+ '님, 안녕하세요!</div>'
 					+ '<ul><li><a href="/customer/mypage"><i class="sl sl-icon-settings"></i> 마이페이지</a></li>'
 					+ '<li><a onclick="viewBookmark();"><i class="fa fa-calendar-check-o"></i> 나의 수강 관리</a></li>'
 					+ '<li><a href="/logout"><i class="sl sl-icon-power"></i> 로그아웃</a></li></ul>';
 
 			document.querySelector('#user-menu').innerHTML = headerContentCustomer;
-					
+
 		} else if (getRoleName === "ROLE_PROVIDER") {
 
-			var headerContentProvider = '<div class="user-name"><span><img src="" alt=""></span>[제공자]'+getNickName+'님, 안녕하세요!</div>'
+			var headerContentProvider = '<div class="user-name"><span><img src="" alt=""></span>[제공자]'
+					+ getNickName
+					+ '님, 안녕하세요!</div>'
 					+ '<ul><li><a href="/provider/mypage"><i class="sl sl-icon-settings"></i> 마이페이지</a></li>'
 					+ '<li><a onclick="viewMyListing();"><i class="fa fa-calendar-check-o"></i> 나의 수업 관리</a></li>'
 					+ '<li><a href="/logout"><i class="sl sl-icon-power"></i> 로그아웃</a></li></ul>';
 
 			document.querySelector('#user-menu').innerHTML = headerContentProvider;
-					
+
 		} else {
 			var headerContent = '<a href="/login" class="sign-in">로그인</a>'
 					+ '<a href="/signup" class="sign-in">회원가입</a>';
 
 			document.querySelector('#user-menu').innerHTML = headerContent;
-		}
-	</script>
-
-	<!-- Google Autocomplete -->
-	<script>
-		function initAutocomplete() {
-			var input = document.getElementById('autocomplete-input');
-			var autocomplete = new google.maps.places.Autocomplete(input);
-
-			autocomplete.addListener('place_changed', function() {
-				var place = autocomplete.getPlace();
-				if (!place.geometry) {
-					window.alert("No details available for input: '"
-							+ place.name + "'");
-					return;
-				}
-			});
-
-			if ($('.main-search-input-item')[0]) {
-				setTimeout(function() {
-					$(".pac-container").prependTo("#autocomplete-container");
-				}, 300);
-			}
 		}
 	</script>
 	<script

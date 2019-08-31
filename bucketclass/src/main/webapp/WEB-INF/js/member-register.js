@@ -11,7 +11,7 @@ function customerRegister(){
     Apis.createMember(memberInfoObject).then(response => {
         if(response.res === "success"){
             console.log("이용자로 회원가입 성공");
-            location.href="/index";
+            location.href="/login";
         } else {
             console.log("회원가입 실패");
         }});
@@ -30,7 +30,7 @@ function providerRegister(){
     Apis.createMember(memberInfoObject).then(response => {
         if(response.res === "success"){
             console.log("제공자로 회원가입 성공");
-            location.href="/index";
+            location.href="/login";
         } else {
             console.log("회원가입 실패");
         }});

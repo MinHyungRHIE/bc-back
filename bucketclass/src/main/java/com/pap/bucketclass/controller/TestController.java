@@ -23,7 +23,9 @@ import com.pap.bucketclass.service.TemplateService;
 
 @Controller
 public class TestController {
-
+	/*********************
+	 *TEST*
+	 *********************/
 
 	@Autowired
 	MemberService memberService;
@@ -36,112 +38,7 @@ public class TestController {
 	
 	@Autowired
 	ServiceRegistSerivce serviceRegistSerivce;
-	
-	/***********
-	 *로그인 테스트*
-	 ***********/
-	@RequestMapping(
-			value="/test/login",
-			method=RequestMethod.GET
-			)
-	public String loginForm() {
-		return "login";
-	}
 
-	/*************
-	 *회원가입 테스트*
-	 *************/
-	@RequestMapping(
-			path="/test/signup",
-			method=RequestMethod.GET
-			)
-	public String signUpForm() {
-		return "index";
-	}
-
-	@RequestMapping(
-			path="/test/signup",
-			method=RequestMethod.POST,
-			produces= {
-					MediaType.APPLICATION_JSON_UTF8_VALUE,
-					MediaType.APPLICATION_ATOM_XML_VALUE
-			})
-	public @ResponseBody ResponseModel create(@RequestBody SignUpModel model) {
-		System.out.println(model.toString());
-		ResponseModel resObj = new ResponseModel();
-		try {
-			Member member = memberService.insertMember(model);
-			resObj.setRes("success");
-			return resObj;
-		}catch(Exception e) {
-			resObj.setRes("fail");
-			return resObj;
-		}
-	}
-
-	/********************
-	 *서비스 템플릿 등록 테스트*
-	 ********************/
-//	@RequestMapping(
-//			path="/test/template-register",
-//			method= RequestMethod.POST,
-//			produces= {
-//					MediaType.APPLICATION_JSON_UTF8_VALUE,
-//					MediaType.APPLICATION_ATOM_XML_VALUE
-//			})
-//	public @ResponseBody CreateTemplateModel createTemplate(@RequestBody CreateTemplateModel model) {
-//		makeTemplateService.createTemplate(model);
-//		return model;
-//	}
-
-	/*******************
-	 *서비스 실제  등록 테스트*
-	 *******************/
-//	@RequestMapping(
-//			path="/test/service-register",
-//			method= RequestMethod.POST,
-//			produces= {
-//					MediaType.APPLICATION_JSON_UTF8_VALUE,
-//					MediaType.APPLICATION_ATOM_XML_VALUE
-//			})
-//	public @ResponseBody Services createService(@RequestBody PostServiceModel model) {
-//		System.out.println(model.toString());
-//		return serviceRegistSerivce.insertServices(model);
-//	}
-
-	/********************
-	 *실제 서비스 검색 테스트*
-	 ********************/
-	@RequestMapping(
-//			path="/service-listing/{page}",
-			path="/test/service-listing",
-			method= RequestMethod.POST,
-			produces= {
-					MediaType.APPLICATION_JSON_UTF8_VALUE,
-					MediaType.APPLICATION_ATOM_XML_VALUE
-			})
-	public @ResponseBody List<Services> getAllService() {
-		return listingService.listOfService();
-	}
-	
-	
-//	public @ResponseBody QueryServiceModel getAllService(
-//			@PathVariable int page,
-//			@RequestBody QueryServiceModel queryModel) {
-//		int size = 3;
-//		Pageable pageable = PageRequest.of(page - 1, size, Sort.by("service_price").descending());
-//		Page<ServiceListModel> todoList = listingService.listOfTodo(pageable);
-//
-//		modelMap.put("items", todoList.stream().collect(Collectors.toList()));
-//		modelMap.put("page", page);
-//		modelMap.put("size", size);
-//		modelMap.put("totalCount", todoList.getTotalElements());
-//		return queryModel;
-//	}
-
-	/*********************
-	 *Request Model 테스트*
-	 *********************/
 	@RequestMapping(
 			path="/test/1",
 			method= RequestMethod.POST,
@@ -180,9 +77,6 @@ public class TestController {
 		return qsm;
 	}
 	
-	/*********************
-	 *Request Model 테스트*
-	 *********************/
 	@RequestMapping(
 			path="/test/img1",
 			method= RequestMethod.GET) 
