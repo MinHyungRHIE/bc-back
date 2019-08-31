@@ -655,7 +655,7 @@
 
    function viewSingleService(serviceId){
 
-      Apis.getRequest(`/service-listing/`+serviceId)
+      Apis.getRequest(`/service-listing/test/`+serviceId)
       // then으로 화면 전환하는 부분 추가 
 
    }

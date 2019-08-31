@@ -81,30 +81,24 @@
 							<div class="main-search-input">
 
 								<div class="main-search-input-item">
-									<input type="text" placeholder="어떤 수업을 찾으시나요?" value="" />
-								</div>
-
-								<div class="main-search-input-item location">
-									<div id="autocomplete-container">
-										<input id="autocomplete-input" type="text"
-											placeholder="지역을 선택하세요">
-									</div>
-									<a href="#"><i class="fa fa-map-marker"></i></a>
-								</div>
-
-								<div class="main-search-input-item">
-									<select data-placeholder="All Categories" class="chosen-select">
-										<option>모든 카테고리</option>
-										<option>요리</option>
-										<option>외국어</option>
-										<option>헬스케어</option>
-										<option>예술</option>
-										<option>일상생활</option>
+									<select data-placeholder="카테고리 선택" class="chosen-select"
+										id="sel">
+										<option value="" selected>카테고리 선택</option>
+										<option id="chosen-select-cooking">요리</option>
+										<option id="chosen-select-art">예술</option>
+										<option id="chosen-select-language">외국어</option>
+										<option id="chosen-select-health">헬스케어</option>
+										<option id="chosen-select-business">비즈니스</option>
+										<option id="chosen-select-lifestyle">일상생활</option>
 									</select>
 								</div>
 
-								<button class="button"
-									onclick="window.location.href='listings-half-screen-map-list.html'">검색</button>
+								<div class="main-search-input-item">
+									<input type="text" id="input-title" placeholder="키워드를 입력하세요"
+										value="" />
+								</div>
+
+								<button class="button" type="submit" onclick="searchHandler()">검색하기</button>
 
 							</div>
 						</div>
@@ -398,32 +392,40 @@
 
 			<div class="row icons-container">
 				<!-- Stage -->
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<div class="icon-box-2 with-line">
-						<i class="im im-icon-Map2"></i>
-						<h3>Find Interesting Place</h3>
-						<p>Proin dapibus nisl ornare diam varius tempus. Aenean a quam
-							luctus, finibus tellus ut, convallis eros sollicitudin turpis.</p>
+						<i class="im im-icon-Mouse-2"></i>
+						<h3>원하는 수업을 찾아보세요!</h3>
+						<span>Bucket Class에서 제공하는 서비스를 이용하여</span><br> <span>본인이
+							원하는 수업을 찾아봅시당!</span>
 					</div>
 				</div>
 
 				<!-- Stage -->
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<div class="icon-box-2 with-line">
 						<i class="im im-icon-Mail-withAtSign"></i>
-						<h3>Contact a Few Owners</h3>
-						<p>Maecenas pulvinar, risus in facilisis dignissim, quam nisi
-							hendrerit nulla, id vestibulum metus nullam viverra porta purus.</p>
+						<h3>이메일로 연락을 보내세요!</h3>
+						<span>원하는 수업을 찾았다면</span><br> <span>제공자에게 메일을 보내봅시당!</span>
 					</div>
 				</div>
 
 				<!-- Stage -->
-				<div class="col-md-4">
-					<div class="icon-box-2">
+				<div class="col-md-3">
+					<div class="icon-box-2 with-line">
 						<i class="im im-icon-Checked-User"></i>
-						<h3>Make a Reservation</h3>
-						<p>Faucibus ante, in porttitor tellus blandit et. Phasellus
-							tincidunt metus lectus sollicitudin feugiat pharetra consectetur.</p>
+						<h3>수업 등록완료!</h3>
+						<span>제공자와 수업일정을 조율하고</span> <span></span>
+					</div>
+				</div>
+
+				<!-- Stage -->
+				<div class="col-md-3">
+					<div class="icon-box-2">
+						<i class="im im-icon-Open-Book"></i>
+						<h3>수업시작!</h3>
+						<span>드디어 수업이 시작했습니당!</span><br> <span>본인이 원한 수업인 만큼
+							최선을 다해</span><br> <span>목표를 달성해 보세요!</span>
 					</div>
 				</div>
 			</div>
@@ -514,72 +516,64 @@
 		</section>
 		<!-- Recent Blog Posts / End -->
 
-		<!-- Footer -->
-		<div id="footer" class="sticky-footer">
-			<!-- Main -->
-			<div class="container">
-				<div class="row">
-					<div class="col-md-5 col-sm-6">
-						<img class="footer-logo" src="/img/logo.png" alt=""> <br>
-						<br>
-						<p>Morbi convallis bibendum urna ut viverra. Maecenas quis
-							consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi
-							ultricies laoreet ullamcorper phasellus semper.</p>
-					</div>
-
-					<div class="col-md-4 col-sm-6 ">
-						<h4>Helpful Links</h4>
-						<ul class="footer-links">
-							<li><a href="#">Login</a></li>
-							<li><a href="#">Sign Up</a></li>
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">Add Listing</a></li>
-							<li><a href="#">Pricing</a></li>
-							<li><a href="#">Privacy Policy</a></li>
-						</ul>
-
-						<ul class="footer-links">
-							<li><a href="#">FAQ</a></li>
-							<li><a href="#">Blog</a></li>
-							<li><a href="#">Our Partners</a></li>
-							<li><a href="#">How It Works</a></li>
-							<li><a href="#">Contact</a></li>
-						</ul>
-						<div class="clearfix"></div>
-					</div>
-
-					<div class="col-md-3  col-sm-12">
-						<h4>Contact Us</h4>
-						<div class="text-widget">
-							<span>12345 Little Lonsdale St, Melbourne</span> <br> Phone:
-							<span>(123) 123-456 </span><br> E-Mail:<span> <a
-								href="#">office@example.com</a>
-							</span><br>
+	<!-- Footer -->
+			<div id="footer" class="sticky-footer">
+				<!-- Main -->
+				<div class="container">
+					<div class="row">
+						<div class="col-md-5 col-sm-6">
+							<img class="footer-logo" src="img/logo.png" alt="">
+							<br><br>
+							<span>(주)버킷클래스 (대표이사: 송인진)</span><br>
+							<span>사업자등록번호: 111-22-33333</span><br>
+							<span>개인정보책임관리자: THE-PAP</span><br>
+							<span>서울특별시 서초구 서초4동 강남대로 459 B1 5강의실</span><br>
+							<span>고객센터: 1234-4321</span>
 						</div>
 
-						<ul class="social-icons margin-top-20">
-							<li><a class="facebook" href="#"><i
-									class="icon-facebook"></i></a></li>
-							<li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-							<li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
-							<li><a class="vimeo" href="#"><i class="icon-vimeo"></i></a></li>
-						</ul>
+						<div class="col-md-4 col-sm-6 ">
+							<h4>Helpful Links</h4>
+							<ul class="footer-links">
+								<li><a href="/login">로그인</a></li>
+								<li><a href="/signup">회원가입</a></li>
+								<li><a href="#">My Account</a></li>
+								<li><a href="#">Add Listing</a></li>
+								<li><a href="#">Pricing</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+							</ul>
+
+							<ul class="footer-links">
+								<li><a href="#">FAQ</a></li>
+								<li><a href="#">Blog</a></li>
+								<li><a href="#">Our Partners</a></li>
+								<li><a href="#">How It Works</a></li>
+								<li><a href="#">Contact</a></li>
+							</ul>
+							<div class="clearfix"></div>
+						</div>
+
+						<div class="col-md-3  col-sm-12">
+							<h4>Contact Us</h4>
+							<div class="text-widget">
+								<span>서울 마포구 마포대로 89 포스트타워 14층</span> <br>
+								전화번호: <span>(02) 123-456 </span><br>
+								이메일:<span> <a href="#">THE-PAP@pap.com</a> </span><br>
+							</div>
+						</div>
 
 					</div>
 
-				</div>
-
-				<!-- Copyright -->
-				<div class="row">
-					<div class="col-md-12">
-						<div class="copyrights">© 2019 Listeo. All Rights Reserved.</div>
+					<!-- Copyright -->
+					<div class="row">
+						<div class="col-md-12">
+							<div class="copyrights">© 2019 Bucket Class. All Rights Reserved.</div>
+						</div>
 					</div>
+
 				</div>
 
 			</div>
-
-		</div>
-		<!-- Footer / End -->
+			<!-- Footer / End -->
 
 
 		<!-- Back To Top Button -->
@@ -606,6 +600,7 @@
 	<script type="text/javascript" src="/js/custom.js"></script>
 	<script type="text/javascript" src="/js/apis.js"></script>
 	<script src="/js/redirect.js"></script>
+	<script type="text/javascript" src="/js/mainSearch.js"></script>
 	<script>
 		let getRoleName = '${rolename}';
 		let getNickName = '${nick}'

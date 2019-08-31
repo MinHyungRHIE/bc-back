@@ -40,4 +40,11 @@ public class ListingService {
         return ServiceRepo.findByServiceId(serviceId);
     }
     
+    @Transactional(readOnly=true)
+    public Page<Services> searchingListAndPageable(String serviceTitle, Pageable pageable){
+    	serviceTitle = "%" + serviceTitle;
+    	serviceTitle = serviceTitle + "%";
+    	ServiceRepo.findByServiceTitleLike(serviceTitle, pageable);
+    }
+    
 }

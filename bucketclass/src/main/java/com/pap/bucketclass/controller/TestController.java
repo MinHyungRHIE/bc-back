@@ -71,9 +71,13 @@ public class TestController {
 	
 	@RequestMapping(
 			path="/test/4",
-			method= RequestMethod.POST)
-	@ResponseBody
-	public QueryServiceModel reqTest4(QueryServiceModel qsm) {
+			method= RequestMethod.POST,
+			produces= {
+					MediaType.APPLICATION_JSON_UTF8_VALUE,
+					MediaType.APPLICATION_ATOM_XML_VALUE
+			})
+	public @ResponseBody QueryServiceModel reqTest4(@RequestBody QueryServiceModel qsm) {
+		System.out.println(qsm);
 		return qsm;
 	}
 	
