@@ -7,40 +7,29 @@ import com.pap.bucketclass.entity.ServiceAddress;
 
 public class PostServiceModel implements Serializable{
 
-	@JsonProperty("serviceTemplateId")
-	private String serviceTemplateId;
-	
-	@JsonProperty("servicePrice")
+	@JsonProperty("serviceprice")
 	private String servicePrice;
 	
-	@JsonProperty("serviceDateDescription")
+	@JsonProperty("servicedatedescription")
 	private String serviceDateDescription;
 	
-	@JsonProperty("serviceStartDate")
+	@JsonProperty("servicestartdate")
 	private String serviceStartDate;	
 	
-	@JsonProperty("serviceEndDate")
+	@JsonProperty("serviceenddate")
 	private String serviceEndDate;
 	
-	@JsonProperty("addressState")
+	@JsonProperty("addressstate")
 	private String addressState;
 	
-	@JsonProperty("addressCity")
+	@JsonProperty("addresscity")
 	private String addressCity;
 	
-	@JsonProperty("addressDong")
+	@JsonProperty("addressdong")
 	private String addressDong;
 	
-	@JsonProperty("addressDetail")
+	@JsonProperty("addressdetail")
 	private String addressDetail;
-	
-	public String getServiceTemplateId() {
-		return serviceTemplateId;
-	}
-
-	public void setServiceTemplateId(String serviceTemplateId) {
-		this.serviceTemplateId = serviceTemplateId;
-	}
 
 	public String getServicePrice() {
 		return servicePrice;
@@ -117,8 +106,7 @@ public class PostServiceModel implements Serializable{
 
 	@Override
 	public String toString() {
-		return  " serviceId : " + serviceTemplateId
-				+ "\n servicePrice : " + servicePrice
+		return  " servicePrice : " + servicePrice
 				+ "\n serviceDateDescription : " + serviceDateDescription
 				+ "\n serviceStartDate : " + serviceStartDate
 				+ "\n serviceEndDate : " + serviceEndDate

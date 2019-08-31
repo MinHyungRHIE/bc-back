@@ -24,7 +24,7 @@
         <intercept-url pattern="/service-listing/**" access="permitAll" />
         
         <!-- control privilege uri -->  
-		<intercept-url pattern="/provider/**" access="isAuthenticated()" />
+		<intercept-url pattern="/provider/**" access="permitAll" />
         <intercept-url pattern="/customer/**" access="isAuthenticated()" /> 
 		
         <!-- my test uri -->

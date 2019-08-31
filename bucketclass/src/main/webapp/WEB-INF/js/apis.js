@@ -4,9 +4,8 @@
 }());
 
 function baseUrl(path) {
-	// const BASE_URL = 'http://localhost:5000';
-	// return `${BASE_URL}${path}`; 테스트 끝나면 이걸로 돌려놓기
-	return `${path}`;
+	 const BASE_URL = 'http://localhost:9999';
+	 return `${BASE_URL}${path}`;
 }
 
 function deleteRequest(path) {

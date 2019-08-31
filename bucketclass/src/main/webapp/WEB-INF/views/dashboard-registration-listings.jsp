@@ -354,13 +354,13 @@
 				</div>
 			</div>
 
-					<a href="dashboard-my-listings.html" id="button preview" class="button preview">등록하기<i class="fa fa-arrow-circle-right"></i></a>
+					<a  id="button preview" class="button preview">등록하기<i class="fa fa-arrow-circle-right"></i></a>
 
 <!--			주소내용을 JSON으로 변경-->
 			<script>
 				var btnEle = document.getElementById("button preview");
 				btnEle.addEventListener("click",function () {
-					alert(secondServiceSave());
+					secondServiceSave();
 				})
 			</script>
 
@@ -398,7 +398,7 @@
 <script src="/js/moment.min.js"></script>
 <script src="/js/moment-locale-ko.js"></script>
 <script src="/js/daterangepicker.js"></script>
-
+<script type="text/javascript" src="/js/apis.js"></script>
 
 <script>
 

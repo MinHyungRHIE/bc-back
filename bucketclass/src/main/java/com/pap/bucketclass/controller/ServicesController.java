@@ -1,6 +1,6 @@
 package com.pap.bucketclass.controller;
 
-import java.util.List;
+import java.security.Principal;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pap.bucketclass.entity.ServiceTemplate;
 import com.pap.bucketclass.entity.Services;
+import com.pap.bucketclass.model.CreateTemplateModel;
 import com.pap.bucketclass.model.PostServiceModel;
 import com.pap.bucketclass.model.QueryServiceModel;
 import com.pap.bucketclass.model.ResponseModel;
@@ -29,7 +30,7 @@ import com.pap.bucketclass.service.TemplateService;
 
 @Controller
 public class ServicesController {
-
+	
 	@Autowired
 	MemberService memberService;
 
@@ -40,43 +41,86 @@ public class ServicesController {
 	ListingService listingService; 
 
 	@Autowired
-	ServiceRegistSerivce serviceRegistSerivce;
+	ServiceRegistSerivce serviceRegistService;
 
 	/*******************
-	 *서비스 실제  등록 테스트*
-	 *******************/
-//	@RequestMapping(
-//			path="/provider/regist-service",
-//			method= RequestMethod.GET)
-//	public String createServiceForm() {
-//		return "dashboard-registration-listings";
-//	}
+	 * 서비스 템플릿  등록 *
+	 ********************/
 	@RequestMapping(
-			path="/provider/regist-service",
+			path="/provider/add-service",
+			method= RequestMethod.GET)
+	public String templateForm() {
+		return "dashboard-add-listing";
+	}
+	
+	@RequestMapping(
+			path="/provider/add-service",
+			method= RequestMethod.POST,
+			produces= {
+					MediaType.APPLICATION_JSON_UTF8_VALUE,
+					MediaType.APPLICATION_ATOM_XML_VALUE	
+			})
+	public @ResponseBody ResponseModel createTemplate(@RequestBody CreateTemplateModel model, Principal principal) {
+		ServiceTemplate getService = templateService.createTemplate(model, principal);
+		ResponseModel resModel = new ResponseModel();
+		if (getService != null) {resModel.setRes("success");}else{resModel.setRes("fail");}
+		return resModel;
+	}
+	
+	/*****************
+	 * 서비스 실제  등록 *
+	 ******************/
+	@RequestMapping(
+			path="/provider/my-template/{serviceTemplateId}/regist",
+			method= RequestMethod.GET)
+	public String createServiceForm(@PathVariable("serviceTemplateId") Long serviceTemplateId) {
+		return "dashboard-registration-listings";
+	}
+	
+	@RequestMapping(
+			path="/provider/my-template/{serviceTemplateId}/regist",
 			method= RequestMethod.POST,
 			produces= {
 					MediaType.APPLICATION_JSON_UTF8_VALUE,
 					MediaType.APPLICATION_ATOM_XML_VALUE
 			})
-	public @ResponseBody ResponseModel createService(@RequestBody PostServiceModel model) {
-		ServiceTemplate serviceTemplate = serviceRegistSerivce.seachExistTemplateForGetId(model);
-		System.out.println(serviceTemplate.getServiceTemplateId());
+	public @ResponseBody ResponseModel createService(
+			@RequestBody PostServiceModel model,
+			@PathVariable("serviceTemplateId") Long serviceTemplateId) {
 		ResponseModel resModel = new ResponseModel();
-		serviceRegistSerivce.insertServices(model, serviceTemplate);
-		resModel.setRes("success");
-		resModel.setServiceId(serviceTemplate.getServiceTemplateId());
+		Services service =  serviceRegistService.insertServices(model, serviceTemplateId);
+		System.out.println(service);
+		if(service !=null) {
+			resModel.setRes("success");
+		}else {
+			resModel.setRes("fail");
+		}
+		System.out.println(resModel.getRes());
 		return resModel;
 	}
 
-	/***************************
-	 *실제 서비스 검색(메인->리스트 페이지)*
-	 ***************************/
+	/*************************
+	 * public 기본 실제 서비스 검색 *
+	 **************************/
 	@RequestMapping(
 			path="/service-listing",
 			method= RequestMethod.GET)
 	public String formServiceList() {
 		return "listings-list-full-width";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+///////////////////////////////////////////////////////////////////////////////////////////////
+	/***************************
+	 *실제 서비스 검색(메인->리스트 페이지)*
+	 ***************************/
 	
 	@RequestMapping(
 			path="/service-listing",
@@ -122,23 +166,6 @@ public class ServicesController {
 //		System.out.println(serviceList.getSize());
 //		return new ResultItems<Services>(serviceList.stream().collect(Collectors.toList()), page, size, serviceList.getTotalElements());
 //	}
-	
-	@RequestMapping(
-			path="/service-listing/{page}",
-			method= RequestMethod.POST,
-			produces= {
-					MediaType.APPLICATION_JSON_UTF8_VALUE,
-					MediaType.APPLICATION_ATOM_XML_VALUE
-			})
-	public @ResponseBody ResultItems<Services> pageableService(
-			@PathVariable("page") int page,
-			@RequestBody QueryServiceModel queryModel) {
-		int size = 3;
-		Pageable pageable = PageRequest.of(page - 1, size, Sort.by("servicePrice").descending());
-		Page<Services> serviceList = listingService.listPageable(pageable);
-		return new ResultItems<Services>(serviceList.stream().collect(Collectors.toList()), page, size, serviceList.getTotalElements());
-	}
-
 
 	//	public @ResponseBody QueryServiceModel getAllService(
 	//			@PathVariable int page,
@@ -153,4 +180,36 @@ public class ServicesController {
 	//		modelMap.put("totalCount", todoList.getTotalElements());
 	//		return queryModel;
 	//	}
+	
+	/*************************************************
+	 *제공자 전용 페이지에서 서비스 검색(리스트 페이지 + 정렬)*
+	 **************************************************/
+	@RequestMapping(
+			path="/provider/service-listing",
+			method= RequestMethod.GET)
+	public String providerServiceListForm() {
+		return "my-listing";
+	}
+	
+	@RequestMapping(
+			path="/provider/service-listing/{page}",
+			method= RequestMethod.POST,
+			produces= {
+					MediaType.APPLICATION_JSON_UTF8_VALUE,
+					MediaType.APPLICATION_ATOM_XML_VALUE
+			})
+	public @ResponseBody ResultItems<Services> pageableService(
+			@PathVariable(
+                    name = "page",
+                    required = false) String pageStr,
+			@RequestBody QueryServiceModel queryModel) {
+		int size = 3;
+		int page = 1; //defaultValue
+		if(pageStr != null) {
+			page = Integer.parseInt(pageStr);
+		}
+		Pageable pageable = PageRequest.of(page - 1, size, Sort.by("servicePrice").ascending());
+		Page<Services> serviceList = listingService.listPageable(pageable);
+		return new ResultItems<Services>(serviceList.stream().collect(Collectors.toList()), page, size, serviceList.getTotalElements());
+	}
 }

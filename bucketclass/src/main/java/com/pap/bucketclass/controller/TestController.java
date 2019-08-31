@@ -1,6 +1,5 @@
 package com.pap.bucketclass.controller;
 
-import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pap.bucketclass.entity.Member;
 import com.pap.bucketclass.entity.Services;
-import com.pap.bucketclass.model.CreateTemplateModel;
-import com.pap.bucketclass.model.PostServiceModel;
+import com.pap.bucketclass.model.QueryServiceModel;
 import com.pap.bucketclass.model.RequestModel;
 import com.pap.bucketclass.model.ResponseModel;
 import com.pap.bucketclass.model.SignUpModel;
@@ -84,32 +82,32 @@ public class TestController {
 	/********************
 	 *서비스 템플릿 등록 테스트*
 	 ********************/
-	@RequestMapping(
-			path="/test/template-register",
-			method= RequestMethod.POST,
-			produces= {
-					MediaType.APPLICATION_JSON_UTF8_VALUE,
-					MediaType.APPLICATION_ATOM_XML_VALUE
-			})
-	public @ResponseBody CreateTemplateModel createTemplate(@RequestBody CreateTemplateModel model) {
-		makeTemplateService.createTemplate(model);
-		return model;
-	}
+//	@RequestMapping(
+//			path="/test/template-register",
+//			method= RequestMethod.POST,
+//			produces= {
+//					MediaType.APPLICATION_JSON_UTF8_VALUE,
+//					MediaType.APPLICATION_ATOM_XML_VALUE
+//			})
+//	public @ResponseBody CreateTemplateModel createTemplate(@RequestBody CreateTemplateModel model) {
+//		makeTemplateService.createTemplate(model);
+//		return model;
+//	}
 
 	/*******************
 	 *서비스 실제  등록 테스트*
 	 *******************/
-	@RequestMapping(
-			path="/test/service-register",
-			method= RequestMethod.POST,
-			produces= {
-					MediaType.APPLICATION_JSON_UTF8_VALUE,
-					MediaType.APPLICATION_ATOM_XML_VALUE
-			})
-	public @ResponseBody Services createService(@RequestBody PostServiceModel model) {
-		System.out.println(model.toString());
-		return serviceRegistSerivce.insertServices(model);
-	}
+//	@RequestMapping(
+//			path="/test/service-register",
+//			method= RequestMethod.POST,
+//			produces= {
+//					MediaType.APPLICATION_JSON_UTF8_VALUE,
+//					MediaType.APPLICATION_ATOM_XML_VALUE
+//			})
+//	public @ResponseBody Services createService(@RequestBody PostServiceModel model) {
+//		System.out.println(model.toString());
+//		return serviceRegistSerivce.insertServices(model);
+//	}
 
 	/********************
 	 *실제 서비스 검색 테스트*
@@ -176,10 +174,10 @@ public class TestController {
 	
 	@RequestMapping(
 			path="/test/4",
-			method= RequestMethod.GET)
+			method= RequestMethod.POST)
 	@ResponseBody
-	public String reqTest4(Principal princial) {
-		return princial.getName();
+	public QueryServiceModel reqTest4(QueryServiceModel qsm) {
+		return qsm;
 	}
 	
 	/*********************
