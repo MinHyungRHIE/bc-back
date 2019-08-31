@@ -3,16 +3,16 @@
 //1. mypage 페이지 왔을 때 저장되어 있는 data 불러오기.
 //2. 내 프로필 정보수정 버튼 클릭하면 입력한 데이터가 저장, 수정된 data 불러오기
 
-var callpassword;
+//var callpassword;
 var memberId;
-var res;
+//var res;
 
 // ====================== 1. MyPage Loading ==========================
 //1. MyPage Loading -> 내 정보를 받아서 뿌려줘야 함.
 $(document).ready(function () {
     var unmeaningFulData = new Object();
     unmeaningFulData.req = "ohyeah";
-    Apis.postRequest('/customer/mypage',unmeaningFulData).then(response=>{
+    Apis.postRequest('/customer/mypage',unmeaningFulData).then(response => {
         console.log(response);//promise객체로 옴. 이제 그걸 풀어서, 화면에 뿌려줘야함.
         showMypage(response);
     }); //getrequest로 요청보냄. return으로 response=>response.json()으로 받아짐.
@@ -28,15 +28,19 @@ function showMypage(profileData) {
     console.log(profileData.memberEmail)
     console.log(profileData.introduce)
     console.log(profileData.memberJoinDate)
+    //console.log(profileData.memberPassword);
     console.log('===============================')
     insertValue('memberNickname', profileData.memberNickname);
     insertValue('memberEmail', profileData.memberEmail);
-    insertValue('introduce', profileData.introduce);
+
+    val3=$("textarea#introduce").val(profileData.introduce);
+    //document.getElementById('introduce').value(val3);
 
     insertText('memberJoinDate', profileData.memberJoinDate);
 
     // insertProfileImgResource('memberImg', profileData[memberId].memberImg);
-    callPW(profileData.memberPassword);
+    //callPW(profileData.memberPassword);
+    //console.log(callPW(profileData.memberPassword));
 };
 
 // 1) 단일 값 맵핑
@@ -66,10 +70,12 @@ function insertText(tag, column) {
 //    // imgItem.setAttribute('src', column);
 //    // imgTag.appendChild(imgItem);
 // };
-function callPW(column) {
-    callpassword = column;
-    return callpassword;
-}
+// function callPW(column) {
+//     callpassword = column;
+//     console.log("callPW 함수얌");
+//     console.log(callpassword);
+//     return callpassword;
+// }
 //Tag & Data Mapping / END
 
 //=====================================2. MyPage Update=======================================
@@ -77,20 +83,25 @@ function callPW(column) {
 document.getElementById('buttonProfile').addEventListener('click', button_myprofile);
 
 function button_myprofile(){
+    console.log("체크올 레알 투르 ?");
 
     if(checkAll() === true){
         var customerMypageObject = new Object();
+
         customerMypageObject.memberNickname = document.getElementById("memberNickname").value;
         customerMypageObject.memberEmail = document.getElementById("memberEmail").value;
         customerMypageObject.introduce = document.getElementById("introduce").value;
 
+        console.log("수정값 들어왔니");
         console.log(typeof customerMypageObject, customerMypageObject); //수정 버튼 누를 시, 값들이 JSON으로 변환.
-
+        console.log("수정값 들어왔니1");
         Apis.updateCustomerProfile(customerMypageObject).then(response => { //JSON으로 변환된 값들을 DB로 보낸다.
-            Apis.getRequest('/customer/mypage').then(response =>{ //updatecustomerProfile함수에서 반환된 값(수정된 mypage 정보)를 다시 뿌려준다.
+            console.log("수정값 들어왔니22");
+            // Apis.getRequest('/customer/mypage').then(response =>{ //updatecustomerProfile함수에서 반환된 값(수정된 mypage 정보)를 다시 뿌려준다.
+            //     console.log("수정값 들어왔니33");
                 console.log(response);//promise객체로 옴. 이제 그걸 풀어서, 화면에 뿌려줘야함.
                 showMypage(response);
-            });
+            // });
         }); alert("수정 완료!")
     } else
         alert("필수입력 항목의 빈칸을 채워주세요~");
@@ -100,30 +111,30 @@ function button_myprofile(){
 ////////////////////////////////////////프로필수정 입력 여부 검사///////////////////////////////////////////////////////
 function checkAll() {
 
-    if (checkNickName === false) {
+    if (document.getElementById("memberNickname").value === "") {
+        alert("닉네임을 입력하세요!");
         return false;
-    }
-    if (checkMail === false) {
+    }else if (document.getElementById("memberEmail").value === "") {
+        alert("이메일을 입력하세요!");
         return false;
-    }
-
-    if (checkIntro === false) {
-        return false;
-    }
-    return true;
-}
-
-//자기소개 관련함수//
-//자기소개 체크
-function checkIntro() {
-    var text = document.getElementById("introduce");
-
-    if (text.value == "") {
-        alert("자기소개를 입력해 주세요!");
+    }else if (document.getElementById("introduce").value === "") {
+        alert("자기소개를 입력하세요!");
         return false;
     }else
         return true;
-};
+}
+
+//자기소개 관련함수//
+//자기소개 체크 -> 개인적으로 공부하자~ 왜 함수호출이 안되냐ㅜㅜ
+// function checkIntro() {
+//     var text = document.getElementById("introduce").value;
+//
+//     if (text === "") {
+//         alert("자기소개를 입력해 주세요!");
+//         return false;
+//     }else
+//         return true;
+// };
 
 //자기소개 란 글자수제한 함수: textarea에 입력된 문자의 바이트 수를 체크
 function checkByte(form, limitByte) {
@@ -172,16 +183,15 @@ function checkByte(form, limitByte) {
 
 //e-mail 관련함수
 //e-mail 입력체크
-function checkMail() {
-    var mail = document.getElementById("memberEmail").value;
-
-    if (mail == "") {
-        alert("E-Mail을 입력해 주세요!");
-        return false;
-
-    }else
-        return true;
-};
+// function checkMail() {
+//     var mail = document.getElementById("memberEmail").value;
+//
+//     if (mail == "") {
+//         alert("E-Mail을 입력해 주세요!");
+//         return false;
+//     }else
+//         return true;
+// };
 
 function emailValidity(val) {
     // 이메일 유효성 정규식
@@ -197,15 +207,16 @@ function emailValidity(val) {
     }
 };
 
-function checkNickName() {
-    var name = document.getElementById("memberNickname").value;
-
-    if (name == "") {
-        alert("닉네임을 입력해 주세요!");
-        return false;
-    } else
-        return true;
-}
+// function checkNickName() {
+//     var name = document.getElementById("memberNickname").value;
+//
+//     console.log("checknickname if 시작전");
+//     if (name === "") {
+//         alert("닉네임을 입력해 주세요!");
+//         return false;
+//     } else
+//         return true;
+// }
 
 function nickValidity(val) {
 
@@ -238,99 +249,77 @@ document.getElementById('buttonPassword').addEventListener('click', button_passw
 
 function button_password() {
 
-    if (CheckPasswordUpdate()===true) {
+    console.log("여기 들어옴?");
+    if (checkWritePW()===true && checkConfirmPW() ===true) {
+        console.log("여기 들어옴?22")
         var customerPwUpdateObject = new Object();
-        customerPwUpdateObject.memberPassword = document.getElementById("confirmpassword").value;
 
-        Apis.updatecustomerProfile(customerPwUpdateObject);//보내주기만 하면 됨.. 값을 안 받아와도 됨.
-        alert("비밀번호 수정 완료! ");
+        customerPwUpdateObject.memberPassword = document.getElementById("memberPassword").value;
+        customerPwUpdateObject.newPassword = document.getElementById("newPassword").value;
+        customerPwUpdateObject.checkPassword = document.getElementById("checkPassword").value;
 
+        console.log(typeof customerPwUpdateObject, customerPwUpdateObject);
+        console.log("비밀번호를 서버에 보낸다아");
+
+        Apis.patchRequest('/customer/mypage',customerPwUpdateObject).then(response => {
+            if(response.res === "success"){
+                console.log("비밀번호 변경");
+                alert("비밀번호 수정 완료! ");
+            }else
+                alert("현재 비밀번호를 올바르게 입력하세요!");
+        });
     }else{
         alert("비밀번호 수정 오류! 다시 확인해주세요");
     }
 
 };
 
-//입력값 여부, 일치 검사
-function CheckPasswordUpdate(){
+//현재 비밀번호
+// : 입력여부
+function checkWritePW(){
+    console.log("여기 들어옴?33");
 
-    if (checkPassword===false) {
+    // const memberPassword = document.getElementById("memberPassword").value;
+    // const newPassword = document.getElementById("newPassword").value;
+    // const checkPassword = document.getElementById("checkPassword").value;
+    //
+    // console.log(memberPassword);
+    // console.log(newPassword);
+    // console.log(checkPassword);
+    console.log(document.getElementById("memberPassword").value);
+    console.log(document.getElementById("newPassword").value);
+    console.log(document.getElementById("checkPassword").value);
+
+    if(document.getElementById("memberPassword").value === ""){
+        alert("현재 비밀번호를 입력하세요");
         return false;
     }
-    if (checkNewPassword === false) {
+    if(document.getElementById("newPassword").value === ""){
+        alert("변경할 비밀번호를 입력하세요");
         return false;
     }
-    if (checkConfirmPassword === false) {
+    if(document.getElementById("checkPassword").value === ""){
+        alert("변경할 비밀번호를 한번 더 입력하세요");
         return false;
     }
+
     return true;
 }
 
-//1) 현재비밀번호 입력 칸
-// : 입력값 존재 여부 체크
-// : 데이터 불러와서 아이디와 맞는 비밀번호인지 비교
-function checkPassword() {
-    var pw = document.getElementById("memberPassword").value;
+//새 비밀번호 & 새 비밀번호 확인
+// : 두 항목 일치 여부
+//var checkConfirmPWF = checkConfirmPW();
 
-    if(pw == ""){
-        alert("기존 비밀번호를 입력해 주세요!");
+function checkConfirmPW() {
+    console.log("여기 언제 들어옴?33");
+    if(document.getElementById("newPassword").value != document.getElementById("checkPassword").value){
+        alert("변경할 비밀번호가 일치하지 않습니다.");
         return false;
-    }else{
-        // Apis.postRequest("/customer/mypage, pw).then(response =>{
-        //     if(pw === response[memberId].memberPassword){
-        //         document.getElementById("pw-notify").innerHTML = "비밀번호가 일치합니다.";
-        //     }else
-        //     {
-        //         document.getElementById("pw-notify").innerHTML = "비밀번호가 일치하지 않습니다.";
-        //         document.getElementById("pw-notify").style.color = "red";
-        //     }
-        //
-        // }) //프로필 버튼 눌렸을 때 다시 담아가니까.. 새롭게 비밀번호만 불러오는 거..
-            if(pw === callpassword){
-                    document.getElementById("pw-notify").innerHTML = "비밀번호가 일치합니다.";
-                    return true;
-                }else {
-                    document.getElementById("pw-notify").innerHTML = "비밀번호가 일치하지 않습니다.";
-                    document.getElementById("pw-notify").style.color = "red";
-                    return false;
-                }//이미 한번 뿌려진 비밀번호 callpassword를 이용
-
-    }
-}
-
-
-//2) 새 비밀번호,새 비밀번호 확인 입력 함수_ 1.입력여부,2.유효성검사,3.새 비밀번호,새 비밀번호 일치확인
-function checkNewPassword(){
-    var prepw = document.getElementById("memberPassword").value;
-    var newpw = document.getElementById("newpassword").value;
-
-    if(prepw == newpw){
-        alert("변경할 비밀번호는 기본 비밀번호와 같지 않아야 합니다.");
-        return false;
-    }
-    if (newpw == "") {
-        alert("새 비밀번호를 입력하세요");
-        return false;
-    }
-    else
+    }else {
+        console.log("변경할 비밀번호 확인 완료");
         return true;
-};
-
-function checkConfirmPassword(){
-    var newpw = document.getElementById("newpassword").value;
-    var confirmpw = document.getElementById("confirmpassword").value;
-
-    if(confirmpw == ""){
-        alert("새 비밀번호를 한번 더 입력해주세요");
-        return false;
     }
-    if(newpw != confirmpw) {
-        alert("변경할 비밀번호가 일치하지 않습니다");
-        return false;
-    }
-    return true;
-};
-
+}
 
 /////////////////////////////////////////////새 비밀번호 유효성검사/////////////////////////////////////////////////
 function newPwValidity(val) {

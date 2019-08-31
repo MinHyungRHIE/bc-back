@@ -1,0 +1,38 @@
+package com.pap.bucketclass.model;
+
+import com.pap.bucketclass.entity.Member;
+
+public class PasswordModel {
+	
+	private String nowPassword;
+	private String newPassword;
+	private String comfirmNewPassword;
+	
+	
+	public String getNowPassword() {
+		return nowPassword;
+	}
+	public void setNowPassword(String nowPassword) {
+		this.nowPassword = nowPassword;
+	}
+	public String getNewPassword() {
+		return newPassword;
+	}
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
+	public String getComfirmNewPassword() {
+		return comfirmNewPassword;
+	}
+	public void setComfirmNewPassword(String comfirmNewPassword) {
+		this.comfirmNewPassword = comfirmNewPassword;
+	}
+	
+	public Member toMember() {
+		Member member = new Member();
+		member.setMemberPassword(newPassword);
+		
+		return member;
+	}
+
+}

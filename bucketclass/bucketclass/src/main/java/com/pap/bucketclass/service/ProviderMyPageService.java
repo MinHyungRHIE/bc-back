@@ -9,6 +9,8 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
 import com.pap.bucketclass.entity.Member;
+import com.pap.bucketclass.model.PasswordModel;
+import com.pap.bucketclass.model.ProviderMyPageModel;
 import com.pap.bucketclass.repository.MemberRepository;
 
 @Service
@@ -31,4 +33,32 @@ public class ProviderMyPageService {
 		return found;
 	}
 	
+	@Transactional
+	public Member updateMember(ProviderMyPageModel providerModel, String memberId) {
+		Member member = memberRepo.findByMemberId(memberId);
+		if (member != null) {
+			member.setMemberNickname(providerModel.getMemberNickname());
+			member.setMemberEmail(providerModel.getMemberEmail());
+			member.setIntroduce(providerModel.getIntroduce());
+			member.setCareer(providerModel.getCareer());
+			member.setCerti(providerModel.getCerti());
+		} else {
+			throw new AccessDeniedException("403 error");
+		}
+		return memberRepo.save(member);
+	}
+	
+	@Transactional
+	public Boolean changePassword(PasswordModel model, String memberId) {
+		Member member = memberRepo.findByMemberId(memberId);
+		if(member != null && 
+				member.getPassword().equals(model.getMemberPassword()) &&
+				!(model.getMemberPassword().equals(model.getNewPassword()))) {
+			member.setMemberPassword(model.getNewPassword());
+			memberRepo.save(member);
+			return true;
+		}else {
+			return false;
+		}
+	}
 }

@@ -1,0 +1,47 @@
+package com.pap.bucketclass.service;
+
+import static com.pap.bucketclass.util.RoleFilter.containRoleByName;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.stereotype.Service;
+
+import com.pap.bucketclass.entity.Member;
+import com.pap.bucketclass.model.CustomerMyPageModel;
+import com.pap.bucketclass.repository.MemberRepository;
+
+@Service
+public class CustomerMyPageService {
+	
+	@Autowired
+	private LocalMemberDetailsService memberDetailsService;
+	@Autowired
+	private MemberRepository memberRepo;
+
+	@Transactional
+	public Member loadMember(String memberId) {
+		Member member = (Member) memberDetailsService.loadUserByUsername(memberId);
+		Member found = null;
+		if(containRoleByName(member.getRoles(), "ROLE_CUSTOMER")) {
+			found = memberRepo.findByMemberId(memberId);
+		}else {
+			throw new AccessDeniedException("403 error");
+		}
+		return found;
+	}
+	
+	public Member updateMember(CustomerMyPageModel customerModel, String memberId) {
+		if(memberRepo.findById(memberId).equals(memberId)) {
+			System.out.println("if문 안에 들어왔니..?");
+			memberRepo.findByMemberNickname(customerModel.getMemberNickname());
+			memberRepo.findByMemberEmail(customerModel.getMemberEmail());
+			member.setIntroduce(customerModel.getIntroduce());
+		}else {
+			throw new AccessDeniedException("403 error");
+		}
+		return member;
+	}
+	
+}

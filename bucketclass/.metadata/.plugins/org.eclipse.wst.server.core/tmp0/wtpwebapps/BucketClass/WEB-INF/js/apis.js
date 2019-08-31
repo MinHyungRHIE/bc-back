@@ -40,6 +40,8 @@ function patchRequest(path, body = {}) {
   } else {
     contentType = 'application/json; charset=UTF-8';
     data = JSON.stringify(body);
+    console.log(data, "데이터 전송 성공!!!!!오예오예");
+    console.log(typeof data);
   }
   // Default options are marked with *
   return fetch(baseUrl(path), {
@@ -100,7 +102,7 @@ function putRequest(path, body = {}) {
     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
     // credentials: 'same-origin', // include, *same-origin, omit
     headers: {
-      'Content-Type': contentType
+      'Content-Type': application/json
     },
     // redirect: 'follow', // manual, *follow, error
     // referrer: 'no-referrer', // no-referrer, *client
@@ -140,12 +142,12 @@ function providerProfile(content){
   return getRequest(content);
 }
 
-function updateProviderProfile(content) {
-  return postRequest('/provider/mypage', content);
+function updateProviderProfile(object) {
+  return patchRequest('/provider/mypage/update', object);
 }
 
-function updateCustomerProfile(content){
-  return postRequest('/customer/mypage', content);
+function updateCustomerProfile(object){
+  return patchRequest('/customer/mypage/update', object);
 }
 
 function emailDuplicateCheck(content){

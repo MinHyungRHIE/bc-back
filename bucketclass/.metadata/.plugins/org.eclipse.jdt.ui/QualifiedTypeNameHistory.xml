@@ -57,7 +57,7 @@
 <fullyQualifiedTypeName name="java.security.Principal"/>
 <fullyQualifiedTypeName name="com.pap.bucketclass.entity.Role"/>
 <fullyQualifiedTypeName name="java.util.Set"/>
-<fullyQualifiedTypeName name="com.pap.bucketclass.entity.Member"/>
 <fullyQualifiedTypeName name="com.pap.bucketclass.model.ResponseModel"/>
 <fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="com.pap.bucketclass.entity.Member"/>
 </qualifiedTypeNameHistroy>
