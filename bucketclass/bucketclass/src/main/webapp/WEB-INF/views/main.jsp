@@ -607,59 +607,35 @@
 	<script type="text/javascript" src="/js/apis.js"></script>
 	<script src="/js/redirect.js"></script>
 	<script>
-		console.log("user role >>> ");
+      let getRoleName = '${rolename}' ;
+      let getNickName = '${nick}'
+      if (getRoleName === "ROLE_CUSTOMER") {
 
-		if ('${rolename}' === "ROLE_CUSTOMER") {
+         var headerContentCustomer = '<div class="user-name"><span><img src="" alt=""></span>[이용자]'
+         	   + getNickName
+         	   + '님, 안녕하세요!</div>'
+               + '<ul><li><a href="/customer/mypage"><i class="sl sl-icon-settings"></i> 마이페이지</a></li>'
+               + '<li><a onclick="viewBookmark();"><i class="fa fa-calendar-check-o"></i> 나의 수강 관리</a></li>'
+               + '<li><a href="/logout"><i class="sl sl-icon-power"></i> 로그아웃</a></li></ul>';
 
-			var headerContentCustomer = '<div class="user-name"><span><img src="" alt=""></span>이용자님, 안녕하세요!</div>'
-					+ '<ul><li><a href="/customer/mypage"><i class="sl sl-icon-settings"></i> 마이페이지</a></li>'
-					+ '<li><a onclick="viewBookmark();"><i class="fa fa-calendar-check-o"></i> 나의 수강 관리</a></li>'
-					+ '<li><a href="/logout"><i class="sl sl-icon-power"></i> 로그아웃</a></li></ul>';
+         document.querySelector('#user-menu').innerHTML = headerContentCustomer;
+               
+      } else if (getRoleName === "ROLE_PROVIDER") {
 
+         var headerContentProvider = '<div class="user-name"><span><img src="" alt=""></span>[제공자]'+getNickName+'님, 안녕하세요!</div>'
+               + '<ul><li><a href="/provider/mypage"><i class="sl sl-icon-settings"></i> 마이페이지</a></li>'
+               + '<li><a onclick="viewMyListing();"><i class="fa fa-calendar-check-o"></i> 나의 수업 관리</a></li>'
+               + '<li><a href="/logout"><i class="sl sl-icon-power"></i> 로그아웃</a></li></ul>';
 
-			document.querySelector('#user-menu').innerHTML = headerContentCustomer;
-					
-		} else if ('${rolename}' === "ROLE_PROVIDER") {
+         document.querySelector('#user-menu').innerHTML = headerContentProvider;
+               
+      } else {
+         var headerContent = '<a href="/login" class="sign-in">로그인</a>'
+               + '<a href="/signup" class="sign-in">회원가입</a>';
 
-			var headerContentProvider = '<div class="user-name"><span><img src="" alt=""></span>제공자님, 안녕하세요!</div>'
-					+ '<ul><li><a href="/provider/mypage"><i class="sl sl-icon-settings"></i> 마이페이지</a></li>'
-					+ '<li><a onclick="viewMyListing();"><i class="fa fa-calendar-check-o"></i> 나의 수업 관리</a></li>'
-					+ '<li><a href="/logout"><i class="sl sl-icon-power"></i> 로그아웃</a></li></ul>';
-
-
-			document.querySelector('#user-menu').innerHTML = headerContentProvider;
-					
-		} else {
-			console.log("else라도 찍혀야되는ㄷ[ㅔ......]")
-			var headerContent = '<a href="/login" class="sign-in">로그인</a>'
-					+ '<a href="/signup" class="sign-in">회원가입</a>';
-
-			document.querySelector('#user-menu').innerHTML = headerContent;
-		}
-	</script>
-
-	<!-- Google Autocomplete -->
-	<script>
-		function initAutocomplete() {
-			var input = document.getElementById('autocomplete-input');
-			var autocomplete = new google.maps.places.Autocomplete(input);
-
-			autocomplete.addListener('place_changed', function() {
-				var place = autocomplete.getPlace();
-				if (!place.geometry) {
-					window.alert("No details available for input: '"
-							+ place.name + "'");
-					return;
-				}
-			});
-
-			if ($('.main-search-input-item')[0]) {
-				setTimeout(function() {
-					$(".pac-container").prependTo("#autocomplete-container");
-				}, 300);
-			}
-		}
-	</script>
+         document.querySelector('#user-menu').innerHTML = headerContent;
+      }
+   </script>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initAutocomplete"></script>
 

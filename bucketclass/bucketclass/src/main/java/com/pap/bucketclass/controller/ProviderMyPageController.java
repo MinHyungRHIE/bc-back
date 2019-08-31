@@ -57,7 +57,7 @@ public class ProviderMyPageController {
 		return null;
 	}
 
-	//이용자가 MyPage에서 정보를 수정할 때 들어오는 경로 & 수정된 데이터 보내기
+	//제공자가 MyPage에서 정보를 수정할 때 들어오는 경로 & 수정된 데이터 보내기
 	@PreAuthorize("hasRole('ROLE_PROVIDER')")
 	@PatchMapping(
 			value="/provider/mypage/update",
@@ -73,7 +73,7 @@ public class ProviderMyPageController {
 		return null;
 	}
 
-	//이용자가 password를 변경할 때 들어오는 경로
+	//제공자가 password를 변경할 때 들어오는 경로
 	@PreAuthorize("hasRole('ROLE_PROVIDER')")
 	@PatchMapping(
 			value="/provider/mypage",

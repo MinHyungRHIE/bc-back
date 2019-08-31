@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pap.bucketclass.entity.Member;
 import com.pap.bucketclass.entity.Services;
-import com.pap.bucketclass.model.CreateTemplateModel;
-import com.pap.bucketclass.model.PostServiceModel;
+import com.pap.bucketclass.model.QueryServiceModel;
 import com.pap.bucketclass.model.RequestModel;
 import com.pap.bucketclass.model.ResponseModel;
 import com.pap.bucketclass.model.SignUpModel;
@@ -24,7 +23,9 @@ import com.pap.bucketclass.service.TemplateService;
 
 @Controller
 public class TestController {
-
+	/*********************
+	 *TEST*
+	 *********************/
 
 	@Autowired
 	MemberService memberService;
@@ -38,69 +39,6 @@ public class TestController {
 	@Autowired
 	ServiceRegistSerivce serviceRegistSerivce;
 
-	/********************
-	 *서비스 템플릿 등록 테스트*
-	 ********************/
-	@RequestMapping(
-			path="/template-register",
-			method= RequestMethod.POST,
-			produces= {
-					MediaType.APPLICATION_JSON_UTF8_VALUE,
-					MediaType.APPLICATION_ATOM_XML_VALUE
-			})
-	public @ResponseBody CreateTemplateModel createTemplate(@RequestBody CreateTemplateModel model) {
-		makeTemplateService.createTemplate(model);
-		return model;
-	}
-
-	/*******************
-	 *서비스 실제  등록 테스트*
-	 *******************/
-	@RequestMapping(
-			path="/provider/service-register",
-			method= RequestMethod.POST,
-			produces= {
-					MediaType.APPLICATION_JSON_UTF8_VALUE,
-					MediaType.APPLICATION_ATOM_XML_VALUE
-			})
-	public @ResponseBody Services createService(@RequestBody PostServiceModel model) {
-		System.out.println(model.toString());
-		return serviceRegistSerivce.insertServices(model);
-	}
-
-	/********************
-	 *실제 서비스 검색 테스트*
-	 ********************/
-	@RequestMapping(
-//			path="/service-listing/{page}",
-			path="/service-listing",
-			method= RequestMethod.POST,
-			produces= {
-					MediaType.APPLICATION_JSON_UTF8_VALUE,
-					MediaType.APPLICATION_ATOM_XML_VALUE
-			})
-	public @ResponseBody List<Services> getAllService() {
-		return listingService.listOfService();
-	}
-	
-	
-//	public @ResponseBody QueryServiceModel getAllService(
-//			@PathVariable int page,
-//			@RequestBody QueryServiceModel queryModel) {
-//		int size = 3;
-//		Pageable pageable = PageRequest.of(page - 1, size, Sort.by("service_price").descending());
-//		Page<ServiceListModel> todoList = listingService.listOfTodo(pageable);
-//
-//		modelMap.put("items", todoList.stream().collect(Collectors.toList()));
-//		modelMap.put("page", page);
-//		modelMap.put("size", size);
-//		modelMap.put("totalCount", todoList.getTotalElements());
-//		return queryModel;
-//	}
-
-	/*********************
-	 *Request Model 테스트*
-	 *********************/
 	@RequestMapping(
 			path="/test/1",
 			method= RequestMethod.POST,
@@ -115,37 +53,34 @@ public class TestController {
 
 	@RequestMapping(
 			path="/test/2",
-			method= RequestMethod.POST,
+			method= RequestMethod.GET,
 			produces= {
 					MediaType.APPLICATION_JSON_UTF8_VALUE,
 					MediaType.APPLICATION_ATOM_XML_VALUE
 			})
-	public @ResponseBody List<Member> reqTest2(@RequestBody RequestModel model) {
+	public @ResponseBody List<Member> reqTest2() {
 		return memberService.selectAll();
 	}
 	
 	@RequestMapping(
-			path="/test/MyPageData",
+			path="/test/3",
 			method= RequestMethod.GET)
 	public String reqTest3() {
-		return "testMyPage";
+		return "index";
 	}
 	
 	@RequestMapping(
-			path="/test/MyPageData",
-			method= RequestMethod.POST,
-			produces= {
-					MediaType.APPLICATION_JSON_UTF8_VALUE,
-					MediaType.APPLICATION_ATOM_XML_VALUE
-			})
-	public @ResponseBody List<Member> reqTest4(@RequestBody RequestModel model) {
-		return memberService.selectAll();
-	}
-	
-	@RequestMapping(
-			path="/test/5",
+			path="/test/4",
 			method= RequestMethod.POST)
-	public @ResponseBody RequestModel reqTest5(@RequestBody RequestModel model) {
-		return model;
+	@ResponseBody
+	public QueryServiceModel reqTest4(QueryServiceModel qsm) {
+		return qsm;
+	}
+	
+	@RequestMapping(
+			path="/test/img1",
+			method= RequestMethod.GET) 
+	public String reqTest5() {
+		return "imageUploadTest";
 	}
 }

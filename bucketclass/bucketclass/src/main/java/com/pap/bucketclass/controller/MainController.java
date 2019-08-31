@@ -27,15 +27,12 @@ public class MainController {
 			System.out.println(userRole);
 			String roleStr = null; 
 			Iterator<Role> itr = userRole.iterator();
-			int cnt = 0;
 			while(itr.hasNext()) {
 				roleStr = itr.next().getRoleName();
-				cnt++;
 			}
-			System.out.println("실행횟수 : " + cnt);
-			System.out.println("담은값 : " + roleStr);
 
 			modelMap.addAttribute("rolename", roleStr);
+			modelMap.addAttribute("nick",((Member)principal).getMemberNickname());
 			return "main";
 		}
 		return "main";

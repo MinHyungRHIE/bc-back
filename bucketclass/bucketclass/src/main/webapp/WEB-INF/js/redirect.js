@@ -25,3 +25,7 @@ function viewMemberRegister() {
 function viewAddListing() {
     location.href = "../views/dashboard-add-listing.jsp";
 };
+
+function viewServiceListing() {
+    Apis.getRequest(`/service-listing`);
+};

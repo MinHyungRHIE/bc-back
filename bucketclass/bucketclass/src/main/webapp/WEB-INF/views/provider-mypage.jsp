@@ -231,7 +231,7 @@ pageEncoding="UTF-8"%>
 
 					<!--				<li><a href="dashboard-reviews.html"><i class="sl sl-icon-star"></i> Reviews</a></li>-->
 					<!--				<li><a href="dashboard-bookmarks.html"><i class="sl sl-icon-heart"></i> Bookmarks</a></li>-->
-					<li><a id="sideBarAddListing"><i class="sl sl-icon-plus"></i> Add Listing</a></li>
+					<li><a href="/provider/add-service" id="sideBarAddListing"><i class="sl sl-icon-plus"></i> Add Listing</a></li>
 				</ul>
 
 				<ul data-submenu-title="">
