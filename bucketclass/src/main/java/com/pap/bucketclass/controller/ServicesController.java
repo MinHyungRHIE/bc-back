@@ -32,7 +32,7 @@ import com.pap.bucketclass.service.TemplateService;
 
 @Controller
 public class ServicesController {
-	
+
 	@Autowired
 	MemberService memberService;
 
@@ -54,7 +54,7 @@ public class ServicesController {
 	public String formServiceList() {
 		return "listings-list-full-width";
 	}
-	
+
 	@RequestMapping(
 			path="/service-listing",
 			method= RequestMethod.POST,
@@ -70,9 +70,9 @@ public class ServicesController {
 			@RequestParam(
 					name="categorySubject",
 					required=false) String categorySubject) {
-		int size = 5, page = 1; //default
+		int size = 3, page = 1; //default
 		//정렬 : (기본) 최근 등록순
-		String defaultSort = "serviceModifiedDate";
+		
 		if(Optional.ofNullable(serviceTitle).isPresent()){
 			System.out.println("param serviceTitle exists");
 			queryModel.setServiceTitle(serviceTitle);
@@ -80,14 +80,17 @@ public class ServicesController {
 		if(Optional.ofNullable(categorySubject).isPresent()) {
 			queryModel.setCategorySubject(categorySubject);
 		}
+		
+		
+		String defaultSort ="serviceModifiedDate";
 		Pageable pageable = PageRequest.of(page - 1, size, Sort.by(defaultSort).descending());
 		Page<Services> serviceList = listingService.searchingListAndPageable(queryModel, pageable);
 		return new ResultItems<Services>(serviceList.stream().collect(Collectors.toList()), page, size, serviceList.getTotalElements());
 	}
-	
+
 	@RequestMapping(
 			path="/service-listing/{page}",
-			method= RequestMethod.GET, //POST로 바꿔야함
+			method= RequestMethod.POST, 
 			produces= {
 					MediaType.APPLICATION_JSON_UTF8_VALUE,
 					MediaType.APPLICATION_ATOM_XML_VALUE
@@ -97,33 +100,69 @@ public class ServicesController {
 					name="page",
 					required=false) String pageStr,
 			@RequestBody(required=false) QueryServiceModel queryModel) {
-		int size = 5; int page = 1;
+		int size = 3; int page = 1;
 		if(pageStr != null) {
 			page = Integer.parseInt(pageStr);
 		}
 		queryModel = Optional.ofNullable(queryModel).orElse(new QueryServiceModel());
 		//검색 : 키워드, 카테고리 대분류(1), 소분류(4)
 		//정렬 : 최근순, 높은 가격순, 낮은 가격순
-		String sortByName = "serviceModifiedDate"; 
-		Pageable pageable = PageRequest.of(page - 1, size, Sort.by(sortByName).descending()); //default
-		if(queryModel.getOrderBy() != null && queryModel.getOrderBy().equals("최근 등록순")) {
-			sortByName = "serviceModifiedDate";
-			pageable = PageRequest.of(page - 1, size, Sort.by(sortByName).descending());
-		}else if(queryModel.getOrderBy() != null && queryModel.getOrderBy().equals("높은 가격순")) {
-			sortByName = "servicePrice";
-			pageable = PageRequest.of(page - 1, size, Sort.by(sortByName).descending());
-		}else if(queryModel.getOrderBy() != null && queryModel.getOrderBy().equals("낮은 가격순")) {
-			sortByName = "servicePrice";
-			pageable = PageRequest.of(page - 1, size, Sort.by(sortByName).ascending());
+		 
+//		Pageable pageable = PageRequest.of(page - 1, size, Sort.by(sortByName).descending()); //default
+//		if(queryModel.getOrderBy() != null && queryModel.getOrderBy().equals("최근 등록순")) {
+//			sortByName = "serviceModifiedDate";
+//			pageable = PageRequest.of(page - 1, size, Sort.by(sortByName).descending());
+//		}else if(queryModel.getOrderBy() != null && queryModel.getOrderBy().equals("높은 가격순")) {
+//			sortByName = "servicePrice";
+//			pageable = PageRequest.of(page - 1, size, Sort.by(sortByName).descending());
+//		}else if(queryModel.getOrderBy() != null && queryModel.getOrderBy().equals("낮은 가격순")) {
+//			sortByName = "servicePrice";
+//			pageable = PageRequest.of(page - 1, size, Sort.by(sortByName).ascending());
+//		}
+//		System.out.println("");
+//		System.out.println(sortByName);
+		Pageable pageable = null;
+		if(!Optional.ofNullable(queryModel).isPresent()) {
+			queryModel.setOrderBy("serviceModifiedDate");
+			pageable = PageRequest.of(page - 1, size, Sort.by("serviceModifiedDate").descending());
 		}
+		String sortByName = queryModel.getOrderBy();
 		
+		
+		switch(sortByName) {
+		case "최근 등록순":
+			queryModel.setOrderBy("serviceModifiedDate");
+			pageable = PageRequest.of(page - 1, size, Sort.by("serviceModifiedDate").descending());
+			break;
+		case "높은 가격순":
+			queryModel.setOrderBy("servicePrice");
+			pageable = PageRequest.of(page - 1, size, Sort.by("servicePrice").descending());
+			break;
+		case "낮은 가격순":
+			queryModel.setOrderBy("servicePrice");
+			pageable = PageRequest.of(page - 1, size, Sort.by("servicePrice").ascending());
+			break;
+		}
+		System.out.println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+		System.out.println(pageable.getSort());
+		System.out.println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
 		Page<Services> serviceList = listingService.searchingListAndPageable(queryModel, pageable);
 		return new ResultItems<Services>(serviceList.stream().collect(Collectors.toList()), page, size, serviceList.getTotalElements());
+	}
+
+	@RequestMapping(
+			path="/service-listing/{serviceId}",
+			method= RequestMethod.GET)
+	public String selectServiceForm(
+			@PathVariable(
+					name="serviceId",
+					required=false) String serviceId){
+		return "listings-single-page";
 	}
 	/*******************************
 	 * [PROVIDER] 개인 실제 서비스 검색 *
 	 ********************************/
-	
+
 	/*******************
 	 * 서비스 템플릿  등록 *
 	 ********************/
@@ -133,7 +172,7 @@ public class ServicesController {
 	public String templateForm() {
 		return "dashboard-add-listing";
 	}
-	
+
 	@RequestMapping(
 			path="/provider/add-service",
 			method= RequestMethod.POST,
@@ -147,7 +186,7 @@ public class ServicesController {
 		if (getService != null) {resModel.setRes("success");}else{resModel.setRes("fail");}
 		return resModel;
 	}
-	
+
 	/*****************
 	 * 서비스 진짜  등록 *
 	 ******************/
@@ -157,7 +196,7 @@ public class ServicesController {
 	public String createServiceForm(@PathVariable("serviceTemplateId") Long serviceTemplateId) {
 		return "dashboard-registration-listings";
 	}
-	
+
 	@RequestMapping(
 			path="/provider/my-template/{serviceTemplateId}/regist",
 			method= RequestMethod.POST,
@@ -179,36 +218,36 @@ public class ServicesController {
 		System.out.println(resModel.getRes());
 		return resModel;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+	///////////////////////////////////////////////////////////////////////////////////////////////
 
 
 	/***************************
 	 *실제 서비스 검색(리스트 페이지 + 정렬)*
 	 ***************************/
-//	@RequestMapping(
-//			path="/service-listing/{page}",
-//			method= RequestMethod.POST,
-//			produces= {
-//					MediaType.APPLICATION_JSON_UTF8_VALUE,
-//					MediaType.APPLICATION_ATOM_XML_VALUE
-//			})
-//	public @ResponseBody ResultItems<Services> pageableService(
-//			@PathVariable("page") int page,
-//			@RequestBody QueryServiceModel queryModel) {
-//		int size = 3;
-//		Pageable pageable = PageRequest.of(page - 1, size, Sort.by("servicePrice").descending());
-//		Page<Services> serviceList = listingService.listPageable(pageable);
-//		System.out.println(serviceList.getSize());
-//		return new ResultItems<Services>(serviceList.stream().collect(Collectors.toList()), page, size, serviceList.getTotalElements());
-//	}
+	//	@RequestMapping(
+	//			path="/service-listing/{page}",
+	//			method= RequestMethod.POST,
+	//			produces= {
+	//					MediaType.APPLICATION_JSON_UTF8_VALUE,
+	//					MediaType.APPLICATION_ATOM_XML_VALUE
+	//			})
+	//	public @ResponseBody ResultItems<Services> pageableService(
+	//			@PathVariable("page") int page,
+	//			@RequestBody QueryServiceModel queryModel) {
+	//		int size = 3;
+	//		Pageable pageable = PageRequest.of(page - 1, size, Sort.by("servicePrice").descending());
+	//		Page<Services> serviceList = listingService.listPageable(pageable);
+	//		System.out.println(serviceList.getSize());
+	//		return new ResultItems<Services>(serviceList.stream().collect(Collectors.toList()), page, size, serviceList.getTotalElements());
+	//	}
 
 	//	public @ResponseBody QueryServiceModel getAllService(
 	//			@PathVariable int page,
@@ -223,7 +262,7 @@ public class ServicesController {
 	//		modelMap.put("totalCount", todoList.getTotalElements());
 	//		return queryModel;
 	//	}
-	
+
 	/*************************************************
 	 *제공자 전용 페이지에서 서비스 검색(리스트 페이지 + 정렬)*
 	 **************************************************/
@@ -233,7 +272,7 @@ public class ServicesController {
 	public String providerServiceListForm() {
 		return "my-listing";
 	}
-	
+
 	@RequestMapping(
 			path="/provider/service-listing/{page}",
 			method= RequestMethod.POST,
@@ -243,8 +282,8 @@ public class ServicesController {
 			})
 	public @ResponseBody ResultItems<Services> pageableService(
 			@PathVariable(
-                    name = "page",
-                    required = false) String pageStr,
+					name = "page",
+					required = false) String pageStr,
 			@RequestBody QueryServiceModel queryModel) {
 		int size = 3;
 		int page = 1; //defaultValue

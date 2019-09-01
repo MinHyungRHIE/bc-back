@@ -49,7 +49,7 @@ public class ListingService {
     	String categoryType =  queryServiceModel.getCategoryType();
     	String categoryPeriod =  queryServiceModel.getCategoryPeriod();
     	String categoryScale = queryServiceModel.getCategoryScale();
-    	String categoryPlace = queryServiceModel.getCategoryPeriod();
+    	String categoryPlace = queryServiceModel.getCategoryPlace();
     	
     	serviceTitle = Optional.ofNullable(serviceTitle).orElse("");
     	categorySubject =Optional.ofNullable(categorySubject).orElse("");

@@ -296,10 +296,9 @@ SELECT * FROM service;
 SELECT * FROM service_address;
 SELECT * FROM service_category;
 
-SELECT * 
-FROM service
-WHERE service_title LIKE '%일%';
+SELECT * FROM service_template;
 
+DELETE FROM service_category WHERE category_id=2;
 -- USE back;
 
 -- DROP TABLE IF EXISTS jsontest;

@@ -309,7 +309,7 @@
 									<option label="blank">카테고리 선택</option>
 									<option>요리</option>
 									<option>외국어</option>
-									<option>헬스/웰빙</option>
+									<option>헬스케어</option>
 									<option>비즈니스</option>
 									<option>일상생활</option>
 									<option></option>
