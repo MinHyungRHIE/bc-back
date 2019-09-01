@@ -22,9 +22,9 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.pap.bucketclass.model.PostServiceModel;
 import com.pap.bucketclass.support.BooleanToLongConverter;
+import com.pap.bucketclass.support.PriceStringToIntegerPriceConverter;
 import com.pap.bucketclass.util.ConverterPackage;
 
 @Entity
@@ -85,6 +85,7 @@ public class Services implements Serializable{
 	
 	@Column(name="service_price")
 	@NotNull
+	@Convert(converter = PriceStringToIntegerPriceConverter.class)
 	private String servicePrice;
 	
 	@Column(name="service_date_description")
@@ -268,7 +269,7 @@ public class Services implements Serializable{
     
 	/*서비스 저장하기 위한 Methods*/
 	public void setNewDataToPostService(PostServiceModel newInputModel) {
-		this.servicePrice = ConverterPackage.convertStringToPriceFormat(newInputModel.getServicePrice());
+		this.servicePrice = newInputModel.getServicePrice();
 		this.serviceDateDescription = newInputModel.getServiceDateDescription();
 		this.serviceStartDate = ConverterPackage.convertDateStringToTimestamp(newInputModel.getServiceStartDate());
 		this.serviceEndDate = ConverterPackage.convertDateStringToTimestamp(newInputModel.getServiceEndDate());

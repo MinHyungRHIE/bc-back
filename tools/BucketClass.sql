@@ -70,7 +70,7 @@ CREATE TABLE `service` (
     `service_description` 	    MEDIUMTEXT   				NOT NULL COMMENT '서비스내용', -- service_description
 	`service_register_date` 	DATETIME  					NOT NULL DEFAULT NOW() COMMENT '서비스등록일', -- service_register_date
 	`service_register_isActive`	BOOLEAN     				NOT NULL DEFAULT TRUE COMMENT '서비스활성상태( T:활성, F:비활성)', -- service_register_isAcive
-	`service_price`           	VARCHAR(255)   				NOT NULL COMMENT '서비스가격', -- service_price
+	`service_price`           	INT(36)  	 				NOT NULL COMMENT '서비스가격', -- service_price
 	`service_date_description` 	VARCHAR(255)   				NOT NULL COMMENT '서비스기간상세설명', -- service_date_description
 	`service_start_date`     	DATETIME   					NOT NULL COMMENT '서비스시작일', -- service_start_date
 	`service_end_date`       	DATETIME   					NOT NULL COMMENT '서비스종료일', -- service_end_date
@@ -288,6 +288,17 @@ INSERT INTO `member_role`
 INSERT INTO `member_role`
 	SELECT @providerId, 'role_provider' FROM DUAL;
 
+USE back;
+
+SELECT * FROM service_template;
+SELECT service_price FROM service ORDER BY service_price;
+SELECT * FROM service;
+SELECT * FROM service_address;
+SELECT * FROM service_category;
+
+SELECT * 
+FROM service
+WHERE service_title LIKE '%일%';
 
 -- USE back;
 

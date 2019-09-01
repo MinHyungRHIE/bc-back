@@ -8,19 +8,31 @@
 
 //날짜데이터에 '오후'가 있으면 12시간 추가해주기. 그다음 YYYYMMDDHHMMSS로 형태로 변환
 function DateConverter(a) {
+	console.log(a);
 	if(a.includes('오후')){
 		var ifDate = a.replace(/[^0-9]/g,"");
 		ifDate = ifDate+"00";
-
 		// 숫자로 전달
 		// return Number(ifDate)+120000;
-
+		
 		// 스트링으로 전달
 		var temIf = Number(ifDate)+120000;
+		//ifDate가 12 00 00 이면 (원래는 오후 12시) 24 00 00가 됨, 말이 안되므로 예외처리, 시간은 23시 59분 59초까지임
+		//오후 12시는 오전 11시 59분의 1분 이후로 한다.
+		//20190902240000 이런식으로 들어옴 
+		
+		if(String(temIf).includes("240000", 7)){
+			temIf = Number(temIf) - 120000;
+		}
 		return String(temIf);
 	}else{
+		//오전 12시는 00시 이어야 한다.
 		var ifDateElse = a.replace(/[^0-9]/g,"");
 		ifDateElse = ifDateElse+"00";
+		
+		if(String(ifDateElse).includes("120000", 7)){
+			ifDateElse = Number(ifDateElse) -120000;
+		}
 		// 스트링으로 전달
 		return String(ifDateElse);
 
@@ -51,12 +63,12 @@ function firstServiceSave(){
 	// category_scale 기간
 	var gigan = document.getElementById("check-c1");
 	var gigan2 = document.getElementById("check-d1");
-	var category_scale = ($(gigan).prop("checked"))? "정기" : ($(gigan2).prop("checked"))?"비정기":"";
-
+	var category_period = ($(gigan).prop("checked"))? "정기" : ($(gigan2).prop("checked"))?"비정기":"";
+	
 	// category_period 규모
 	var gyumo = document.getElementById("check-e1");
 	var gyumo2 = document.getElementById("check-f1");
-	var category_period = ($(gyumo).prop("checked"))? "개인" : ($(gyumo2).prop("checked"))?"단체":"";
+	var category_scale = ($(gyumo).prop("checked"))? "개인" : ($(gyumo2).prop("checked"))?"단체":"";
 
 	// category_place 장소
 	var jangso = document.getElementById("check-g1");
@@ -152,7 +164,6 @@ function secondServiceSave(){
 	// 날짜데이터에서 '/' 없애기 -> ':'없애기 -> ' '없애기 -> 201908211200오후
 	var staDate = spliteDate[0].replace(/\//gi,"").replace(/ /gi, "").replace(":","");
 	var endDate = spliteDate[1].replace(/\//gi,"").replace(/ /gi, "").replace(":","");
-
 	var staDateFinal = DateConverter(staDate);
 	console.log(staDateFinal);
 	var endDateFinal = DateConverter(endDate);
@@ -173,10 +184,13 @@ function secondServiceSave(){
 	sendJson.serviceprice = Number(priceDate.value);
 	sendJson.servicedatedescription = priceDescriptionData.value;
 	console.log(sendJson);
-	
 
-	
-	postRequest(`/provider/my-template/1/regist`,  sendJson).then(response => {
+	const url = document.location.href;
+	const urlArray = url.split('/');
+	const serviceId = urlArray[urlArray.length-2];
+	console.log(serviceId);
+
+	postRequest(`/provider/my-template/`+serviceId+`/regist`,  sendJson).then(response => {
 		if(response.res === "success"){
 			alert("나의 수업 리스트에 저장 되었습니다!");
 			location.href = "/"; //원래 my-listing 페이지로 이동해야함
@@ -184,21 +198,21 @@ function secondServiceSave(){
 			alert("다시 작성해주세요");
 		}
 	});
-	
+
 //	Apis.postRequest(`/provider/my-template/1/regist`,  sendJson).then(response => {
-//		console.log("들어왔어");
-//		if(response.res === "success"){
-//			alert("나의 수업 리스트에 저장 되었습니다!");
-//			location.href = "/"; //원래 my-listing 페이지로 이동해야함
-//		} else {
-//			alert("다시 작성해주세요");
-//		}
+//	console.log("들어왔어");
+//	if(response.res === "success"){
+//	alert("나의 수업 리스트에 저장 되었습니다!");
+//	location.href = "/"; //원래 my-listing 페이지로 이동해야함
+//	} else {
+//	alert("다시 작성해주세요");
+//	}
 //	});
 	// object를 JSON형태로 만들기
 //	return JSON.stringify(sendJson);
 //	alert(jsonAddress);
 }
-// );
+//);
 //}
 
 

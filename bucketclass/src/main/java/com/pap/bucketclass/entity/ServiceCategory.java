@@ -20,23 +20,18 @@ public class ServiceCategory implements Serializable {
 	private Long categoryId;
 	
 	@Column(name="category_subject")
-	@NotNull
 	private String categorySubject;
 	
 	@Column(name="category_type")
-	@NotNull
 	private String categoryType;
 	
 	@Column(name="category_period")
-	@NotNull
 	private String categoryPeriod;
 	
 	@Column(name="category_scale")
-	@NotNull
 	private String categoryScale;
 	
 	@Column(name="category_place")
-	@NotNull
 	private String categoryPlace;
 
 	public Long getCategoryId() {

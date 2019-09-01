@@ -11,5 +11,16 @@ import com.pap.bucketclass.entity.Services;
 public interface ServiceRepository extends JpaRepository<Services, Long> {
 	public Services findByServiceId(Long serviceId);
 	
-	public Page<Services> findByServiceTitleLike(@Nullable String serviceTitle, Pageable pageable);
+	public Page<Services> findByServiceTitleLikeAndServiceCategory_CategorySubjectLikeAndServiceCategory_CategoryTypeLikeAndServiceCategory_CategoryPeriodLikeAndServiceCategory_CategoryScaleLikeAndServiceCategory_CategoryPlaceLike(
+			String serviceTitle, 
+			String categorySubject,
+			String categoryType,
+			String categoryPeriod,
+			String categoryScale,
+			String categoryPlace,
+			Pageable pageable);
+	
+	///Test////
+	public Page<Services> findByServiceTitleLikeAndServicePriceLike(String serviceTitle, String servicePrice, Pageable pageable);
+	
 }

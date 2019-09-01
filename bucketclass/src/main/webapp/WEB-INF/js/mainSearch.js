@@ -8,8 +8,10 @@ function searchHandler(){
     var searchConditionObject = new Object();
     searchConditionObject.service_title = serviceTitle;
     searchConditionObject.category_subject = categoryVal;
-
-    console.log(typeof searchConditionObject, searchConditionObject);
-    Apis.getRequest(searchConditionObject);
+    
+    location.href='/service-listing?serviceTitle='+serviceTitle+'&categorySubject='+categoryVal;
+    
+/*    console.log(typeof searchConditionObject, searchConditionObject);
+    Apis.getRequest(searchConditionObject);*/
     
 }

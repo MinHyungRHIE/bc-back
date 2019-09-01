@@ -21,6 +21,10 @@ public enum ParserForDate{
 		, HOUR(8,10){
 			@Override
 			public int parse(String date) {
+				if(date.equals("24")) {
+					date="00";
+				}
+				System.out.println("date : " + date);
 				return Integer.parseInt(date.substring(getStartIndex(),getEndIndex()).trim());}
 		}
 		, MINUTE(10,12){

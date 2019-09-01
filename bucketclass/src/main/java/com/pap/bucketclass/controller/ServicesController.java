@@ -1,6 +1,7 @@
 package com.pap.bucketclass.controller;
 
 import java.security.Principal;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pap.bucketclass.entity.ServiceTemplate;
@@ -61,26 +63,25 @@ public class ServicesController {
 					MediaType.APPLICATION_ATOM_XML_VALUE
 			})
 	public @ResponseBody ResultItems<Services> getAllService(
-			@RequestBody(required=false)  QueryServiceModel queryModel) {
-		int size = 3, page = 1; //default
-		String searchingServiceTitle = null;
-		String searchingCategorySubject = null;
-		
-		//검색 : 키워드, 카테고리 대분류(1)
-		if(queryModel != null) { //커멘드 객체가 null이 아니면, 즉 JSON을 받으면
-			if(queryModel.getServiceTitle() != null) {
-				searchingServiceTitle = queryModel.getServiceTitle(); //키워드 검색 value
-			}else if(queryModel.getCategorySubject() !=null) {
-				searchingCategorySubject = queryModel.getCategorySubject(); //카테고리 검색 value
-			}
-		}
-		
-		
-		
+			@RequestBody(required=false)  QueryServiceModel queryModel,
+			@RequestParam(
+					name="serviceTitle",
+					required=false) String serviceTitle,
+			@RequestParam(
+					name="categorySubject",
+					required=false) String categorySubject) {
+		int size = 5, page = 1; //default
 		//정렬 : (기본) 최근 등록순
 		String defaultSort = "serviceModifiedDate";
+		if(Optional.ofNullable(serviceTitle).isPresent()){
+			System.out.println("param serviceTitle exists");
+			queryModel.setServiceTitle(serviceTitle);
+		}
+		if(Optional.ofNullable(categorySubject).isPresent()) {
+			queryModel.setCategorySubject(categorySubject);
+		}
 		Pageable pageable = PageRequest.of(page - 1, size, Sort.by(defaultSort).descending());
-		Page<Services> serviceList = listingService.listPageable(pageable);
+		Page<Services> serviceList = listingService.searchingListAndPageable(queryModel, pageable);
 		return new ResultItems<Services>(serviceList.stream().collect(Collectors.toList()), page, size, serviceList.getTotalElements());
 	}
 	
@@ -96,10 +97,11 @@ public class ServicesController {
 					name="page",
 					required=false) String pageStr,
 			@RequestBody(required=false) QueryServiceModel queryModel) {
-		int size = 3; int page = 1;
+		int size = 5; int page = 1;
 		if(pageStr != null) {
 			page = Integer.parseInt(pageStr);
 		}
+		queryModel = Optional.ofNullable(queryModel).orElse(new QueryServiceModel());
 		//검색 : 키워드, 카테고리 대분류(1), 소분류(4)
 		//정렬 : 최근순, 높은 가격순, 낮은 가격순
 		String sortByName = "serviceModifiedDate"; 
@@ -115,8 +117,7 @@ public class ServicesController {
 			pageable = PageRequest.of(page - 1, size, Sort.by(sortByName).ascending());
 		}
 		
-		
-		Page<Services> serviceList = listingService.listPageable(pageable);
+		Page<Services> serviceList = listingService.searchingListAndPageable(queryModel, pageable);
 		return new ResultItems<Services>(serviceList.stream().collect(Collectors.toList()), page, size, serviceList.getTotalElements());
 	}
 	/*******************************
