@@ -38,23 +38,15 @@ public class ServiceRegistSerivce {
 		System.out.println(model);
 		Services services = new Services();
 		services.setNewDataToPostService(model);
-		System.out.println("22312312312312312312");
 		ServiceTemplate serviceTemplate = serviceTemplateRepo.findByServiceTemplateId(serviceTemplateId);
-		System.out.println("32312312312312312312");
 		services.setDateFromTemplate(serviceTemplate); 
-		System.out.println("42312312312312312312");
 		
 		ServiceAddress savedServiceAddress = serviceAddressRepo.save(model.toServiceAddress());
-		System.out.println("52312312312312312312");
 		services.setServiceAddress(savedServiceAddress);
-		System.out.println("62312312312312312312");
 		services.setServiceRegisterIsActive(true);
-		System.out.println("72312312312312312312");
 		
 		services.setServiceCategory(serviceTemplate.getServiceCategory());
-		System.out.println("82312312312312312312");
 		services.setMemberId(serviceTemplate.getMember().getUsername());
-		System.out.println("92312312312312312312");
 		
 		return serviceRepo.save(services);
 	}

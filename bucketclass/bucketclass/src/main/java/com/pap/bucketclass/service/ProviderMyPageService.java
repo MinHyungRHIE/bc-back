@@ -7,6 +7,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.pap.bucketclass.entity.Member;
 import com.pap.bucketclass.model.PasswordModel;
@@ -31,6 +33,19 @@ public class ProviderMyPageService {
 			throw new AccessDeniedException("403 error");
 		}
 		return found;
+	}
+	
+	@Transactional
+	public String imageUpload(MultipartFile file, String memberId) {
+		Member member = memberRepo.findByMemberId(memberId);
+		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		if(member != null) {
+			member.setMemberImg(fileName);
+			memberRepo.save(member);
+		}else {
+			throw new AccessDeniedException("403 error");
+		}
+		return fileName;
 	}
 	
 	@Transactional

@@ -1,11 +1,12 @@
 package com.pap.bucketclass.model;
 
+import org.springframework.web.multipart.MultipartFile;
 
 public class ProviderMyPageModel {
 	
 	private String memberEmail;
 	private String memberNickname;
-//	private String memberImg;
+	private String memberImg;
 	private String introduce;
 	private String career;
 	private String certi;
@@ -22,6 +23,12 @@ public class ProviderMyPageModel {
 	}
 	public void setMemberNickname(String memberNickname) {
 		this.memberNickname = memberNickname;
+	}
+	public String getMemberImg() {
+		return memberImg;
+	}
+	public void setMemberImg(String memberImg) {
+		this.memberImg = memberImg;
 	}
 	public String getIntroduce() {
 		return introduce;

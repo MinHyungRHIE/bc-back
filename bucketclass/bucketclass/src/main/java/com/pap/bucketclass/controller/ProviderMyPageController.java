@@ -8,10 +8,12 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.pap.bucketclass.entity.Member;
 import com.pap.bucketclass.model.PasswordModel;
@@ -44,7 +46,8 @@ public class ProviderMyPageController {
 
 	//페이지 전환 후, 프로필 정보에 나타낼 멤버 정보 보내기
 	@PreAuthorize("hasRole('ROLE_PROVIDER')")
-	@PostMapping(value="/provider/mypage", 
+	@PostMapping(
+			value="/provider/mypage", 
 			produces= {
 					MediaType.APPLICATION_JSON_UTF8_VALUE,
 					MediaType.APPLICATION_ATOM_XML_VALUE})
@@ -55,6 +58,18 @@ public class ProviderMyPageController {
 			return member;
 		}
 		return null;
+	}
+	
+	// 제공자가 프로필사진 업로드 시 들어오는 경로
+	@PreAuthorize("hasRole('ROLE_PROVIDER')")
+	@PostMapping(
+			value="/provider/mypage/imageUpload", 
+			produces= {
+					MediaType.APPLICATION_JSON_UTF8_VALUE,
+					MediaType.APPLICATION_ATOM_XML_VALUE})
+	@ResponseBody
+	public String imageUoload(@ModelAttribute MultipartFile memberImg, Principal principal) {
+		return providerService.imageUpload(memberImg, principal.getName());
 	}
 
 	//제공자가 MyPage에서 정보를 수정할 때 들어오는 경로 & 수정된 데이터 보내기

@@ -1,10 +1,11 @@
 package com.pap.bucketclass.model;
 
-public class CustomerMyPageModel {
+import java.io.Serializable;
+
+public class CustomerMyPageModel implements Serializable {
 	
 	private String memberEmail;
 	private String memberNickname;
-	private String memberImg;
 	private String introduce;
 	
 	public String getMemberEmail() {
@@ -18,12 +19,6 @@ public class CustomerMyPageModel {
 	}
 	public void setMemberNickname(String memberNickname) {
 		this.memberNickname = memberNickname;
-	}
-	public String getMemberImg() {
-		return memberImg;
-	}
-	public void setMemberImg(String memberImg) {
-		this.memberImg = memberImg;
 	}
 	public String getIntroduce() {
 		return introduce;

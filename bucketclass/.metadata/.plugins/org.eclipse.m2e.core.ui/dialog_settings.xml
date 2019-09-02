@@ -33,12 +33,14 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\새 폴더\bc-back\bucketclass"/>
 			<item value="C:\Users\kimseula\Desktop\kimseula\flyingturtle"/>
 			<item value="C:\Users\kimseula\Desktop\kimseula\AClassBack"/>
 			<item value="C:\Users\kimseula\Desktop\kimseula\_1_Project\BucketClass_PAP\project\BucketClass\bucketclass"/>
 			<item value="C:\Users\kimseula\Desktop\kimseula\springBoard"/>
 		</list>
 		<list key="projectNameTemplate">
+			<item value="mh"/>
 			<item value="[artifactId]"/>
 			<item value="[artifactId]-TRUNK"/>
 			<item value="[artifactId]-[version]"/>

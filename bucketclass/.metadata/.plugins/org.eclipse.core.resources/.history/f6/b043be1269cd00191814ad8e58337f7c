@@ -1,0 +1,80 @@
+package com.pap.bucketclass.service;
+
+import static com.pap.bucketclass.util.RoleFilter.containRoleByName;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
+import com.pap.bucketclass.entity.Member;
+import com.pap.bucketclass.model.CustomerMyPageModel;
+import com.pap.bucketclass.model.ImageModel;
+import com.pap.bucketclass.model.PasswordModel;
+import com.pap.bucketclass.repository.MemberRepository;
+
+@Service
+public class CustomerMyPageService {
+	
+	private String uri = "src\\main\\webapp\\WEB-INF\\img\\profile";
+	
+	@Autowired
+	private LocalMemberDetailsService memberDetailsService;
+	@Autowired
+	private MemberRepository memberRepo;
+
+	@Transactional
+	public Member loadMember(String memberId) {
+		Member member = (Member) memberDetailsService.loadUserByUsername(memberId);
+		Member found = null;
+		if(containRoleByName(member.getRoles(), "ROLE_CUSTOMER")) {
+			found = memberRepo.findByMemberId(memberId);
+		}else {
+			throw new AccessDeniedException("403 error");
+		}
+		return found;
+	}
+	
+	@Transactional
+	public Member updateMember(CustomerMyPageModel customerModel, String memberId) {
+		Member member = memberRepo.findByMemberId(memberId);
+		if (member != null) {
+			member.setMemberNickname(customerModel.getMemberNickname());
+			member.setMemberImg(customerModel.getMemberImg());
+			member.setMemberEmail(customerModel.getMemberEmail());
+			member.setMemberImg(customerModel.getMemberImg());
+			member.setIntroduce(customerModel.getIntroduce());
+		} else {
+			throw new AccessDeniedException("403 error");
+		}
+		return memberRepo.save(member);
+	}
+	
+	@Transactional
+	public Boolean changePassword(PasswordModel model, String memberId) {
+		Member member = memberRepo.findByMemberId(memberId);
+		if(member != null && 
+				member.getPassword().equals(model.getMemberPassword()) &&
+				!(model.getMemberPassword().equals(model.getNewPassword()))) {
+			member.setMemberPassword(model.getNewPassword());
+			memberRepo.save(member);
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	@Transactional
+	public String UploadImage(ImageModel imageModel, String memberId) {
+		String fileName = StringUtils.cleanPath(imageModel.getImage().getOriginalFilename());
+		Member member = memberRepo.findByMemberId(memberId);
+		if(member!= null) {
+			member.setMemberImg(fileName);
+			memberRepo.save(member);
+		}
+		return (uri+fileName);
+	}
+	
+}
