@@ -787,7 +787,7 @@
 					<!-- Section / End -->
 
 
-					<a class="button preview" id="button save"> 저장하기<i class="fa fa-arrow-circle-right"></i></a>
+					<a class="button preview" id="button save" href="/provider/pending-listing"> 저장하기<i class="fa fa-arrow-circle-right"></i></a>
 <!--					<a href="#" class="button preview" onclick="return checkExistData()">저장하기 <i class="fa fa-arrow-circle-right"></i></a>-->
 					
 

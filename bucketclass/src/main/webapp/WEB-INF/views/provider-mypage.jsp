@@ -107,7 +107,7 @@ pageEncoding="UTF-8"%>
 									<!--								<li><a href="dashboard-messages.html">Messages</a></li>-->
 									<!--								<li><a href="dashboard-bookings.html">Bookings</a></li>-->
 									<!--								<li><a href="dashboard-wallet.html">Wallet</a></li>-->
-									<li><a href="dasboard-mylisting.html">My Listing</a></li>
+									<li><a>My Listing</a></li>
 									<!--								<li><a href="dashboard-reviews.html">Reviews</a></li>-->
 									<!--								<li><a href="dashboard-bookmarks.html">Bookmarks</a></li>-->
 									<!-- <li><a href="dashboard-add-listing.html">Add Listing</a></li> -->
@@ -221,7 +221,7 @@ pageEncoding="UTF-8"%>
 				<!--			</ul>-->
 
 				<ul data-submenu-title="">
-					<li><a id="sideBarMyList"><i class="sl sl-icon-layers"></i> My Listing</a></li>
+					<li><a id="sideBarMyList" href="/provider/active-listing"><i class="sl sl-icon-layers"></i> My Listing</a></li>
 
 					<!--					<ul>-->
 					<!--						<li><a href="active-service.html">Active</a></li> &lt;!&ndash;<span class="nav-tag yellow">1</span> &ndash;&gt;-->

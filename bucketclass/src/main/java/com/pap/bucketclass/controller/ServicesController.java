@@ -26,6 +26,7 @@ import com.pap.bucketclass.model.QueryServiceModel;
 import com.pap.bucketclass.model.RequestModel;
 import com.pap.bucketclass.model.ResponseModel;
 import com.pap.bucketclass.model.ResultItems;
+import com.pap.bucketclass.model.SingleServiceModel;
 import com.pap.bucketclass.service.ListingService;
 import com.pap.bucketclass.service.MemberService;
 import com.pap.bucketclass.service.ServiceRegistSerivce;
@@ -166,6 +167,7 @@ public class ServicesController {
 			@PathVariable(
 					name="serviceId",
 					required=false) String serviceId){
+		System.out.println("1234124123412341234");
 		return "listings-single-page";
 	}
 
@@ -177,26 +179,74 @@ public class ServicesController {
 					MediaType.APPLICATION_JSON_UTF8_VALUE,
 					MediaType.APPLICATION_ATOM_XML_VALUE
 			})
-	public @ResponseBody Services sendDataToSingleService(
+	public @ResponseBody SingleServiceModel sendDataToSingleService(
+			@RequestBody RequestModel requestModel,
 			@PathVariable(
 					name="serviceId",
 					required=false) int serviceId){
-		System.out.println("==========들어옴=============");
-		return listingService.selectOneService(new Long(serviceId));
+		System.out.println("Post 들왔어");
+		return listingService.sendToSinglePage(serviceId);
 	}
 
-	/*************************************************
-	 * [PROVIDER] pending + active page + deactive *
-	 **************************************************/
-	/***pending + active page  GET***/
+	/**********************************************
+	 * [PROVIDER] pending + active page + expired *
+	 ***********************************************/
+	/////////////////////////////////////
+	/***pending page  GET***/
+	@RequestMapping(
+			path="/provider/pending-listing",
+			method= RequestMethod.GET)
+	public String providerServiceListFormPending() {
+		return "pending-listing";
+	}
+
+	/***pending page POST***/
+	@RequestMapping(
+			path="/provider/pending-listing",
+			method= RequestMethod.POST,
+			produces= {
+					MediaType.APPLICATION_JSON_UTF8_VALUE,
+					MediaType.APPLICATION_ATOM_XML_VALUE
+			})
+	public @ResponseBody ResultItems<ServiceTemplate> providerPageableInitServicePending(@RequestBody RequestModel requestModel){
+		int size = 3, page = 1; //default
+		//정렬 : (기본) 최근 등록순
+		
+		String defaultSort ="serviceModifiedDate";
+		Pageable pageable = PageRequest.of(page - 1, size, Sort.by(defaultSort).descending());
+		Page<ServiceTemplate> serviceList = listingService.templateSearchingListAndPageable(pageable);
+		return new ResultItems<ServiceTemplate>(serviceList.stream().collect(Collectors.toList()), page, size, serviceList.getTotalElements());
+	}
+
+	/***pending page  POST+PATH(page)***/
+	@RequestMapping(
+			path="/provider/pending-listing/{page}",
+			method= RequestMethod.POST,
+			produces= {
+					MediaType.APPLICATION_JSON_UTF8_VALUE,
+					MediaType.APPLICATION_ATOM_XML_VALUE
+			})
+	public @ResponseBody ResultItems<ServiceTemplate> providerPageableServicePending(
+			@RequestBody RequestModel requestModel,
+			@PathVariable("page") int page
+			){
+		int size = 3;
+
+		String defaultSort ="serviceModifiedDate";
+		Pageable pageable = PageRequest.of(page - 1, size, Sort.by(defaultSort).descending());
+		Page<ServiceTemplate> serviceList = listingService.templateSearchingListAndPageable(pageable);
+		return new ResultItems<ServiceTemplate>(serviceList.stream().collect(Collectors.toList()), page, size, serviceList.getTotalElements());
+	}
+	/////////////////////////////////////
+	/***active page  GET***/
 	@RequestMapping(
 			path="/provider/active-listing",
 			method= RequestMethod.GET)
-	public String providerServiceListForm() {
+	public String providerServiceListFormActive() {
 		return "active-listing";
 	}
 
-	/***pending + active page + deactive  POST***/
+	/***active page POST***/
 	@RequestMapping(
 			path="/provider/active-listing",
 			method= RequestMethod.POST,
@@ -204,7 +254,7 @@ public class ServicesController {
 					MediaType.APPLICATION_JSON_UTF8_VALUE,
 					MediaType.APPLICATION_ATOM_XML_VALUE
 			})
-	public @ResponseBody ResultItems<Services> providerPageableInitService(@RequestBody RequestModel requestModel){
+	public @ResponseBody ResultItems<Services> providerPageableInitServiceActive(@RequestBody RequestModel requestModel){
 		int size = 3, page = 1; //default
 		//정렬 : (기본) 최근 등록순
 
@@ -214,7 +264,7 @@ public class ServicesController {
 		return new ResultItems<Services>(serviceList.stream().collect(Collectors.toList()), page, size, serviceList.getTotalElements());
 	}
 
-	/***pending + active page + deactive  POST+PATH(page)***/
+	/***active page  POST+PATH(page)***/
 	@RequestMapping(
 			path="/provider/active-listing/{page}",
 			method= RequestMethod.POST,
@@ -222,7 +272,54 @@ public class ServicesController {
 					MediaType.APPLICATION_JSON_UTF8_VALUE,
 					MediaType.APPLICATION_ATOM_XML_VALUE
 			})
-	public @ResponseBody ResultItems<Services> providerPageableService(
+	public @ResponseBody ResultItems<Services> providerPageableServiceActive(
+			@RequestBody RequestModel requestModel,
+			@PathVariable("page") int page
+			){
+		int size = 3;
+
+		String defaultSort ="serviceModifiedDate";
+		Pageable pageable = PageRequest.of(page - 1, size, Sort.by(defaultSort).descending());
+		Page<Services> serviceList = listingService.searchingListAndPageable(new QueryServiceModel(), pageable);
+		return new ResultItems<Services>(serviceList.stream().collect(Collectors.toList()), page, size, serviceList.getTotalElements());
+	}
+
+	//////////////////////////////////////////
+	/***expired page  GET***/
+	@RequestMapping(
+			path="/provider/expired-listing",
+			method= RequestMethod.GET)
+	public String providerServiceListFormExpired() {
+		return "expired-listing";
+	}
+
+	/***expired page POST***/
+	@RequestMapping(
+			path="/provider/expired-listing",
+			method= RequestMethod.POST,
+			produces= {
+					MediaType.APPLICATION_JSON_UTF8_VALUE,
+					MediaType.APPLICATION_ATOM_XML_VALUE
+			})
+	public @ResponseBody ResultItems<Services> providerPageableInitServiceExpired(@RequestBody RequestModel requestModel){
+		int size = 3, page = 1; //default
+		//정렬 : (기본) 최근 등록순
+
+		String defaultSort ="serviceModifiedDate";
+		Pageable pageable = PageRequest.of(page - 1, size, Sort.by(defaultSort).descending());
+		Page<Services> serviceList = listingService.searchingListAndPageable(new QueryServiceModel(), pageable);
+		return new ResultItems<Services>(serviceList.stream().collect(Collectors.toList()), page, size, serviceList.getTotalElements());
+	}
+
+	/***expired page  POST+PATH(page)***/
+	@RequestMapping(
+			path="/provider/expired-listing/{page}",
+			method= RequestMethod.POST,
+			produces= {
+					MediaType.APPLICATION_JSON_UTF8_VALUE,
+					MediaType.APPLICATION_ATOM_XML_VALUE
+			})
+	public @ResponseBody ResultItems<Services> providerPageableServiceExpired(
 			@RequestBody RequestModel requestModel,
 			@PathVariable("page") int page
 			){
@@ -260,7 +357,7 @@ public class ServicesController {
 	}
 
 	/******************************
-	 *  [PROVIDER] 서비스 실제  등록 *
+	 *  [PROVIDER] 서비스 실제 등록 *
 	 *******************************/
 	@RequestMapping(
 			path="/provider/my-template/{serviceTemplateId}/regist",
@@ -313,7 +410,7 @@ public class ServicesController {
 	public @ResponseBody Services viewExistRegistService(@PathVariable("serviceId") int serviceId) {
 		return listingService.selectOneService(new Long(serviceId));
 	}
-	
+
 	/*** UPDATE ***/
 	@RequestMapping(
 			path= "/provider/my-listing/{serviceId}/update",
@@ -332,7 +429,7 @@ public class ServicesController {
 	public @ResponseBody Services viewExistRegistServiceForUpdate(@PathVariable("serviceId") int serviceId) {
 		return listingService.selectOneService(new Long(serviceId));
 	}
-	
+
 	@RequestMapping(
 			path= "/provider/my-listing/{serviceId}/update",
 			method= RequestMethod.PUT,
@@ -344,17 +441,17 @@ public class ServicesController {
 			@RequestBody PostServiceModel model,
 			@PathVariable("serviceId") int serviceId) {
 		ResponseModel resModel = new ResponseModel();
-		Services service =  serviceRegistService.updateServices(model, serviceId);
-		System.out.println(service);
-		if(service !=null) {
-			resModel.setRes("success");
-		}else {
-			resModel.setRes("fail");
-		}
+		//		Services service =  serviceRegistService.updateServices(model, serviceId);
+		//		System.out.println(service);
+		//		if(service !=null) {
+		//			resModel.setRes("success");
+		//		}else {
+		//			resModel.setRes("fail");
+		//		}
 		System.out.println(resModel.getRes());
 		return resModel;
 	}
-	
+
 	/**********************************************
 	 * [PROVIDER] 템플릿  UPDATE, READ, DELETE*
 	 ***********************************************/

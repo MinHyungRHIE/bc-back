@@ -718,7 +718,7 @@
    function viewSingleService(serviceId){
 
 
-      location.href = '/service-listing/'+serviceId;
+      location.href = '/service-listing/'+serviceId+'/view';
       console.log(serviceId +" 번째 서비스 상세 페이지로 이동 요청");
 
    }

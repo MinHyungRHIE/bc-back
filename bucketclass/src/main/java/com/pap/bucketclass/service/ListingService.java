@@ -9,14 +9,24 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.pap.bucketclass.entity.Member;
+import com.pap.bucketclass.entity.ServiceAddress;
+import com.pap.bucketclass.entity.ServiceCategory;
+import com.pap.bucketclass.entity.ServiceTemplate;
 import com.pap.bucketclass.entity.Services;
 import com.pap.bucketclass.model.QueryServiceModel;
+import com.pap.bucketclass.model.SingleServiceModel;
+import com.pap.bucketclass.repository.MemberRepository;
 import com.pap.bucketclass.repository.ServiceAddressRepository;
 import com.pap.bucketclass.repository.ServiceCategoryRepository;
 import com.pap.bucketclass.repository.ServiceRepository;
+import com.pap.bucketclass.repository.ServiceTemplateRepository;
 
 @Service
 public class ListingService {
+	
+	@Autowired
+	MemberRepository memberRepo;
 	
 	@Autowired
 	ServiceAddressRepository serviceAddressRepo;
@@ -26,6 +36,9 @@ public class ListingService {
 	
 	@Autowired
 	ServiceRepository serviceRepo;
+	
+	@Autowired
+	ServiceTemplateRepository serviceTemplateRepo;
 	
     @Transactional(readOnly = true)
     public Page<Services> listPageable(Pageable pageable) {
@@ -40,6 +53,22 @@ public class ListingService {
     @Transactional(readOnly = true)
     public Services selectOneService(Long serviceId) {
         return serviceRepo.findByServiceId(serviceId);
+    }
+    
+    @Transactional
+    public SingleServiceModel  sendToSinglePage(int serviceId) {
+    	Services services = serviceRepo.findByServiceId(new Long(serviceId));
+    	ServiceCategory serviceCategory = services.getServiceCategory();
+    	ServiceAddress serviceAddress = services.getServiceAddress();
+    	Member member = memberRepo.findByMemberId(services.getMemberId()); 
+    	SingleServiceModel singleServiceModel = new SingleServiceModel();
+    	singleServiceModel.settingDataForSendToSinglePage(services, serviceCategory, member, serviceAddress);
+    	return singleServiceModel;
+    }
+    
+    @Transactional
+    public Page<ServiceTemplate> templateSearchingListAndPageable(Pageable pageable){
+    	return serviceTemplateRepo.findAll(pageable);
     }
     
     @Transactional(readOnly=true)
@@ -77,9 +106,6 @@ public class ListingService {
     	return serviceRepo.findByServiceTitleLikeAndServiceCategory_CategorySubjectLikeAndServiceCategory_CategoryTypeLikeAndServiceCategory_CategoryPeriodLikeAndServiceCategory_CategoryScaleLikeAndServiceCategory_CategoryPlaceLike(
     			serviceTitle, categorySubject, categoryType, categoryPeriod,categoryScale,  categoryPlace, pageable);
     }
-    
-    
-    
     
     
     ///Test///

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
 <head>
 
     <!-- Basic Page Needs
@@ -43,9 +42,9 @@
                     <!-- Mobile Navigation -->
                     <div class="mmenu-trigger">
                         <button class="hamburger hamburger--collapse" type="button">
-                  <span class="hamburger-box">
-                     <span class="hamburger-inner"></span>
-                  </span>
+						<span class="hamburger-box">
+							<span class="hamburger-inner"></span>
+						</span>
                         </button>
                     </div>
 
@@ -207,6 +206,8 @@
                     <li><a href="dashboard-wallet.html"><i class="sl sl-icon-wallet"></i> Wallet</a></li>
                 </ul>
 
+
+
                 <ul data-submenu-title="Listings">
                     <li class="active"><a><i class="sl sl-icon-layers"></i> 나의 수업 관리</a>
                         <ul>
@@ -255,7 +256,7 @@
                 <!-- Listings -->
                 <div class="col-lg-12 col-md-12">
                     <div class="dashboard-list-box margin-top-0">
-                        <h4> 진행중인 수업 목록</h4>
+                        <h4> 완료된 수업 목록</h4>
                         <ul id="wrap-list">
                             <%--===============================================--%>
                             <%--=============== CREATE DOM AREA ===============--%>
@@ -326,11 +327,11 @@
     function initFetch() {
         const reqJson = new Object();
         reqJson.req = "화이팅 !!";
-        Apis.postRequest("/provider/active-listing", reqJson).then(response => {
+        Apis.postRequest(`/provider/expired-listing`, reqJson).then(response => {
             console.log("여기에 들어왔니?");
-            console.log(typeof response.items, response.items);
-            resetPagination(response.page, response.size, response.totalCount);
+            console.log(typeof response, response);
             filterExpiredList(response.items);
+            resetPagination(response.page, response.size, response.totalCount);
         });
     }
 
@@ -364,95 +365,63 @@
 
     function filterExpiredList(services) {
 
-
         var date = new Date();
         var currentDate = Number(date.getFullYear() + ("0"+(date.getMonth()+1)).slice(-2) + ("0"+date.getDate()).slice(-2));
-        console.log(currentDate);
 
-        for(const service of services){
-            console.log(service);
+        for(var service of services){
             var i = 0;
             const endDate = Number((service.serviceEndDate).substr(0, 10).replace(/-/gi, '')); // 20190901
-            console.log(endDate);
-            if(currentDate > endDate){
-                // 서비스 종료일을 초과한 경우 Active List에서 삭제함
+            if(currentDate < endDate){
+                // 서비스 종료일이 도래하지 않은 경우 Expired List에서 삭제함
                 services.splice(i, 1);
-                console.log(services);
             }
-            i += 1;
+            i++;
         }
-        filterActiveList(services);
+        showServiceItem(services);
     }
 
 
     function serviceDelete(serviceId){
 
-        if(mock === false){
-            Apis.deleteRequest("/provider/my-listing/" +serviceId + "/delete").then(response =>{
-                initFetch();
-            });
-        } else {
-            <!-- delete 누를시 화면에서만 listings 삭제 -->
-
+        var confirmUser = confirm("나의 수업 기록에서 정말 삭제하시겠습니까?");
+        const prentItem = document.getElementById('wrap-list');
+        const childItem = document.getElementById('li-'+serviceId);
+        if(confirmUser){
+            prentItem.removeChild(childItem);
         }
+
+
+        // Apis.deleteRequest("/provider/my-listing/" + serviceId + "/delete").then(response =>{
+        //     initFetch();
+        // });
+
     }
 
     function serviceReadOnly(serviceId){
-        location.href = "/provider/my-listing/" + serviceId + "/read";
-    }
-
-    function serviceStatusUpdate(serviceId){
-
-        // 가라로 화면에서만 보여준다
-        const tagItem = document.getElementById('li-'+serviceId);
-        tagItem.getAttribute("style") != null ? tagItem.removeAttribute("style") :
-            tagItem.setAttribute("style", "pointer-event:none; opacity:0.6; cursor:default");
-
+        location.href = "/provider/my-listing/"+serviceId+"/read";
     }
 
     // ==================================================================================================
     // ======================================= CREATE LIST DOM ==========================================
     // ==================================================================================================
 
-    function filterActiveList(services){
+    function showServiceItem(services) {
 
         // Initialize Global Variable that Creating DOM
         var serviceContent = "";
 
-        for(const service of services){
-
-            if(service.serviceRegisterIsActive === true){
-                showActiveItem(service);
-
-            } else if(service.serviceRegisterIsActive === false){
-                showDeactiveItem(service);
-            }
-        }
-
-        function showActiveItem(service) {
+        for(var service of services){
 
             serviceContent += '<li id="li-'+service.serviceId+'"><div class="list-box-listing"><div class="list-box-listing-img">'
-                +'<a href="" onclick="serviceReadOnly('+ service.serviceId +');"><img src="' + service.serviceImgUri + '" alt=""></a></div>'
-                +'<div class="list-box-listing-content"><div class="inner"><h3><a  onclick="serviceReadOnly('+service.serviceId+');">'
+                +'<a onclick="serviceReadOnly('+service.serviceId+');"><img src="'+service.serviceImgUri+'" alt=""></a></div>'
+                +'<div class="list-box-listing-content"><div class="inner"><h3><a onclick="serviceReadOnly('+service.serviceId+');">'
                 +service.serviceTitle+'</a></h3><span>'+service.serviceAddress.addressState+'</span>&nbsp;<span>'+service.serviceAddress.addressCity
                 +'</span>&nbsp;<span>'+service.serviceAddress.addressDong+'</span></div></div></div><div class="buttons-to-right">'
-                +'<label class="switch"><input type="checkbox" checked onclick="serviceStatusUpdate('+service.serviceId+');"><span class="slider round"></span></input></label></div></li>';
-
-        }
-
-        function showDeactiveItem(service) {
-
-            console.log(typeof service, service);
-
-            serviceContent += '<li id="li-'+service.serviceId+'" style="pointer-event:none; opacity:0.6; cursor:default;"><div class="list-box-listing"><div class="list-box-listing-img">'
-                +'<a href="" onclick="serviceReadOnly('+service.serviceId+');"><img src="'+service.serviceImgUri+'" alt=""></a></div>'
-                +'<div class="list-box-listing-content"><div class="inner"><h3><a  onclick="serviceReadOnly('+service.serviceId+');">'
-                +service.serviceTitle+'</a></h3><span>'+service.serviceAddress.addressState+'</span>&nbsp;<span>'+service.serviceAddress.addressCity
-                +'</span>&nbsp;<span>'+service.serviceAddress.addressDong+'</span></div></div></div><div class="buttons-to-right">'
-                +'<label class="switch"><input type="checkbox" unchecked onclick="serviceStatusUpdate('+service.serviceId+');"><span class="slider round"></span></input></label></div></li>';
+                +'<a class="button gray" onclick="serviceDelete('+service.serviceId+');"><i class="sl sl-icon-close"></i> 삭제</a></div></li>'
         }
 
         document.querySelector('#wrap-list').innerHTML = serviceContent;
+
     }
 
     // ==================================================================================================
@@ -534,12 +503,12 @@
 
         const reqJson = new Object();
         reqJson.req = "화이팅 !!!!!!!!!!!!!";
-        Apis.postRequest(`/provider/active-listing/`+page, reqJson).then(response => {
+        Apis.postRequest(`/provider/expired-listing/`+page, reqJson).then(response => {
             console.log("여기에 들어왔니?");
             console.log(typeof response, response);
             filterExpiredList(response.items);
             resetPagination(response.page, response.size, response.totalCount);
-            console.log( page +"번째 Active Listing 페이지를 요청한다.");
+            console.log( page +"번째 My Listing 페이지를 요청한다.");
         });
     }
     // ==================================================================================================

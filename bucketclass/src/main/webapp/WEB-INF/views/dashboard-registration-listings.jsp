@@ -434,11 +434,16 @@
 					<script>
 				var btnEle = document.getElementById("button preview");
 				btnEle.addEventListener("click",function () {
-					Apis.postRequest(`/provider/my-template/1/regist`,  secondServiceSave()).then(response => {
+					
+					const url = document.location.href;
+					const urlArray = url.split('/');
+					const serviceId = urlArray[urlArray.length-2];
+					
+					Apis.postRequest('/provider/my-template/'+serviceId+'/regist',  secondServiceSave()).then(response => {
 						console.log("들어왔어");
 						if(response.res === "success"){
 							alert("나의 수업 리스트에 저장 되었습니다!");
-							location.href = "/"; //원래 my-listing 페이지로 이동해야함
+							location.href = "/provider/active-listing"; //원래 my-listing 페이지로 이동해야함
 						} else {
 							alert("다시 작성해주세요");
 						}
