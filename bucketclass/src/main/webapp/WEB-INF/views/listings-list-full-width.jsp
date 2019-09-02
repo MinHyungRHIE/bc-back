@@ -804,13 +804,35 @@
    }
 
    function paginationRequest(page) {
+	
+       const serviceTitle = document.getElementById('input-title').value;
+       const categorySel = document.getElementById('sel');
+       const categoryVal = categorySel.options[categorySel.selectedIndex].value;
+       const categoryType = $("input:checkbox[id='check-a']").is(":checked")?'체험':
+             $("input:checkbox[id='check-b']").is(":checked")?'교육':'';
+       const categoryPeriod = $("input:checkbox[id='check-c']").is(":checked")?'정기':
+             $("input:checkbox[id='check-d']").is(":checked")?'비정기':'';
+       const categoryScale = $("input:checkbox[id='check-e']").is(":checked")?'개인':
+             $("input:checkbox[id='check-f']").is(":checked")?'단체':'';
+       const categoryPlace = $("input:checkbox[id='check-g']").is(":checked")?'실내':
+             $("input:checkbox[id='check-g']").is(":checked")?'실외':'';
+       const selOrder = document.getElementById('selOrder');
+       const serlOrderBy = selOrder.options[selOrder.selectedIndex].value;
 
-      console.log(page+'번째 페이지로 전환을 요청합니다');
+       console.log(serviceTitle, categoryVal,
+             categoryType, categoryPeriod, categoryScale, categoryPlace, serlOrderBy);
 
-      const bodyJson = new Object();
-      bodyJson.req = "화이팅 !!!!!";
+       var searchConditionObject = new Object();
+       searchConditionObject.service_title = serviceTitle;
+       searchConditionObject.category_subject = categoryVal;
+       searchConditionObject.category_type = categoryType;
+       searchConditionObject.category_period = categoryPeriod;
+       searchConditionObject.category_scale = categoryScale;
+       searchConditionObject.category_place = categoryPlace;
+       searchConditionObject.order_by = serlOrderBy;
+       
       
-      Apis.postRequest(`/service-listing/`+page, bodyJson).then(response => {
+      Apis.postRequest(`/service-listing/`+page, searchConditionObject).then(response => {
          showServiceItem(response.items);
          resetPagination(response.page, response.size, response.totalCount);
       })
@@ -850,6 +872,7 @@
       pagination.appendChild(addPageItem(page < totalPage ? page +1 : totalPage, size, false, false, false, false, true));
 
       pagination.appendChild(addPageItem(totalPage, size, false, false, true));
+      
    }
 
    // ====================== PAGINATION / END ======================

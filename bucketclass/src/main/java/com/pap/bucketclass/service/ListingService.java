@@ -78,6 +78,10 @@ public class ListingService {
     			serviceTitle, categorySubject, categoryType, categoryPeriod,categoryScale,  categoryPlace, pageable);
     }
     
+    
+    
+    
+    
     ///Test///
     @Transactional(readOnly=true)
     public Page<Services> searchingListAndPageableTest(String serviceTitle, String servicePrice, Pageable pageable){	

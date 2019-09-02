@@ -99,28 +99,31 @@ public class ServicesController {
 			@PathVariable(
 					name="page",
 					required=false) String pageStr,
-			@RequestBody(required=false) QueryServiceModel queryModel) {
+			@RequestBody(required=false) QueryServiceModel queryModel,
+			@RequestParam(
+					name="serviceTitle",
+					required=false) String serviceTitle,
+			@RequestParam(
+					name="categorySubject",
+					required=false) String categorySubject) {
 		int size = 3; int page = 1;
 		if(pageStr != null) {
 			page = Integer.parseInt(pageStr);
 		}
+		System.out.println("$$$$ page : " + page);
+		System.out.println("$$$$ serviceTitle : " + serviceTitle);
+		System.out.println("$$$$ categorySubject : " + categorySubject);
+		System.out.println("$$$$ queryModel : " + queryModel);
+		System.out.println();
 		queryModel = Optional.ofNullable(queryModel).orElse(new QueryServiceModel());
-		//검색 : 키워드, 카테고리 대분류(1), 소분류(4)
-		//정렬 : 최근순, 높은 가격순, 낮은 가격순
-		 
-//		Pageable pageable = PageRequest.of(page - 1, size, Sort.by(sortByName).descending()); //default
-//		if(queryModel.getOrderBy() != null && queryModel.getOrderBy().equals("최근 등록순")) {
-//			sortByName = "serviceModifiedDate";
-//			pageable = PageRequest.of(page - 1, size, Sort.by(sortByName).descending());
-//		}else if(queryModel.getOrderBy() != null && queryModel.getOrderBy().equals("높은 가격순")) {
-//			sortByName = "servicePrice";
-//			pageable = PageRequest.of(page - 1, size, Sort.by(sortByName).descending());
-//		}else if(queryModel.getOrderBy() != null && queryModel.getOrderBy().equals("낮은 가격순")) {
-//			sortByName = "servicePrice";
-//			pageable = PageRequest.of(page - 1, size, Sort.by(sortByName).ascending());
-//		}
-//		System.out.println("");
-//		System.out.println(sortByName);
+		if(Optional.ofNullable(serviceTitle).isPresent()){
+			System.out.println("param serviceTitle exists");
+			queryModel.setServiceTitle(serviceTitle);
+		}
+		if(Optional.ofNullable(categorySubject).isPresent()) {
+			queryModel.setCategorySubject(categorySubject);
+		}
+
 		Pageable pageable = null;
 		if(!Optional.ofNullable(queryModel).isPresent()) {
 			queryModel.setOrderBy("serviceModifiedDate");
@@ -153,12 +156,45 @@ public class ServicesController {
 	@RequestMapping(
 			path="/service-listing/{serviceId}",
 			method= RequestMethod.GET)
-	public String selectServiceForm(
+	public String singeServicePageForm(
 			@PathVariable(
 					name="serviceId",
 					required=false) String serviceId){
 		return "listings-single-page";
 	}
+	
+	/*************************
+	 * public 싱글 서비스 페이지 *
+	 **************************/
+	@RequestMapping(
+			path="/service-listing/{serviceId}/view",
+			method= RequestMethod.POST,
+			produces= {
+					MediaType.APPLICATION_JSON_UTF8_VALUE,
+					MediaType.APPLICATION_ATOM_XML_VALUE
+			})
+	public @ResponseBody Services sendDataToSingleService(
+			@PathVariable(
+					name="serviceId",
+					required=false) int serviceId){
+		System.out.println("==========들어옴=============");
+		return listingService.selectOneService(new Long(serviceId));
+	}
+	
+	/*************************
+	 * public 기본 실제 서비스 검색 *
+	 **************************/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/*******************************
 	 * [PROVIDER] 개인 실제 서비스 검색 *
 	 ********************************/

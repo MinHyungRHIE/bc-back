@@ -307,12 +307,13 @@
 								<h5>카테고리</h5>
 								<select class="chosen-select-no-single">
 									<option label="blank">카테고리 선택</option>
-									<option>요리</option>
-									<option>외국어</option>
-									<option>헬스/웰빙</option>
-									<option>비즈니스</option>
-									<option>일상생활</option>
-									<option></option>
+<%--시간이 없다--%>
+<%--									<option>요리</option>--%>
+<%--									<option>외국어</option>--%>
+<%--									<option>헬스/웰빙</option>--%>
+<%--									<option>비즈니스</option>--%>
+<%--									<option>일상생활</option>--%>
+<%--									<option></option>--%>
 								</select>
 
 								<!-- Panel Dropdown -->
@@ -743,25 +744,26 @@
 												<div class="col-md-5">
 												<select class="chosen-select" data-placeholder="은행명" id="chosen-select">
 													<option label="은행"></option>
-													<option>제주 은행</option>
-													<option>신한 은행</option>
-													<option>SC제일 은행</option>
-													<option>우리 은행</option>
-													<option>대구 은행</option>
-													<option>광주 은행</option>
-													<option>한국씨티 은행</option>
-													<option>전북 은행</option>
-													<option>KEB하나 은행</option>
-													<option>국민 은행</option>
-													<option>부산 은행</option>
-													<option>경남 은행</option>
-													<option>케이뱅크 은행</option>
-													<option>한국카카오 은행</option>
-													<option>한국산업 은행</option>
-													<option>농협 은행</option>
-													<option>기업 은행</option>
-													<option>한국수출입 은행</option>
-													<option>수협 은행</option>
+<%--시간이 진짜 없어--%>
+<%--													<option>제주 은행</option>--%>
+<%--													<option>신한 은행</option>--%>
+<%--													<option>SC제일 은행</option>--%>
+<%--													<option>우리 은행</option>--%>
+<%--													<option>대구 은행</option>--%>
+<%--													<option>광주 은행</option>--%>
+<%--													<option>한국씨티 은행</option>--%>
+<%--													<option>전북 은행</option>--%>
+<%--													<option>KEB하나 은행</option>--%>
+<%--													<option>국민 은행</option>--%>
+<%--													<option>부산 은행</option>--%>
+<%--													<option>경남 은행</option>--%>
+<%--													<option>케이뱅크 은행</option>--%>
+<%--													<option>한국카카오 은행</option>--%>
+<%--													<option>한국산업 은행</option>--%>
+<%--													<option>농협 은행</option>--%>
+<%--													<option>기업 은행</option>--%>
+<%--													<option>한국수출입 은행</option>--%>
+<%--													<option>수협 은행</option>--%>
 												</select>
 												</div>
 												<div class="col-md-5">
@@ -880,7 +882,38 @@ $(".opening-day.js-demo-hours .chosen-select").each(function() {
 				alert("다시 작성해주세요");
 			}
 		});
-	}); 
+	});
+
+
+
+
+window.onload = function() {
+
+	//test 진행 중
+
+	$(document).ready(function () {
+		var unmeaningFulData = new Object();
+		unmeaningFulData.req = "ohyes";
+
+		console.log("Apis 직전");
+		Apis.postRequest('/provider/service-add-readonly', unmeaningFulData).then(response => {
+			console.log(typeof response, response);//promise객체로 옴. 이제 그걸 풀어서, 화면에 뿌려줘야함.
+			showJsonData(response);
+		}); //getrequest로 요청보냄. return으로 response=>response.json()으로 받아짐.
+
+	}); //MyPage Loading END
+
+	nodeReadOnlyAdd();
+}
+
+
+
+
+
+
+
+
+
 
 
 </script>
@@ -890,7 +923,8 @@ $(".opening-day.js-demo-hours .chosen-select").each(function() {
 <script type="text/javascript" src="/js/tags.js"></script>
 <!-- my custom js -->
 <script type="text/javascript" src="/js/custom.song.js"></script>
-
+<script type="text/javascript" src="/js/custom2.song.js"></script>
+<script type="text/javascript" src="/js/customReadOnly.song.js"></script>
 
 </body>
 </html>

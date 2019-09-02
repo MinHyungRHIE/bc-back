@@ -12,9 +12,9 @@
 
 <!-- CSS
 ================================================== -->
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/main-color.css" id="colors">
-<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/main-color.css" id="colors">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
 
 </head>
 
@@ -35,7 +35,7 @@
 			<div class="left-side">
 				<!-- Logo -->
 				<div id="logo">
-					<a href="index.html"><img src="../img/logo.png" alt=""></a>
+					<a href="index.html"><img src="/img/logo.png" alt=""></a>
 				</div>
 
 				<!-- Mobile Navigation -->
@@ -268,10 +268,10 @@
 <!-- Slider
 ================================================== -->
 <div class="listing-slider mfp-gallery-container margin-bottom-0">
-	<a href="../img/single-listing-01.jpg" data-background-image="../img/single-listing-01.jpg" class="item mfp-gallery" title="Title 1"></a>
-	<a href="../img/single-listing-02.jpg" data-background-image="../img/single-listing-02.jpg" class="item mfp-gallery" title="Title 3"></a>
-	<a href="../img/single-listing-03.jpg" data-background-image="../img/single-listing-03.jpg" class="item mfp-gallery" title="Title 2"></a>
-	<a href="../img/single-listing-04.jpg" data-background-image="../img/single-listing-04.jpg" class="item mfp-gallery" title="Title 4"></a>
+	<a href="/img/single-listing-01.jpg" data-background-image="/img/single-listing-01.jpg" class="item mfp-gallery" title="Title 1"></a>
+	<a href="/img/single-listing-02.jpg" data-background-image="/img/single-listing-02.jpg" class="item mfp-gallery" title="Title 3"></a>
+	<a href="/img/single-listing-03.jpg" data-background-image="/img/single-listing-03.jpg" class="item mfp-gallery" title="Title 2"></a>
+	<a href="/img/single-listing-04.jpg" data-background-image="/img/single-listing-04.jpg" class="item mfp-gallery" title="Title 4"></a>
 </div>
 
 
@@ -359,7 +359,7 @@
 				<div class="boxed-widget margin-top-35">
 					<div class="hosted-by-title">
 						<h4 id="member_NickName"><span>선생님 소개</span></h4>
-						<a href="pages-user-profile.html" class="hosted-by-avatar"><img src="../img/dashboard-avatar.jpg" alt=""></a>
+						<a href="pages-user-profile.html" class="hosted-by-avatar"><img src="/img/dashboard-avatar.jpg" alt=""></a>
 					</div>
 					<!-- 자기소개 -->
 					<ul class="listing-details-sidebar social-profiles">
@@ -396,7 +396,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-5 col-sm-6">
-				<img class="footer-logo" src="../img/logo.png" alt="">
+				<img class="footer-logo" src="/img/logo.png" alt="">
 				<br><br>
 				<p>Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper.</p>
 			</div>
@@ -464,30 +464,31 @@
 
 <!-- Scripts
 ================================================== -->
-<script type="text/javascript" src="../js/jquery-2.2.0.min.js"></script>
-<script type="text/javascript" src="../js/mmenu.min.js"></script>
-<script type="text/javascript" src="../js/chosen.min.js"></script>
-<script type="text/javascript" src="../js/slick.min.js"></script>
-<script type="text/javascript" src="../js/rangeslider.min.js"></script>
-<script type="text/javascript" src="../js/magnific-popup.min.js"></script>
-<script type="text/javascript" src="../js/waypoints.min.js"></script>
-<script type="text/javascript" src="../js/counterup.min.js"></script>
-<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
-<script type="text/javascript" src="../js/tooltips.min.js"></script>
-<script type="text/javascript" src="../js/custom.js"></script>
+<script type="text/javascript" src="/js/jquery-2.2.0.min.js"></script>
+<script type="text/javascript" src="/js/mmenu.min.js"></script>
+<script type="text/javascript" src="/js/chosen.min.js"></script>
+<script type="text/javascript" src="/js/slick.min.js"></script>
+<script type="text/javascript" src="/js/rangeslider.min.js"></script>
+<script type="text/javascript" src="/js/magnific-popup.min.js"></script>
+<script type="text/javascript" src="/js/waypoints.min.js"></script>
+<script type="text/javascript" src="/js/counterup.min.js"></script>
+<script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/js/tooltips.min.js"></script>
+<script type="text/javascript" src="/js/custom.js"></script>
+<script src="/js/apis.js"></script>
 
 <!-- Maps -->
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
-<script type="text/javascript" src="../js/infobox.min.js"></script>
-<script type="text/javascript" src="../js/markerclusterer.js"></script>
-<script type="text/javascript" src="../js/maps.js"></script>
+<script type="text/javascript" src="/js/infobox.min.js"></script>
+<script type="text/javascript" src="/js/markerclusterer.js"></script>
+<script type="text/javascript" src="/js/maps.js"></script>
 
 <!-- Booking Widget - Quantity Buttons -->
-<script src="../js/quantityButtons.js"></script>
+<script src="/js/quantityButtons.js"></script>
 
 <!-- Date Range Picker - docs: http://www.daterangepicker.com/ -->
-<script src="../js/moment.min.js"></script>
-<script src="../js/daterangepicker.js"></script>
+<script src="/js/moment.min.js"></script>
+<script src="/js/daterangepicker.js"></script>
 <script>
 // Calendar Init
 $(function() {
@@ -541,7 +542,7 @@ $(".time-slot").each(function() {
 
 <!-- Style Switcher
 ================================================== -->
-<script src="../js/switcher.js"></script>
+<script src="/js/switcher.js"></script>
 
 <div id="style-switcher">
 	<h2>Color Switcher <a href="#"><i class="sl sl-icon-settings"></i></a></h2>
@@ -570,13 +571,20 @@ $(".time-slot").each(function() {
 </div>
 <!-- Style Switcher / End -->
 <script>
-    var test = true;
-
+    var test = false;
+	
     $(document).ready(function(){
+    	console.log("asddsfjasdklfjlksadjsdaklajsdl")
         if(test){
             startXhr();
         } else {
-            Apis.getRequest('/list');
+        	const urlll = document.location.href;
+        	const urlArr = urlll.split('/');
+        	const serviceid = urlArr[urlArr.length-2];
+        	console.log("serviceId : " + serviceid);
+            Apis.postRequest('/service-listing/'+serviceid+'/view').then(response=>{
+            	console.log(response);	
+            });
         }
     });
 
@@ -584,7 +592,7 @@ $(".time-slot").each(function() {
 
     function startXhr() {
         xhr = new XMLHttpRequest();
-        xhr.open("GET", "../data/single-service.json");
+        xhr.open("GET", "/data/single-service.json");
         xhr.send();
         xhr.onreadystatechange = function () {
             if(xhr.readyState == 4){
