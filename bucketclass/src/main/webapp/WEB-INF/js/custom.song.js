@@ -110,15 +110,17 @@ function firstServiceSave(){
 	sendJson.accountbank = account_bank;
 	sendJson.accountnumber = account_number;
 	// sendJson.service_img_uri;
+	
+	return sendJson;
 
-	Apis.postRequest(`/provider/add-service`, sendJson).then(response => {
-		if(response.res === "success"){
-			alert("나의 수업 템플릿에 저장 되었습니다!");
-			location.href = "/"; //원래 my-listing 페이지로 이동해야함
-		} else {
-			alert("다시 작성해주세요");
-		}
-	});
+//	Apis.postRequest(`/provider/add-service`, sendJson).then(response => {
+//		if(response.res === "success"){
+//			alert("나의 수업 템플릿에 저장 되었습니다!");
+//			location.href = "/"; //원래 my-listing 페이지로 이동해야함
+//		} else {
+//			alert("다시 작성해주세요");
+//		}
+//	});
 
 	// alert(jsonAddress);
 //	}

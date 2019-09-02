@@ -475,7 +475,6 @@
 <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="/js/tooltips.min.js"></script>
 <script type="text/javascript" src="/js/custom.js"></script>
-<script src="/js/apis.js"></script>
 
 <!-- Maps -->
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
@@ -571,20 +570,13 @@ $(".time-slot").each(function() {
 </div>
 <!-- Style Switcher / End -->
 <script>
-    var test = false;
-	
+    var test = true;
+
     $(document).ready(function(){
-    	console.log("asddsfjasdklfjlksadjsdaklajsdl")
         if(test){
             startXhr();
         } else {
-        	const urlll = document.location.href;
-        	const urlArr = urlll.split('/');
-        	const serviceid = urlArr[urlArr.length-2];
-        	console.log("serviceId : " + serviceid);
-            Apis.postRequest('/service-listing/'+serviceid+'/view').then(response=>{
-            	console.log(response);	
-            });
+            Apis.getRequest('/list');
         }
     });
 

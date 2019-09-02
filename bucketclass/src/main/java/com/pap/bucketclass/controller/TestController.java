@@ -89,6 +89,17 @@ public class TestController {
 	}
 
 	@RequestMapping(
+			path="/test/dataFormView",
+			method=RequestMethod.POST,
+			produces= {
+					MediaType.APPLICATION_JSON_UTF8_VALUE,
+					MediaType.APPLICATION_ATOM_XML_VALUE
+			})
+	public @ResponseBody Services dataFormView() {
+		return listingService.selectOneService(new Long(4));
+	}
+	
+	@RequestMapping(
 			path="/test/jsonfile",
 			method= RequestMethod.POST,
 			produces= {

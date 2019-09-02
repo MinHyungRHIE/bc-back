@@ -32,63 +32,64 @@ function confuseDate(DateStr) {
 function showJsonData(response) {
 
     try{
+        var item = response;
 
-    var item = response.items[0];
+        var service_title = item.serviceTitle;
+        var service_description = item.serviceDescription;
 
-    var unzipAddress = item.serviceAddress;
+        var unzipCategory = item.serviceCategory;
+        var category_subject = unzipCategory.categorySubject;
+        var category_type = unzipCategory.categoryType;
+        var category_scale = unzipCategory.categoryScale;
+        var category_period = unzipCategory.categoryPeriod;
+        var category_place = unzipCategory.categoryPlace;
 
-    var addressstate = unzipAddress.addressState;
-    var addresscity = unzipAddress.addressCity;
-    var addressdong = unzipAddress.addressDong;
-    var addressdetail = unzipAddress.addressDetail;
+        var account_bank = item.accountBank;
+        var account_number = item.accountNumber;
 
-    var entry_jibeon_address = String(addressstate+" "+addresscity+" "+addressdong+" "+addressdetail);
+        console.log("add에 들어갈 데이터는 전부 변수에 들어감");
 
+        var hash = item.hashTag;
+        var unzipAddress = item.serviceAddress;
 
-    var servicePrice = Number(item.servicePrice.replace("원","").replace(",",""));
-    var priceDescriptionData = item.serviceDateDescription;
-    var service_title = item.serviceTitle;
-    var service_description = item.serviceDescription;
+        var addressstate = unzipAddress.addressState;
+        var addresscity = unzipAddress.addressCity;
+        var addressdong = unzipAddress.addressDong;
+        var addressdetail = unzipAddress.addressDetail;
 
-    var unzipCategory = item.serviceCategory;
-    var category_subject = unzipCategory.categorySubject;
-    var category_type = unzipCategory.categoryType;
-    var category_scale = unzipCategory.categoryScale;
-    var category_period = unzipCategory.categoryPeriod;
-    var category_place = unzipCategory.categoryPlace;
-
-    var hash = item.hashTag;
-    //    var service_img_uri = getJsonObject();
-
-    var account_bank = item.accountBank;
-    var account_number = item.accountNumber;
-
-    var dateStartDate = item.serviceStartDate;
-    var dateEndDate = item.serviceEndDate;
+        var entry_jibeon_address = String(addressstate+" "+addresscity+" "+addressdong+" "+addressdetail);
 
 
-    // 우편번호 /도로명주소 / 상세주소/ 지번주소
-    // document.getElementById("entry_postcode6").value = entry_postcode6;
-    // document.getElementById("entry_address").value = entry_address;
-    // document.getElementById("entry_details").value = entry_details;
-    document.getElementById("entry_jibeon_address").value = entry_jibeon_address;
+        var servicePrice = Number(item.servicePrice.replace("원","").replace(",",""));
+        var priceDescriptionData = item.serviceDateDescription;
 
-    // 날짜 데이터의 경우 받은 파일을 합쳐서 ElementsByName이 datetimes인 곳으로 전달함.
-    // 날짜 데이터를 가져오기
-    var startDate = confuseDate(dateStartDate);
-    var endDate = confuseDate(dateEndDate);
-    var showDate = startDate + " - " + endDate;
-    document.getElementsByName("datetimes")[0].value = showDate;
+        //    var service_img_uri = getJsonObject();
+        var dateStartDate = item.serviceStartDate;
+        var dateEndDate = item.serviceEndDate;
 
 
-    // 가격 가져오기 (getElememtById 뒤에 value추가함) , 가격설명
-    document.getElementById("service_price").value = servicePrice;
-    document.getElementById("service_price_description").value = priceDescriptionData;
+        // 우편번호 /도로명주소 / 상세주소/ 지번주소
+        // document.getElementById("entry_postcode6").value = entry_postcode6;
+        // document.getElementById("entry_address").value = entry_address;
+        // document.getElementById("entry_details").value = entry_details;
+        document.getElementById("entry_jibeon_address").value = entry_jibeon_address;
+
+        // 날짜 데이터의 경우 받은 파일을 합쳐서 ElementsByName이 datetimes인 곳으로 전달함.
+        // 날짜 데이터를 가져오기
+        var startDate = confuseDate(dateStartDate);
+        var endDate = confuseDate(dateEndDate);
+        var showDate = startDate + " - " + endDate;
+        document.getElementsByName("datetimes")[0].value = showDate;
 
 
-    }catch{
-        console.log("add가 아니었구만;")
-    }finally {
+        // 가격 가져오기 (getElememtById 뒤에 value추가함) , 가격설명
+        document.getElementById("service_price").value = servicePrice;
+        document.getElementById("service_price_description").value = priceDescriptionData;
+
+
+    } catch(ee) {
+        console.log("add가 아니었구만;"+ee);
+    } finally {
 
 
         // 사진 service_img_uri

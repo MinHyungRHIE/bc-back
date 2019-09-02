@@ -580,12 +580,12 @@
                                                     </div>
                                                     <div class="col-md-5">
                                                         <div class="fm-input pricing-ingredients"><input type="int" placeholder="계좌번호" id="account_num" /></div></div>
-                                                    <div class="fm-close"><a class="delete" href="#"><i class="fa fa-remove"></i></a></div>
+                                                    <!-- <div class="fm-close"><a class="delete" href="#"><i class="fa fa-remove"></i></a></div> -->
 
                                                 </td>
                                             </tr>
                                         </table>
-                                        <a href="#" class="button add-pricing-list-item">은행 및 계좌 추가</a>
+                                        <!-- <a href="#" class="button add-pricing-list-item">은행 및 계좌 추가</a> -->
                                     </div>
                                 </div>
 
@@ -793,9 +793,14 @@
             $(document).ready(function () {
                 var unmeaningFulData = new Object();
                 unmeaningFulData.req = "ohyes";
-
+                
+            	const urlll = document.location.href;
+            	const urlArr = urlll.split('/');
+            	const serviceid = urlArr[urlArr.length-2];
+            	console.log("serviceId : " + serviceid);
+                
                 console.log("Apis 직전");
-                Apis.postRequest('/provider/service-edit',unmeaningFulData).then(response => {
+                Apis.postRequest('/provider/my-listing/'+serviceid+'/read',unmeaningFulData).then(response => {
                     console.log(typeof response, response);//promise객체로 옴. 이제 그걸 풀어서, 화면에 뿌려줘야함.
                     showJsonData(response);
                 }); //getrequest로 요청보냄. return으로 response=>response.json()으로 받아짐.
