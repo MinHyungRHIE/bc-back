@@ -25,10 +25,6 @@
 		<!-- control privilege uri -->
 		<intercept-url pattern="/provider/**" access="isAuthenticated()" />
 		<intercept-url pattern="/customer/**" access="isAuthenticated()" />
-		<!-- <intercept-url pattern="/provider/**" access="hasRole('ROLE_PROVIDER')" 
-			/> <intercept-url pattern="/customer/**" access="hasRole('ROLE_CUSTOMER')" 
-			/> -->
-
 
 		<!-- test uri -->
 		<intercept-url pattern="/test/**" access="permitAll" />

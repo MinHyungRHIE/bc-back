@@ -871,7 +871,15 @@ $(".opening-day.js-demo-hours .chosen-select").each(function() {
 	// 저장하기버튼 눌렀을때 json 전달
 	var btnEle = document.getElementById("button save");
 	btnEle.addEventListener("click",function (){
-		firstServiceSave();
+		var sendJson = firstServiceSave();
+		Apis.postRequest(`/provider/add-service`, sendJson).then(response => {
+			if(response.res === "success"){
+				alert("나의 수업 템플릿에 저장 되었습니다!");
+				location.href = "/"; //원래 my-listing 페이지로 이동해야함
+			} else {
+				alert("다시 작성해주세요");
+			}
+		});
 	}); 
 
 

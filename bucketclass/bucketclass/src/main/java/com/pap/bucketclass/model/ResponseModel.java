@@ -5,8 +5,10 @@ import java.io.Serializable;
 public class ResponseModel implements Serializable{
 	
 	private String res;
-
-	public String getRes() { 
+	
+	private Long serviceId;
+	
+	public String getRes() {
 		return res;
 	}
 
@@ -14,4 +16,12 @@ public class ResponseModel implements Serializable{
 		this.res = res;
 	}
 
+	public Long getServiceId() {
+		return serviceId;
+	}
+
+	public void setServiceId(Long serviceId) {
+		this.serviceId = serviceId;
+	}
+	
 }

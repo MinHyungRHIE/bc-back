@@ -276,7 +276,7 @@ pageEncoding="UTF-8"%>
 
 							<!-- Avatar -->
 							<!-- Avatar -->
-							<form id="myForm" name="myForm">
+							
 								<div class="edit-profile-photo">
 									<img id="memberImg" src="" alt="">
 									<div class="change-photo-btn">
@@ -286,7 +286,7 @@ pageEncoding="UTF-8"%>
 										</div>
 									</div>
 								</div>
-							</form>
+							
 <!--							<div class="edit-profile-photo">-->
 <!--								<img src="images/art.jpg" alt="" width="400" height="400">-->
 <!--								<div class="change-photo-btn">-->
@@ -311,7 +311,7 @@ pageEncoding="UTF-8"%>
 <!--								</div>-->
 <!--								</form>-->
 <!--							</div>-->
-
+							<form id="myForm" name="myForm">
 							<!-- 프로필 세부사항 -->
 							<div class="my-profile">
 
@@ -340,8 +340,8 @@ pageEncoding="UTF-8"%>
 
 							</div>
 
-							<button id='buttonProfile' class='button margin-top-15'>마이페이지 수정</button>
-
+							<button id='buttonProfile' class='button margin-top-15' type = 'submit'>마이페이지 수정</button>
+							</form>
 						</div>
 
 					</div>

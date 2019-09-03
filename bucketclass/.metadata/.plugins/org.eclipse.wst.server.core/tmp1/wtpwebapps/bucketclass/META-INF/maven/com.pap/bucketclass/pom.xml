@@ -192,8 +192,10 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
-			<version>4.2.1.RELEASE</version>
+			<version>5.0.10.RELEASE</version>
 		</dependency>
+
+
 
 
 		<!-- ================================= -->
@@ -235,12 +237,6 @@
 		<!-- ================================= -->
 		<!-- File Upload -->
 		<!-- ================================= -->
-		<dependency>
-			<groupId>org.imgscalr</groupId>
-			<artifactId>imgscalr-lib</artifactId>
-			<version>4.2</version>
-		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>

@@ -2,10 +2,11 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="My Pro" key="selection"/>
+		<item value="updateProviderProfile" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="updateProviderProfile"/>
 			<item value="User Profil"/>
 			<item value="Logout"/>
 			<item value=".."/>
@@ -13,7 +14,6 @@
 			<item value="/index"/>
 			<item value="update"/>
 			<item value="Password"/>
-			<item value="logo"/>
 		</list>
 		<list key="replacehistory">
 		</list>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -53,8 +54,7 @@ public class CustomerMyPageController {
 					MediaType.APPLICATION_JSON_UTF8_VALUE,
 					MediaType.APPLICATION_ATOM_XML_VALUE})
 	@ResponseBody
-	public Member loadMypage(
-			@RequestBody RequestModel model, Principal principal ) {
+	public Member loadMypage(@RequestBody RequestModel model, Principal principal ) {
 		Member member = customerService.loadMember(principal.getName());
 		if(member != null) {
 			return member;
@@ -62,27 +62,15 @@ public class CustomerMyPageController {
 		return null;
 	}
 	
-	@PreAuthorize("hasRole('ROLE_CUSTOMER')")
-	@PostMapping(
-			value="/customer/mypage/imageUpload",
-			produces= {
-					MediaType.APPLICATION_JSON_UTF8_VALUE,
-					MediaType.APPLICATION_ATOM_XML_VALUE})
-	@ResponseBody
-	public String imageUpload(@ModelAttribute MultipartFile file, Principal principal) {
-		return customerService.imageUpload(file, principal.getName());
-	}
-	
-	
 	//이용자가 MyPage에서 정보를 수정할 때 들어오는 경로 & 수정된 데이터 보내기
 	@PreAuthorize("hasRole('ROLE_CUSTOMER')")
-	@PatchMapping(
+	@PostMapping(
 			value="/customer/mypage/update",
 			produces= {
 					MediaType.APPLICATION_JSON_UTF8_VALUE,
 					MediaType.APPLICATION_ATOM_XML_VALUE})
 	@ResponseBody
-	public Member updateMypage(@RequestBody CustomerMyPageModel customerModel, Principal principal) {
+	public Member updateMypage(@ModelAttribute CustomerMyPageModel customerModel, Principal principal) {
 		Member member = customerService.updateMember(customerModel, principal.getName());
 		if(member != null) {
 			return member;

@@ -138,7 +138,7 @@
                     if(val && otherCheck) {
                         // place the new tag
 //  해시테그 때매 바꿈      $inputLi.before("<li class='tag'><span>"+val+"</span><a href='#'>x</a></li>");
-                        $inputLi.before("<li class='tag'><span>"+val+"</span><a href='#'>⨂</a></li>");
+                        $inputLi.before("<li class='tag'><span>"+val+"</span><a href='#'>⨂</a></li>");          
 
                         // clear the values
                         $input.val("");

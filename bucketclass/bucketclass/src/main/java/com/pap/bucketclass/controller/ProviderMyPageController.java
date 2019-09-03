@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.pap.bucketclass.entity.Member;
 import com.pap.bucketclass.model.PasswordModel;
@@ -59,28 +60,17 @@ public class ProviderMyPageController {
 		}
 		return null;
 	}
-	
-	// 제공자가 프로필사진 업로드 시 들어오는 경로
-	@PreAuthorize("hasRole('ROLE_PROVIDER')")
-	@PostMapping(
-			value="/provider/mypage/imageUpload", 
-			produces= {
-					MediaType.APPLICATION_JSON_UTF8_VALUE,
-					MediaType.APPLICATION_ATOM_XML_VALUE})
-	@ResponseBody
-	public String imageUoload(@ModelAttribute MultipartFile memberImg, Principal principal) {
-		return providerService.imageUpload(memberImg, principal.getName());
-	}
 
 	//제공자가 MyPage에서 정보를 수정할 때 들어오는 경로 & 수정된 데이터 보내기
 	@PreAuthorize("hasRole('ROLE_PROVIDER')")
-	@PatchMapping(
+	@RequestMapping(
+			method=RequestMethod.POST,
 			value="/provider/mypage/update",
 			produces= {
 					MediaType.APPLICATION_JSON_UTF8_VALUE,
 					MediaType.APPLICATION_ATOM_XML_VALUE})
 	@ResponseBody
-	public Member updateMypage(@RequestBody ProviderMyPageModel providerModel, Principal principal) {
+	public Member updateMypage(@ModelAttribute ProviderMyPageModel providerModel, Principal principal) {
 		Member member = providerService.updateMember(providerModel, principal.getName());
 		if(member != null) {
 			return member;
@@ -91,7 +81,7 @@ public class ProviderMyPageController {
 	//제공자가 password를 변경할 때 들어오는 경로
 	@PreAuthorize("hasRole('ROLE_PROVIDER')")
 	@PatchMapping(
-			value="/provider/mypage",
+			value="/provider/mypage/",
 			produces= {
 					MediaType.APPLICATION_JSON_UTF8_VALUE,
 					MediaType.APPLICATION_ATOM_XML_VALUE}
@@ -100,7 +90,7 @@ public class ProviderMyPageController {
 	public ResponseModel changePassword(@RequestBody PasswordModel model, Principal principal) {
 
 		ResponseModel response = new ResponseModel();
-		
+
 		if(providerService.changePassword(model, principal.getName())) {
 			response.setRes("success");
 			return response;

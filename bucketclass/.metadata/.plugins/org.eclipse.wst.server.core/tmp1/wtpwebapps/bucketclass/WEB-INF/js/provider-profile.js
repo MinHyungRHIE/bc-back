@@ -85,106 +85,52 @@ function callPW(column) {
 //=====================================2. MyPage Update=======================================
 //MyPage Update Button
 document.getElementById('buttonProfile').addEventListener('click', button_myprofile);
-
 function button_myprofile(){
-    console.log("체크올 레알 투르 ?");
-    if(checkAll() === true){
-        // const myForm = document.querySelector('#myForm');
-        // myForm.addEventListener('submit', function(e) {
-        //     e.preventDefault();
-        // const formData = new FormData(e.target);
-        //
-        // console.log("myFile.files[0]>>"+myFile.files[0]);
-        // formData.append('memberImg', myFile.files[0]);
-        // formData.append('memberNickname',document.getElementById("memberNickname").value);
-        // formData.append('memberEmail', document.getElementById("memberEmail").value);
-        // formData.append('career', document.getElementById("career").value);
-        // formData.append('certi',document.getElementById("certi").value);
-        // formData.append('introduce',document.getElementById("introduce").value);
-        // console.log(typeof formData, formData);
-
-        var providerMypageObject = new Object();
-        providerMypageObject.memberNickname = document.getElementById("memberNickname").value;
-        providerMypageObject.memberEmail = document.getElementById("memberEmail").value;
-        providerMypageObject.career = document.getElementById("career").value;
-        providerMypageObject.certi = document.getElementById("certi").value;
-        providerMypageObject.introduce = document.getElementById("introduce").value;
-
-        console.log("수정값 들어왔니");
-        //console.log(typeof providerMypageObject, providerMypageObject); //수정 버튼 누를 시, 값들이 JSON으로 변환.
-        console.log("수정값 들어왔니1");
-
-        Apis.updateProviderProfile(providerMypageObject).then(response => { //JSON으로 변환된 값들을 DB로 보낸다.
-            console.log("수정값 들어왔니22");
-            // Apis.getRequest('/customer/mypage').then(response =>{ //updatecustomerProfile함수에서 반환된 값(수정된 mypage 정보)를 다시 뿌려준다.
-            //     console.log("수정값 들어왔니33");
-            console.log(response);//promise객체로 옴. 이제 그걸 풀어서, 화면에 뿌려줘야함.
-            showMypage(response);
-            //Apis.getRequest('/provider/mypage').then(response =>{ //updateProviderProfile함수에서 반환된 값(수정된 mypage 정보)를 다시 뿌려준다.
-        }); alert("수정 완료!")
-
-    }else
-        alert("필수입력 항목의 빈칸을 채워주세요~");
-
-};
+ console.log("체크올 레알 투르 ?");
+ if(checkAll() === true){
+    
+     console.log("updateImg >> 여기 들어왔어?");
+     const myForm = document.querySelector('#myForm');
+     myForm.addEventListener('submit', function(e) {
+         e.preventDefault();
+         const imgFormData = new FormData(e.target);
+         imgFormData.append('memberImg', myFile.files[0]);
+         
+         console.log("imgFormData 확인 " + typeof imgFormData, imgFormData);
+         //for debugging
+         const obj = Object.fromEntries(imgFormData);
+         console.log('obj', obj);
+         //for debugging
+         Apis.updateProviderProfile(imgFormData).then(response => {
+             console.log("Apis 들어왔니");
+             console.log(response);
+             showMypage(response);
+             insertProfileImgResource('memberImg', response.memberImg);
+         });
+         alert("수정 완료!")
+         });
+     }else
+     alert("필수입력 항목의 빈칸을 채워주세요~");
+ };
 //////////////////////////////////////////////////
 //profile update
-const myFile = document.querySelector('#myFile');
-myFile.addEventListener('change', function(e) {
-    const files = e.target.files;
-    console.log('files >>', files);
-    previewFile(files[0]);
-});
-
-function previewFile(file) {
-    var preview = document.querySelector('#memberImg');
-    var reader  = new FileReader();
-
-    reader.addEventListener("load", function () {
-        preview.src = reader.result;
-    }, false);
-
-    if (file) {
-        reader.readAsDataURL(file);
-    }
-}
-//저장하는 POST로 fetch!
-const myForm = document.querySelector('#myForm');
-myForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const formData = new FormData(e.target);
-    formData.append('memberImg', myFile.files[0]);
-
-    // for debugging
-    const obj = Object.fromEntries(formData);
-    console.log('obj', obj);
-    // for debugging
-
-    Apis.postRequest('/provider/mypage/imageUpload', formData).then(response =>{
-        console.log("response>>"+response);
-         insertProfileImgResource('memberImg', response);
-     })
-});
-//클릭시, 새로운 파일을 폼데이터로 추가되고 post로 보낸다
-// const myForm = document.querySelector('#myForm');
-// myForm.addEventListener('submit', function(e) {
-//     e.preventDefault();
-//
-//     const formData = new FormData(e.target);
-//     console.log("myFile.files[0]>>"+myFile.files[0]);
-//     formData.append('file', myFile.files[0]);
-//     console.log(typeof formData, formData);
-//     // for debugging
-//     //const obj = Object.fromEntries(formData);
-//     //console.log('obj', obj);
-//     // for debugging
-//
-//     Apis.postRequest('/provider/mypage/imageUpload', formData).then(response =>{
-//         insertProfileImgResource('memberImg', response);
-//     })
-// });
-
+ const myFile = document.querySelector('#myFile');
+ myFile.addEventListener('change', function(e) {
+     const files = e.target.files;
+     console.log('files >>', files);
+     previewFile(files[0]);
+     console.log("files[0]>>",files[0]);
+ });
+ function previewFile(file) {
+     var preview = document.querySelector('#memberImg');
+     var reader  = new FileReader();
+     reader.addEventListener("load", function () {
+         preview.src = reader.result;
+     }, false);
+     if (file) {
+         reader.readAsDataURL(file);
+     }
+ }
 ////////////////////////////////////////프로필수정 입력 여부 검사///////////////////////////////////////////////////////
 function checkAll() {
 

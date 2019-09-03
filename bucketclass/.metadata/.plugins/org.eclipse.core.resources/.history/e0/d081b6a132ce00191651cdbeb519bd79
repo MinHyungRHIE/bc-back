@@ -1,0 +1,16 @@
+package com.pap.bucketclass.model;
+
+import org.springframework.web.multipart.MultipartFile;
+
+public class ImageModel {
+	MultipartFile memberImg;
+
+	public void setMemberImg(MultipartFile memberImg) {
+		this.memberImg = memberImg;
+	}
+
+	public MultipartFile getMemberImg() {
+		return memberImg;
+	}
+
+}

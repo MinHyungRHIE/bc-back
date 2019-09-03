@@ -34,25 +34,15 @@ public class CustomerMyPageService {
 		}
 		return found;
 	}
-	@Transactional
-	public String imageUpload(MultipartFile file, String memberId) {
-		Member member = memberRepo.findByMemberId(memberId);
-		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-		if(member != null) {
-			member.setMemberImg(fileName);
-			memberRepo.save(member);
-		}else {
-			throw new AccessDeniedException("403 error");
-		}
-		return fileName;
-	}
 	
 	@Transactional
 	public Member updateMember(CustomerMyPageModel customerModel, String memberId) {
 		Member member = memberRepo.findByMemberId(memberId);
+		String fileName = StringUtils.cleanPath(customerModel.getMemberImg().getOriginalFilename());
 		if (member != null) {
 			member.setMemberNickname(customerModel.getMemberNickname());
 			member.setMemberEmail(customerModel.getMemberEmail());
+			member.setMemberImg(fileName);
 			member.setIntroduce(customerModel.getIntroduce());
 		} else {
 			throw new AccessDeniedException("403 error");

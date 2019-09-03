@@ -107,6 +107,28 @@ function putRequest(path, body = {}) {
 	}).then(response => response.json());
 }
 
+function postRequest1(path, body) {
+    // Default options are marked with *
+    return fetch(baseUrl(path), {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        // mode: 'cors', // no-cors, cors, *same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        // credentials: 'same-origin', // include, *same-origin, omit
+//        headers: {
+//            'Content-Type': 'multipart/form-data'
+//        },
+        // redirect: 'follow', // manual, *follow, error
+        // referrer: 'no-referrer', // no-referrer, *client
+        body: body // body data type must match "Content-Type" header
+    }).then(response => response.json());
+}
+function updateProviderProfile(object) {
+    return postRequest1('/provider/mypage/update', object);
+}
+function updateCustomerProfile(object){
+    return postRequest1('/customer/mypage/update', object);
+}
+
 function loginRequest(credential) {
 	return getRequest('/signup');
 }
@@ -139,10 +161,6 @@ function providerProfile(content){
 	return getRequest(content);
 }
 
-function updateProviderProfile(object) {
-	return patchRequest('/provider/mypage/update', object);
-}
-
 function updateCustomerProfile(object){
 	return patchRequest('/customer/mypage/update', object);
 }
@@ -169,6 +187,7 @@ const Apis = {
 		getRequest,
 		patchRequest,
 		postRequest,
+		postRequest1,
 		putRequest,
 		loginRequest,
 

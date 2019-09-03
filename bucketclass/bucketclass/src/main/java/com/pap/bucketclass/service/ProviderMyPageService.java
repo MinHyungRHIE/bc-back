@@ -51,10 +51,12 @@ public class ProviderMyPageService {
 	@Transactional
 	public Member updateMember(ProviderMyPageModel providerModel, String memberId) {
 		Member member = memberRepo.findByMemberId(memberId);
+		String fileName = StringUtils.cleanPath(providerModel.getMemberImg().getOriginalFilename());
 		if (member != null) {
 			member.setMemberNickname(providerModel.getMemberNickname());
 			member.setMemberEmail(providerModel.getMemberEmail());
 			member.setIntroduce(providerModel.getIntroduce());
+			member.setMemberImg(fileName);
 			member.setCareer(providerModel.getCareer());
 			member.setCerti(providerModel.getCerti());
 		} else {

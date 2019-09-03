@@ -110,15 +110,17 @@ function firstServiceSave(){
 	sendJson.accountbank = account_bank;
 	sendJson.accountnumber = account_number;
 	// sendJson.service_img_uri;
+	
+	return sendJson;
 
-	Apis.postRequest(`/provider/add-service`, sendJson).then(response => {
-		if(response.res === "success"){
-			alert("나의 수업 템플릿에 저장 되었습니다!");
-			location.href = "/"; //원래 my-listing 페이지로 이동해야함
-		} else {
-			alert("다시 작성해주세요");
-		}
-	});
+//	Apis.postRequest(`/provider/add-service`, sendJson).then(response => {
+//		if(response.res === "success"){
+//			alert("나의 수업 템플릿에 저장 되었습니다!");
+//			location.href = "/"; //원래 my-listing 페이지로 이동해야함
+//		} else {
+//			alert("다시 작성해주세요");
+//		}
+//	});
 
 	// alert(jsonAddress);
 //	}
@@ -133,41 +135,28 @@ function secondServiceSave(){
 	// var btnEle = document.getElementById("button preview");
 	// btnEle.addEventListener("click",function () {
 
-	// 우편번호
+	// 우편번호 / 도로명주소 / 상세주소 / 지번주소
 	var entry_postcode6 = document.getElementById("entry_postcode6").value;
-	entry_postcode6.toString();
-
-	// 도로명주소
 	var entry_address = document.getElementById("entry_address").value;
-	entry_address.toString();
-
-	// 상세주소
 	var entry_details = document.getElementById("entry_details").value;
-	entry_details.toString();
-
-
-	// 지번주소
 	var entry_jibeon_address = document.getElementById("entry_jibeon_address").value;
+
+	entry_postcode6.toString();
+	entry_address.toString();
+	entry_details.toString();
 	entry_jibeon_address.toString();
 
 	// 지번주소를 파싱
 	var spliceStr = entry_jibeon_address.split(' ');
 
-//	===================== 날짜 데이터 가져오기
-//	=============================================================
-	// 날짜 데이터를 가져오기
+//	===================== 날짜 데이터 =============================================================
 	var datetimeString = document.getElementsByName("datetimes")[0].value;
-
-	// 날짜데이터에서 - 기준으로 데이터 나누기
 	var spliteDate = datetimeString.split("-");
-
-	// 날짜데이터에서 '/' 없애기 -> ':'없애기 -> ' '없애기 -> 201908211200오후
 	var staDate = spliteDate[0].replace(/\//gi,"").replace(/ /gi, "").replace(":","");
 	var endDate = spliteDate[1].replace(/\//gi,"").replace(/ /gi, "").replace(":","");
+
 	var staDateFinal = DateConverter(staDate);
-	console.log(staDateFinal);
 	var endDateFinal = DateConverter(endDate);
-	console.log(endDateFinal);
 
 	// 가격 가져오기
 	var priceDate = document.getElementById("service_price");
@@ -184,38 +173,26 @@ function secondServiceSave(){
 	sendJson.serviceprice = Number(priceDate.value);
 	sendJson.servicedatedescription = priceDescriptionData.value;
 	console.log(sendJson);
+	
+	return sendJson;
+	
 
-	const url = document.location.href;
-	const urlArray = url.split('/');
-	const serviceId = urlArray[urlArray.length-2];
-	console.log(serviceId);
-
-	postRequest(`/provider/my-template/`+serviceId+`/regist`,  sendJson).then(response => {
-		if(response.res === "success"){
-			alert("나의 수업 리스트에 저장 되었습니다!");
-			location.href = "/"; //원래 my-listing 페이지로 이동해야함
-		} else {
-			alert("다시 작성해주세요");
-		}
-	});
-
+	
 //	Apis.postRequest(`/provider/my-template/1/regist`,  sendJson).then(response => {
-//	console.log("들어왔어");
-//	if(response.res === "success"){
-//	alert("나의 수업 리스트에 저장 되었습니다!");
-//	location.href = "/"; //원래 my-listing 페이지로 이동해야함
-//	} else {
-//	alert("다시 작성해주세요");
-//	}
+//		console.log("들어왔어");
+//		if(response.res === "success"){
+//			alert("나의 수업 리스트에 저장 되었습니다!");
+//			location.href = "/"; //원래 my-listing 페이지로 이동해야함
+//		} else {
+//			alert("다시 작성해주세요");
+//		}
 //	});
 	// object를 JSON형태로 만들기
 //	return JSON.stringify(sendJson);
 //	alert(jsonAddress);
 }
-//);
+// );
 //}
-
-
 
 function combineJson(){
 	var a = JSON.parse(firstServiceSave());

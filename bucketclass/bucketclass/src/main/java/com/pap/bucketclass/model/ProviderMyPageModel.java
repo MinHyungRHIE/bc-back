@@ -1,12 +1,14 @@
 package com.pap.bucketclass.model;
 
+import java.io.Serializable;
+
 import org.springframework.web.multipart.MultipartFile;
 
-public class ProviderMyPageModel {
+public class ProviderMyPageModel implements Serializable{
 	
 	private String memberEmail;
 	private String memberNickname;
-	private String memberImg;
+	private MultipartFile memberImg;
 	private String introduce;
 	private String career;
 	private String certi;
@@ -24,10 +26,10 @@ public class ProviderMyPageModel {
 	public void setMemberNickname(String memberNickname) {
 		this.memberNickname = memberNickname;
 	}
-	public String getMemberImg() {
+	public MultipartFile getMemberImg() {
 		return memberImg;
 	}
-	public void setMemberImg(String memberImg) {
+	public void setMemberImg(MultipartFile memberImg) {
 		this.memberImg = memberImg;
 	}
 	public String getIntroduce() {
