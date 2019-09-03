@@ -107,11 +107,11 @@ pageEncoding="UTF-8"%>
 									<!--								<li><a href="dashboard-messages.html">Messages</a></li>-->
 									<!--								<li><a href="dashboard-bookings.html">Bookings</a></li>-->
 									<!--								<li><a href="dashboard-wallet.html">Wallet</a></li>-->
-									<li><a href="dasboard-mylisting.html">My Listing</a></li>
+									<li><a href="/provider/active-listing">My Listing</a></li>
 									<!--								<li><a href="dashboard-reviews.html">Reviews</a></li>-->
 									<!--								<li><a href="dashboard-bookmarks.html">Bookmarks</a></li>-->
 									<!-- <li><a href="dashboard-add-listing.html">Add Listing</a></li> -->
-									<li><a href="dashboard-profile.html">마이페이지</a></li>
+									<li><a href="/provider/mypage">마이페이지</a></li>
 									<!--								<li><a href="dashboard-invoice.html">Invoice</a></li>-->
 								</ul>
 							</li>
@@ -170,7 +170,7 @@ pageEncoding="UTF-8"%>
 							<div class="user-name"><span><img id="memberImg1" src="" alt="" /></span>안녕하세요!</div>
 							<ul>
 								<!--							<li><a href="dashboard.html"><i class="sl sl-icon-settings"></i> Dashboard</a></li>-->
-								<li><a herf="dashboard-my-listings.html"><i class="sl sl-icon-layers"></i>My Listing</a></li>
+								<li><a herf="/provider/active-listing"><i class="sl sl-icon-layers"></i>My Listing</a></li>
 								<!--							<li><a href="dashboard-messages.html"><i class="sl sl-icon-envelope-open"></i> Messages</a></li>-->
 								<!--							<li><a href="dashboard-bookings.html"><i class="fa fa-calendar-check-o"></i> Bookings</a></li>-->
 								<li><a href="/logout"><i class="sl sl-icon-power"></i> Logout</a></li>
@@ -221,7 +221,7 @@ pageEncoding="UTF-8"%>
 				<!--			</ul>-->
 
 				<ul data-submenu-title="">
-					<li><a id="sideBarMyList"><i class="sl sl-icon-layers"></i> My Listing</a></li>
+					<li><a id="sideBarMyList" href="/provider/active-listing"><i class="sl sl-icon-layers"></i>My Listing</a></li>
 
 					<!--					<ul>-->
 					<!--						<li><a href="active-service.html">Active</a></li> &lt;!&ndash;<span class="nav-tag yellow">1</span> &ndash;&gt;-->
@@ -231,12 +231,12 @@ pageEncoding="UTF-8"%>
 
 					<!--				<li><a href="dashboard-reviews.html"><i class="sl sl-icon-star"></i> Reviews</a></li>-->
 					<!--				<li><a href="dashboard-bookmarks.html"><i class="sl sl-icon-heart"></i> Bookmarks</a></li>-->
-					<li><a id="sideBarAddListing"><i class="sl sl-icon-plus"></i> Add Listing</a></li>
+					<li><a id="sideBarAddListing" href="/provider/add-service"><i class="sl sl-icon-plus"></i>Add Listing</a></li>
 				</ul>
 
 				<ul data-submenu-title="">
-					<li class="active"><a id="sideBarMyPage"><i class="sl sl-icon-user"></i>마이페이지</a></li>
-					<li><a id="sideBarLogout"><i class="sl sl-icon-power"></i> Logout</a></li>
+					<li class="active"><a id="sideBarMyPage" href="/provider/mypage"><i class="sl sl-icon-user"></i>마이페이지</a></li>
+					<li><a id="sideBarLogout" href="/logout"><i class="sl sl-icon-power"></i>로그아웃</a></li>
 				</ul>
 
 			</div>
@@ -281,36 +281,12 @@ pageEncoding="UTF-8"%>
 									<img id="memberImg" src="" alt="">
 									<div class="change-photo-btn">
 										<div class="photoUpload">
-											<button type="submit"><i class="fa fa-upload"></i> Upload Photo</button>
+											<span><i class="fa fa-upload"></i>사진 변경</span>
 											<input type="file" class="upload" id="myFile" />
 										</div>
 									</div>
 								</div>
-							
-<!--							<div class="edit-profile-photo">-->
-<!--								<img src="images/art.jpg" alt="" width="400" height="400">-->
-<!--								<div class="change-photo-btn">-->
-<!--									<div class="photoUpload">-->
-<!--										<span><i class="fa fa-upload"></i> Upload Photo</span>-->
-<!--										<input type="file" class="upload" />-->
-<!--									</div>-->
-<!--								</div>-->
-<!--							</div>-->
-<!--							<div class="edit-profile-photo">-->
-<!--&lt;!&ndash;								이미지 소스 출력&ndash;&gt;-->
-<!--								<form name="uploadForm" enctype="multipart/form-data" onsubmit="return UpdateImg()">-->
-<!--								<span><img width="400" height="500" id="memberImg1" src="" alt="" ></span>-->
-<!--								<div class="change-photo-btn">-->
-<!--									<div class="photoUpload">-->
-<!--									&lt;!&ndash;파일창 열리는 곳 표시&ndash;&gt;-->
-<!--										<input type="file" name="myFile" id="myFile" accept="image/jpeg, image/png" class="upload" />-->
-<!--										&lt;!&ndash;이미지 업로드 버튼&ndash;&gt;-->
-<!--										<span id="imgUploadBtn"><i class="fa fa-upload"></i> 사진 업로드</span>-->
 
-<!--									</div>-->
-<!--								</div>-->
-<!--								</form>-->
-<!--							</div>-->
 							<form id="myForm" name="myForm">
 							<!-- 프로필 세부사항 -->
 							<div class="my-profile">

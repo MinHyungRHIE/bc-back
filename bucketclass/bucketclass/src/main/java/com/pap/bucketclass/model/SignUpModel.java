@@ -2,15 +2,31 @@ package com.pap.bucketclass.model;
 
 import java.io.Serializable;
 
-import com.pap.bucketclass.entity.Member;
+import javax.persistence.Entity;
 
-public class SignUpModel implements Serializable {
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.pap.bucketclass.entity.Member;
+import com.pap.bucketclass.entity.Role;
+
+@Entity
+public class SignUpModel implements Serializable{
 	
+	@JsonProperty("memberId")
 	private String memberId;
+	
+	@JsonProperty("memberPassword")
 	private String memberPassword;
+	
+	@JsonProperty("confirmPassword")
 	private String confirmPassword;
+	
+	@JsonProperty("memberEmail")
 	private String memberEmail;
+	
+	@JsonProperty("memberNickname")
 	private String memberNickname;
+	
+	@JsonProperty("roleName")
 	private String roleName;
 	
 	public String getMemberId() {
@@ -28,7 +44,7 @@ public class SignUpModel implements Serializable {
 	public void setMemberPassword(String memberPassword) {
 		this.memberPassword = memberPassword;
 	}
-	
+
 	public String getConfirmPassword() {
 		return confirmPassword;
 	}
@@ -64,10 +80,9 @@ public class SignUpModel implements Serializable {
 	public Member toMember() {
 		Member member = new Member();
 		member.setMemberId(memberId);
-		member.setMemberEmail(memberEmail);
 		member.setMemberNickname(memberNickname);
+		member.setMemberEmail(memberEmail);
 		member.setMemberPassword(memberPassword);
-		
 		return member;
 	}
 	

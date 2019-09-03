@@ -161,10 +161,6 @@ function providerProfile(content){
 	return getRequest(content);
 }
 
-function updateCustomerProfile(object){
-	return patchRequest('/customer/mypage/update', object);
-}
-
 function emailDuplicateCheck(content){
 	return postRequest('/signup/check-email', content);
 }

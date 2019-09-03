@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class LoginController {
 	
+	/*******
+	 *로그인*
+	 *******/
 	@RequestMapping(
 			value="/login",
 			method=RequestMethod.GET
@@ -15,4 +18,5 @@ public class LoginController {
 	public String loginForm() {
 		return "member-login";
 	}
+	
 }

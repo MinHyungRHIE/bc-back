@@ -2,10 +2,8 @@
 
 //1. mypage 페이지 왔을 때 저장되어 있는 data 불러오기.
 //2. 내 프로필 정보수정 버튼 클릭하면 입력한 데이터가 저장, 수정된 data 불러오기
-
-//var callpassword;
+var callpassword;
 var memberId;
-//var res;
 
 // ====================== 1. MyPage Loading ==========================
 //1. MyPage Loading -> 내 정보를 받아서 뿌려줘야 함.
@@ -13,34 +11,35 @@ $(document).ready(function () {
     var unmeaningFulData = new Object();
     unmeaningFulData.req = "ohyeah";
     Apis.postRequest('/customer/mypage',unmeaningFulData).then(response => {
-        console.log(response);//promise객체로 옴. 이제 그걸 풀어서, 화면에 뿌려줘야함.
+        console.log(response);
         showMypage(response);
-    }); //getrequest로 요청보냄. return으로 response=>response.json()으로 받아짐.
+        insertProfileImgResource('memberImg', response.memberImg);
+    });
 
 }); //MyPage Loading END
 
 // ==================== Tag & Value Mapping =======================
 function showMypage(profileData) {
     console.log(profileData);
-//    memberId = '${memberId}';
-    console.log('===============================')
-    console.log(profileData.memberNickname)
-    console.log(profileData.memberEmail)
-    console.log(profileData.introduce)
-    console.log(profileData.memberJoinDate)
-    //console.log(profileData.memberPassword);
-    console.log('===============================')
+    //memberId = '${memberId}';
+
+    console.log('===============================');
+    console.log(profileData.memberNickname);
+    console.log(profileData.memberEmail);
+    console.log(profileData.introduce);
+    console.log(profileData.memberJoinDate);
+    console.log(profileData.memberImg);
+    console.log(profileData.memberPassword);
+    console.log('===============================');
+
     insertValue('memberNickname', profileData.memberNickname);
     insertValue('memberEmail', profileData.memberEmail);
-
-    val3=$("textarea#introduce").val(profileData.introduce);
-    //document.getElementById('introduce').value(val3);
+    $("textarea#introduce").val(profileData.introduce);
 
     insertText('memberJoinDate', profileData.memberJoinDate);
 
-    // insertProfileImgResource('memberImg', profileData[memberId].memberImg);
-    //callPW(profileData.memberPassword);
-    //console.log(callPW(profileData.memberPassword));
+    callPW(profileData.memberPassword);
+
 };
 
 // 1) 단일 값 맵핑
@@ -48,66 +47,80 @@ function insertValue(tag, column) {
     if (column == null) {
         document.getElementById(tag).setAttribute('placeholder', '입력하세요');
     } else {
-    	if(column != null){
-    		 document.getElementById(tag).setAttribute('value', column);
-    	}
+        document.getElementById(tag).setAttribute('value', column);
     }
 };
-
 function insertText(tag, column) {
     document.getElementById(tag).appendChild(document.createTextNode(column));
 };
 
 // // 2) 프로필 이미지 소스 맵핑 //로직 다시 짜보기(ClassName :콜랙션으로 됨)
-// function insertProfileImgResource(tag, column) {
-//
-//    //document.getElementsByClassName(tag).setAttribute('src', column);
-//    document.getElementById(tag).setAttribute('src', column);
-//    var id2 = (tag + "1");
-//    document.getElementById(id2).setAttribute('src', column);
-//    // const imgTag = document.getElementById(tag);
-//    // const imgItem = document.createElement('img');
-//    // imgItem.setAttribute('src', column);
-//    // imgTag.appendChild(imgItem);
-// };
-// function callPW(column) {
-//     callpassword = column;
-//     console.log("callPW 함수얌");
-//     console.log(callpassword);
-//     return callpassword;
-// }
+function insertProfileImgResource(tag, column) {
+
+    console.log(tag, column);
+
+    document.getElementById(tag).setAttribute("src", "../img/"+column);
+    var id2 = (tag + "1");
+    document.getElementById(id2).setAttribute("src", "../img/"+column);
+
+};
+function callPW(column) {
+    callpassword = column;
+    return callpassword;
+}
 //Tag & Data Mapping / END
 
 //=====================================2. MyPage Update=======================================
 //MyPage Update Button
 document.getElementById('buttonProfile').addEventListener('click', button_myprofile);
-
 function button_myprofile(){
     console.log("체크올 레알 투르 ?");
-
     if(checkAll() === true){
-        var customerMypageObject = new Object();
 
-        customerMypageObject.memberNickname = document.getElementById("memberNickname").value;
-        customerMypageObject.memberEmail = document.getElementById("memberEmail").value;
-        customerMypageObject.introduce = document.getElementById("introduce").value;
+        console.log("updateImg >> 여기 들어왔어?");
+        const myForm = document.querySelector('#myForm');
+        myForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const imgFormData = new FormData(e.target);
+            imgFormData.append('memberImg', myFile.files[0]);
 
-        console.log("수정값 들어왔니");
-        console.log(typeof customerMypageObject, customerMypageObject); //수정 버튼 누를 시, 값들이 JSON으로 변환.
-        console.log("수정값 들어왔니1");
-        Apis.updateCustomerProfile(customerMypageObject).then(response => { //JSON으로 변환된 값들을 DB로 보낸다.
-            console.log("수정값 들어왔니22");
-            // Apis.getRequest('/customer/mypage').then(response =>{ //updatecustomerProfile함수에서 반환된 값(수정된 mypage 정보)를 다시 뿌려준다.
-            //     console.log("수정값 들어왔니33");
-                console.log(response);//promise객체로 옴. 이제 그걸 풀어서, 화면에 뿌려줘야함.
+            console.log("imgFormData 확인 " + typeof imgFormData, imgFormData);
+
+            //for debugging
+            const obj = Object.fromEntries(imgFormData);
+            console.log('obj', obj);
+            //for debugging
+
+            Apis.updateCustomerProfile(imgFormData).then(response => {
+                console.log("Apis 들어왔니");
+                console.log(response);
                 showMypage(response);
-            // });
-        }); alert("수정 완료!")
-    } else
+                insertProfileImgResource('memberImg', response.memberImg);
+            });
+            alert("수정 완료!")
+        });
+    }else
         alert("필수입력 항목의 빈칸을 채워주세요~");
-
 };
-
+///////////////////////////////////////////////////////////////////////////////////
+//profile update
+const myFile = document.querySelector('#myFile');
+myFile.addEventListener('change', function(e) {
+    const files = e.target.files;
+    console.log('files >>', files);
+    previewFile(files[0]);
+    console.log("files[0]>>",files[0]);
+});
+function previewFile(file) {
+    var preview = document.querySelector('#memberImg');
+    var reader  = new FileReader();
+    reader.addEventListener("load", function () {
+        preview.src = reader.result;
+    }, false);
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+}
 ////////////////////////////////////////프로필수정 입력 여부 검사///////////////////////////////////////////////////////
 function checkAll() {
 

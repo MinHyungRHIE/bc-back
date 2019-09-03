@@ -36,7 +36,7 @@
 
                     <!-- Logo -->
                     <div id="logo">
-                        <a href="index.html"><img src="/img/logo.png" alt=""></a>
+                        <a href="/"><img src="/img/logo.png" alt=""></a>
                         <a href="index.html" class="dashboard-logo"><img src="/img/logo2.png" alt=""></a>
                     </div>
 
@@ -388,7 +388,7 @@
     function serviceDelete(serviceId){
 
         if(mock === false){
-            Apis.deleteRequest("/provider/my-listing/" +serviceId + "/delete").then(response =>{
+            Apis.deleteRequest("/provider/my-listing/" +serviceId + "/delete").then(response => {
                 initFetch();
             });
         } else {

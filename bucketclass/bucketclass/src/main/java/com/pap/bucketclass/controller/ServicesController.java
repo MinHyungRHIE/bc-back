@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -349,11 +350,14 @@ public class ServicesController {
 					MediaType.APPLICATION_JSON_UTF8_VALUE,
 					MediaType.APPLICATION_ATOM_XML_VALUE	
 			})
-	public @ResponseBody ResponseModel createTemplate(@RequestBody CreateTemplateModel model, Principal principal) {
-		ServiceTemplate getService = templateService.createTemplate(model, principal);
-		ResponseModel resModel = new ResponseModel();
-		if (getService != null) {resModel.setRes("success");}else{resModel.setRes("fail");}
-		return resModel;
+//	public @ResponseBody ResponseModel createTemplate(@RequestBody CreateTemplateModel model, Principal principal) {
+//		ServiceTemplate getService = templateService.createTemplate(model, principal);
+//		ResponseModel resModel = new ResponseModel();
+//		if (getService != null) {resModel.setRes("success");}else{resModel.setRes("fail");}
+//		return resModel;
+//	}
+	public @ResponseBody ServiceTemplate createTemplate(@ModelAttribute CreateTemplateModel model, Principal principal) {
+		return templateService.createTemplate(model, principal); // ServiceTemplate
 	}
 
 	/******************************

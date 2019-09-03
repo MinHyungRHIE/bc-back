@@ -165,7 +165,7 @@
 
 						<!-- User Menu -->
 						<div class="user-menu">
-							<div class="user-name"><span><img id= "member_img" alt="" /></span>Hi! </div>
+							<div class="user-name"><span><img id="memberImg1" src="" alt="" /></span>Hi! </div>
 							<ul>
 								<li><a href="dashboard.html"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
 								<li><a href="dashboard-bookmarks.html"><i class="sl sl-icon-heart"></i> Bookmarks</a></li>
@@ -265,17 +265,20 @@
 						<div class="dashboard-list-box-static">
 
 							<!-- Avatar -->
+							<!-- Avatar -->
+
 							<div class="edit-profile-photo">
-								<span> <img id="member_img1" alt="" > </span>
+								<img id="memberImg" src="" alt="">
 								<div class="change-photo-btn">
 									<div class="photoUpload">
-										<span><i class="fa fa-upload"></i> 사진 업로드</span>
-										<input type="file" class="upload" />
+										<span><i class="fa fa-upload"></i>사진 변경</span>
+										<input type="file" class="upload" id="myFile" />
 									</div>
 								</div>
 							</div>
 
 							<!-- 프로필 세부사항 -->
+							<form id="myForm" name="myForm">
 							<div class="my-profile">
 
 								<label>닉네임</label>
@@ -293,8 +296,8 @@
 
 							</div>
 
-							<button id='buttonProfile' class='button margin-top-15'>마이페이지 수정</button>
-
+								<button id='buttonProfile' class='button margin-top-15' type = 'submit'>마이페이지 수정</button>
+							</form>
 						</div>
 					</div>
 				</div>

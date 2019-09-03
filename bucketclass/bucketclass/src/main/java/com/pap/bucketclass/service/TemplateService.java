@@ -1,6 +1,8 @@
 package com.pap.bucketclass.service;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,11 +36,29 @@ public class TemplateService{
 	public ServiceTemplate createTemplate(CreateTemplateModel templateModel, Principal principal) {
 		ServiceCategory serviceCategory = templateModel.toServiceCategory();
 		ServiceTemplate serviceTemplate = templateModel.toServiceTemplate();
+		List<String> fileNames = new ArrayList<String>();
+		for (int i = 0; i < templateModel.getServiceImgUri().size(); i++) {
+			fileNames.add(templateModel.getServiceImgUri().get(i).getOriginalFilename());
+		}
+		String DbSave = "";
+		for (int i = 0; i < fileNames.size(); i++) {
+			DbSave += fileNames.get(i)+"/";
+		}
+		serviceTemplate.setServiceImgUri(DbSave);
 		serviceTemplate.setServiceCategory(serviceCategoryRepo.save(serviceCategory));
 		serviceTemplate.setServiceIsDelete(false);
-		serviceTemplate.setMember(memberRepo.findByMemberId(principal.getName())); //나중에 세션으로부터 정보를 얻어올 USERNAME
+		serviceTemplate.setMember(memberRepo.findByMemberId(principal.getName()));
 		return serviceTemplateRepo.save(serviceTemplate);
 	}
+//	@Transactional
+//	public ServiceTemplate createTemplate(CreateTemplateModel templateModel, Principal principal) {
+//		ServiceCategory serviceCategory = templateModel.toServiceCategory();
+//		ServiceTemplate serviceTemplate = templateModel.toServiceTemplate();
+//		serviceTemplate.setServiceCategory(serviceCategoryRepo.save(serviceCategory));
+//		serviceTemplate.setServiceIsDelete(false);
+//		serviceTemplate.setMember(memberRepo.findByMemberId(principal.getName()));
+//		return serviceTemplateRepo.save(serviceTemplate);
+//	}
 	
 	@Transactional
 	public ServiceTemplate updateTemplate(CreateTemplateModel templateModel, int serviceTemplateId, Principal principal) {
@@ -47,10 +67,18 @@ public class TemplateService{
 		serviceTemplate.setServiceTitle(toUpdate.getServiceTitle());
 		serviceTemplate.setAccountBank(toUpdate.getAccountBank());
 		serviceTemplate.setAccountNumber(toUpdate.getAccountNumber());
-//		serviceTemplate.setHashTag(hashTag);
+		serviceTemplate.setHashTag(toUpdate.getHashTag());
 //		serviceTemplate.setServiceImgUri(serviceImgUri);
+		List<String> fileNames = new ArrayList<String>();
+		for (int i = 0; i < templateModel.getServiceImgUri().size(); i++) {
+			fileNames.add(templateModel.getServiceImgUri().get(i).getOriginalFilename());
+		}
+		String DbSave = "";
+		for (int i = 0; i < fileNames.size(); i++) {
+			DbSave += fileNames.get(i)+"/";
+		}
+		serviceTemplate.setServiceImgUri(DbSave);
 		serviceTemplate.setServiceDescription(toUpdate.getServiceDescription());
-		
 		
 		ServiceCategory serviceCategory = serviceCategoryRepo.findByCategoryId(serviceTemplate.getServiceCategory().getCategoryId());
 		serviceCategory.setCategoryPeriod(templateModel.toServiceCategory().getCategoryPeriod());

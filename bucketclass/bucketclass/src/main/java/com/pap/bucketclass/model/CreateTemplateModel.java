@@ -3,6 +3,8 @@ package com.pap.bucketclass.model;
 import java.io.Serializable;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.pap.bucketclass.entity.ServiceCategory;
 import com.pap.bucketclass.entity.ServiceTemplate;
@@ -19,12 +21,12 @@ public class CreateTemplateModel implements Serializable{
 	private String accountNumber;
 	
 	@JsonProperty("hashTag")
-	private List<String> hashTag;
-//	private String hashTag;
+//	private List<String> hashTag;
+	private String hashTag;
 	
 	@JsonProperty("serviceimguri")
 //	private List<String> serviceImgUri;
-	private String serviceImgUri;
+	private List<MultipartFile> serviceImgUri;
 	
 	@JsonProperty("servicedescription")
 	private String serviceDescription;
@@ -68,6 +70,22 @@ public class CreateTemplateModel implements Serializable{
 		this.accountNumber = accountNumber;
 	}
 
+	public String getHashTag() {
+		return hashTag;
+	}
+
+	public void setHashTag(String hashTag) {
+		this.hashTag = hashTag;
+	}
+
+	public List<MultipartFile> getServiceImgUri() {
+		return serviceImgUri;
+	}
+
+	public void setServiceImgUri(List<MultipartFile> serviceImgUri) {
+		this.serviceImgUri = serviceImgUri;
+	}
+
 //	public List<String> getHashTag() {
 //		return hashTag;
 //	}
@@ -75,30 +93,14 @@ public class CreateTemplateModel implements Serializable{
 //	public void setHashTag(List<String> hashTag) {
 //		this.hashTag = hashTag;
 //	}
-//
-//	public List<String> getServiceImgUri() {
+
+//	public String getServiceImgUri() {
 //		return serviceImgUri;
 //	}
 //
-//	public void setServiceImgUri(List<String> serviceImgUri) {
+//	public void setServiceImgUri(String serviceImgUri) {
 //		this.serviceImgUri = serviceImgUri;
 //	}
-
-	public List<String> getHashTag() {
-		return hashTag;
-	}
-
-	public void setHashTag(List<String> hashTag) {
-		this.hashTag = hashTag;
-	}
-
-	public String getServiceImgUri() {
-		return serviceImgUri;
-	}
-
-	public void setServiceImgUri(String serviceImgUri) {
-		this.serviceImgUri = serviceImgUri;
-	}
 	
 	public String getServiceDescription() {
 		return serviceDescription;
@@ -163,7 +165,7 @@ public class CreateTemplateModel implements Serializable{
 		serviceTemplate.setServiceTitle(serviceTitle);
 		serviceTemplate.setAccountBank(accountBank);
 		serviceTemplate.setAccountNumber(accountNumber);
-//		serviceTemplate.setHashTag(hashTag);
+		serviceTemplate.setHashTag(hashTag);
 //		serviceTemplate.setServiceImgUri(serviceImgUri);
 		serviceTemplate.setServiceDescription(serviceDescription);
 		return serviceTemplate;
@@ -171,10 +173,17 @@ public class CreateTemplateModel implements Serializable{
 	
 	@Override
 	public String toString() {
-		return " serviceTitle : " + serviceTitle + "\n accountBank : " + accountBank + "\n accountNumber : " + accountNumber
-				+"\n hashTag : " + hashTag + "\n serviceImgUri : " + serviceImgUri + "\n serviceDescription : " + serviceDescription
-				+"\n categorySubject : " + categorySubject + "\n categoryType : " + categoryType
-				+ "\n categoryPeriod : " + categoryPeriod + "\n categoryScale : " + categoryScale + "\n categoryPlace : " +categoryPlace;
+		return " serviceTitle : " + serviceTitle + 
+				"\n accountBank : " + accountBank + 
+				"\n accountNumber : " + accountNumber +
+				"\n hashTag : " + hashTag + 
+				"\n serviceImgUri : " + /*serviceImgUri*/"서비스image이름들" + 
+				"\n serviceDescription : " + serviceDescription +
+				"\n categorySubject : " + categorySubject + 
+				"\n categoryType : " + categoryType+ 
+				"\n categoryPeriod : " + categoryPeriod + 
+				"\n categoryScale : " + categoryScale + 
+				"\n categoryPlace : " +categoryPlace;
 	}
 	
 }

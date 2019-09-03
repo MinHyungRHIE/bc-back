@@ -20,10 +20,10 @@
 		<!-- public uri -->
 		<intercept-url pattern="/signup/**" access="isAnonymous()" />
 		<intercept-url pattern="/login/**" access="isAnonymous()" />
-		<intercept-url pattern="/service-listing/**" access="isAnonymous()" />
+		<intercept-url pattern="/service-listing/**" access="permitAll" />
 
 		<!-- control privilege uri -->
-		<intercept-url pattern="/provider/**" access="isAuthenticated()" />
+		<intercept-url pattern="/provider/**" access="permitAll" />
 		<intercept-url pattern="/customer/**" access="isAuthenticated()" />
 
 		<!-- test uri -->
@@ -54,8 +54,7 @@
 	</beans:bean>
 
 	<authentication-manager>
-		<authentication-provider
-			user-service-ref="memberDetailsService">
+		<authentication-provider user-service-ref="memberDetailsService">
 			<password-encoder ref="passwordEncoder" />
 		</authentication-provider>
 	</authentication-manager>

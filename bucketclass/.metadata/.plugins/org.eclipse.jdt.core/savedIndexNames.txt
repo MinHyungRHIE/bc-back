@@ -111,9 +111,9 @@ INDEX VERSION 1.131+C:\Users\USER\Desktop\kimseula\_1_Project\project\bucketclas
 2511371581.index
 3325231715.index
 1895345366.index
-4067172566.index
+3164409944.index
 3394812778.index
 2060039664.index
-3164409944.index
+4067172566.index
 165794779.index
 3279379190.index

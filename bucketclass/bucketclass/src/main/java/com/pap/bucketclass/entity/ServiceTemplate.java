@@ -2,6 +2,7 @@ package com.pap.bucketclass.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -59,6 +60,7 @@ public class ServiceTemplate implements Serializable{
 	@Column(name="service_img_uri")
 //	@Convert(converter = JsonToStringConverter.class)
 	private String serviceImgUri; //JSON
+//	List<String> serviceImgUri;
 	
 	@Column(name="service_description")
 	private String serviceDescription;
@@ -141,6 +143,14 @@ public class ServiceTemplate implements Serializable{
 	public void setServiceImgUri(String serviceImgUri) {
 		this.serviceImgUri = serviceImgUri;
 	}
+	
+//	public List<String> getServiceImgUri() {
+//		return serviceImgUri;
+//	}
+//
+//	public void setServiceImgUri(List<String> serviceImgUri) {
+//		this.serviceImgUri = serviceImgUri;
+//	}
 
 	public String getServiceDescription() {
 		return serviceDescription;

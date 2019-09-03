@@ -1,5 +1,7 @@
 package com.pap.bucketclass.model;
 
+import java.util.List;
+
 import com.pap.bucketclass.entity.Member;
 import com.pap.bucketclass.entity.ServiceAddress;
 import com.pap.bucketclass.entity.ServiceCategory;
@@ -16,6 +18,7 @@ public class SingleServiceModel {
     private String serviceDescription;
     private String hashTag;
     private String serviceImgUri;
+//    private List<String> serviceImgUri;
     
     //service_category
     private String categorySubject;
@@ -81,6 +84,12 @@ public class SingleServiceModel {
 	public void setServiceImgUri(String serviceImgUri) {
 		this.serviceImgUri = serviceImgUri;
 	}
+//	public List<String> getServiceImgUri() {
+//		return serviceImgUri;
+//	}
+//	public void setServiceImgUri(List<String> serviceImgUri) {
+//		this.serviceImgUri = serviceImgUri;
+//	}
 	public String getCategorySubject() {
 		return categorySubject;
 	}
@@ -153,6 +162,7 @@ public class SingleServiceModel {
        servicePrice = services.getServicePrice();
        serviceDescription = services.getServiceDescription();
        hashTag = services.getHashTag();
+//       serviceImgUri = services.getServiceImgUri();
        serviceImgUri = services.getServiceImgUri();
         
         //service_category
