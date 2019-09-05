@@ -76,14 +76,14 @@ function firstServiceSave(){
 	var category_place = ($(jangso).prop("checked"))? "실내" : ($(jangso2).prop("checked"))?"실외":"";
 
 	// 해시태그 hashTag [array로 들어감]
-	var hash = document.getElementsByClassName("tags-wrapper")[0].textContent;
-	var tempHash = hash.split("⨂");
-
-	var hashArray = new Array();
-	for (var i = 0; i<tempHash.length-1;i++){
-		hashArray[i] = tempHash[i]
-		console.log(hashArray[i])
-	}
+	var hashArray = document.getElementsByClassName("tags-wrapper")[0].textContent;
+//	var tempHash = hash.split("⨂");
+//
+//	var hashArray = new Array();
+//	for (var i = 0; i<tempHash.length-1;i++){
+//		hashArray[i] = tempHash[i]
+//		console.log(hashArray[i])
+//	}
 
 	// 이벤트 소개 (서비스 내용) service_description
 	var service_description = document.getElementById("summary").value;

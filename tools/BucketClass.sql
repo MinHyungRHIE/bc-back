@@ -64,7 +64,7 @@ CREATE TABLE `service` (
 	`account_number`       		VARCHAR(255)  				NULL  	 COMMENT '계좌번호', -- account_number
 	`category_id`           	INT(36)     				NOT NULL COMMENT '카테고리번호', -- category_id
 	`service_isDelete`      	BOOLEAN     				NOT NULL DEFAULT FALSE COMMENT '서비스삭제상태( T:삭제됨;비활성, F:삭제;활성)', -- service_IsDelete
-	`hashTag`               	VARCHAR(255)   				NULL  	 COMMENT '해시태그', -- hashTag 	--JSON
+	`hashTag`               	VARCHAR(255)				NULL  	 COMMENT '해시태그', -- hashTag 	--JSON
 	`service_modified_date` 	DATETIME   					NOT NULL DEFAULT NOW() COMMENT '최근수정일', -- service_modified_Date
 	`service_img_uri`       	VARCHAR(255)   				NULL  	 COMMENT '서비스 이미지 경로', -- service_img_uri 	--JSON
     `service_description` 	    MEDIUMTEXT   				NOT NULL COMMENT '서비스내용', -- service_description

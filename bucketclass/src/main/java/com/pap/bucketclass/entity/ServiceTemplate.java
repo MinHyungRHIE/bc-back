@@ -2,6 +2,7 @@ package com.pap.bucketclass.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -21,6 +22,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.pap.bucketclass.support.BooleanToLongConverter;
+import com.pap.bucketclass.support.JsonArrayToStringConverter;
 
 @Entity
 @Table(name="service_template")
@@ -47,7 +49,6 @@ public class ServiceTemplate implements Serializable{
 	private Boolean serviceIsDelete;
 	
 	@Column(name="hashTag")
-//	@Convert(converter = JsonToStringConverter.class)
 	private String hashTag; //JSON
 	
 	@Column(name="service_modified_date")
@@ -57,7 +58,6 @@ public class ServiceTemplate implements Serializable{
 	private Date serviceModifiedDate;
 	
 	@Column(name="service_img_uri")
-//	@Convert(converter = JsonToStringConverter.class)
 	private String serviceImgUri; //JSON
 	
 	@Column(name="service_description")
@@ -138,7 +138,7 @@ public class ServiceTemplate implements Serializable{
 		return serviceImgUri;
 	}
 
-	public void setServiceImgUri(String serviceImgUri) {
+	public void setServiceImgUri(String  serviceImgUri) {
 		this.serviceImgUri = serviceImgUri;
 	}
 

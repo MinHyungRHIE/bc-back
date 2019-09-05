@@ -51,8 +51,4 @@ public class ServiceRegistSerivce {
 		return serviceRepo.save(services);
 	}
 	
-//	@Transactional
-//	public Services updateServices() {
-//		
-//	}
 }

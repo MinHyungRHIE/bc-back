@@ -1,5 +1,34 @@
+<%@ page import="org.springframework.security.core.Authentication"%>
+<%@ page
+	import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@ page import="com.pap.bucketclass.entity.Role"%>
+<%@ page import="java.util.Set"%>
+<%@ page import="java.util.HashSet"%>
+<%@ page import="com.pap.bucketclass.entity.Member"%>
+<%@ page import="java.util.Iterator"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+<%
+	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	Object principal = auth.getPrincipal();
+	Set<Role> userRole = new HashSet<>();
+	String memberNickname = null;
+	String memberImgUri = null;
+
+	if (principal != null && principal instanceof Member) {
+		userRole = ((Member) principal).getRoles();
+		memberNickname = ((Member) principal).getMemberNickname();
+		memberImgUri = ((Member) principal).getMemberImg();
+		System.out.println(memberImgUri);
+	}
+	String roleStr = null;
+	Iterator<Role> itr = userRole.iterator();
+	while (itr.hasNext()) {
+		roleStr = itr.next().getRoleName();
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,168 +76,101 @@
 
 <!-- Header Container
 ================================================== -->
-<header id="header-container" class="fixed fullwidth dashboard">
+<header id="header-container">
 
-	<!-- Header -->
-	<div id="header" class="not-sticky">
-		<div class="container">
-			
-			<!-- Left Side Content -->
-			<div class="left-side">
-				
-				<!-- Logo -->
-				<div id="logo">
-					<a href="index.html"><img src="/img/bucketClass.png" alt=""></a>
-					<a href="index.html" class="dashboard-logo"><img src="/img/bucketClass.png" alt=""></a>
-				</div>
+    <!-- Header -->
+    <div id="header">
+        <div class="container">
 
-				<!-- Mobile Navigation -->
-				<div class="menu-trigger">
-					<button class="hamburger hamburger--collapse" type="button">
+            <!-- Left Side Content -->
+            <div class="left-side">
+
+                <!-- Logo -->
+                <div id="logo">
+                    <a href="/"><img src="/img/logo.png" alt=""></a>
+                </div>
+
+                <!-- Mobile Navigation -->
+                <div class="mmenu-trigger">
+                    <button class="hamburger hamburger--collapse" type="button">
 						<span class="hamburger-box">
 							<span class="hamburger-inner"></span>
 						</span>
-					</button>
-				</div>
+                    </button>
+                </div>
 
-				<!-- Main Navigation -->
-				<nav id="navigation" class="style-1">
-					<ul id="responsive">
+            </div>
+            <!-- Left Side Content / End -->
 
-						<li><a href="#">Home</a>
-							<ul>
-								<li><a href="index.html">Home 1</a></li>
-								<li><a href="index-2-airbnb.html">Home 2 (Airbnb)</a></li>
-								<li><a href="index-3.html">Home 3</a></li>
-								<li><a href="index-4.html">Home 4</a></li>
-								<li><a href="index-5.html">Home 5</a></li>
-								<li><a href="index-6.html">Home 6</a></li>
-							</ul>
-						</li>
+            <!-- Right Side Content / End -->
+            <div class="right-side">
+                <!-- Header Widget -->
+                <div class="header-widget">
 
-						<li><a href="#">Listings</a>
-							<ul>
-								<li><a href="#">List Layout</a>
-									<ul>
-										<li><a href="listings-list-with-sidebar.html">With Sidebar</a></li>
-										<li><a href="listings-list-full-width.html">Full Width</a></li>
-										<li><a href="listings-list-full-width-with-map.html">Full Width + Map</a></li>
-									</ul>
-								</li>
-								<li><a href="#">Grid Layout</a>
-									<ul>
-										<li><a href="listings-grid-with-sidebar-1.html">With Sidebar 1</a></li>
-										<li><a href="listings-grid-with-sidebar-2.html">With Sidebar 2</a></li>
-										<li><a href="listings-grid-full-width.html">Full Width</a></li>
-										<li><a href="listings-grid-full-width-with-map.html">Full Width + Map</a></li>
-									</ul>
-								</li>
-								<li><a href="#">Half Screen Map</a>
-									<ul>
-										<li><a href="listings-half-screen-map-list.html">List Layout</a></li>
-										<li><a href="listings-half-screen-map-grid-1.html">Grid Layout 1</a></li>
-										<li><a href="listings-half-screen-map-grid-2.html">Grid Layout 2</a></li>
-									</ul>
-								</li>
-								<li><a href="#">Single Listings</a>
-									<ul>
-										<li><a href="listings-single-page.html">Single Listing 1</a></li>
-										<li><a href="listings-single-page-2.html">Single Listing 2</a></li>
-										<li><a href="listings-single-page-3.html">Single Listing 3</a></li>
-									</ul>
-								</li>
-							</ul>
-						</li>
+                    <!-- User Menu -->
+                    <div class="user-menu" id="user-menu">
+                        <!------------------------------------------------->
+                        <!------------- user menu content ----------------->
+                        <!------------------------------------------------->
+                    </div>
+                </div>
+                <!-- Header Widget / End -->
+            </div>
+            <!-- Right Side Content / End -->
 
-						<li><a class="current" href="#">User Panel</a>
-							<ul>
-								<li><a href="dashboard.html">Dashboard</a></li>
-								<li><a href="dashboard-messages.html">Messages</a></li>
-								<li><a href="dashboard-bookings.html">Bookings</a></li>
-								<li><a href="dashboard-wallet.html">Wallet</a></li>
-								<li><a href="dashboard-my-listings.html">My Listings</a></li>
-								<li><a href="dashboard-reviews.html">Reviews</a></li>
-								<li><a href="dashboard-bookmarks.html">Bookmarks</a></li>
-								<li><a href="dashboard-add-listing.html">Add Listing</a></li>
-								<li><a href="dashboard-my-profile.html">My Profile</a></li>
-								<li><a href="dashboard-invoice.html">Invoice</a></li>
-							</ul>
-						</li>
-
-						<li><a href="#">Pages</a>
-							<div class="mega-menu mobile-styles three-columns">
-
-									<div class="mega-menu-section">
-										<ul>
-											<li class="mega-menu-headline">Pages #1</li>
-											<li><a href="pages-user-profile.html"><i class="sl sl-icon-user"></i> User Profile</a></li>
-											<li><a href="pages-booking.html"><i class="sl sl-icon-check"></i> Booking Page</a></li>
-											<li><a href="pages-add-listing.html"><i class="sl sl-icon-plus"></i> Add Listing</a></li>
-											<li><a href="pages-blog.html"><i class="sl sl-icon-docs"></i> Blog</a></li>
-										</ul>
-									</div>
-		
-									<div class="mega-menu-section">
-										<ul>
-											<li class="mega-menu-headline">Pages #2</li>
-											<li><a href="pages-contact.html"><i class="sl sl-icon-envelope-open"></i> Contact</a></li>
-											<li><a href="pages-coming-soon.html"><i class="sl sl-icon-hourglass"></i> Coming Soon</a></li>
-											<li><a href="pages-404.html"><i class="sl sl-icon-close"></i> 404 Page</a></li>
-											<li><a href="pages-masonry-filtering.html"><i class="sl sl-icon-equalizer"></i> Masonry Filtering</a></li>
-										</ul>
-									</div>
-
-									<div class="mega-menu-section">
-										<ul>
-											<li class="mega-menu-headline">Other</li>
-											<li><a href="pages-elements.html"><i class="sl sl-icon-settings"></i> Elements</a></li>
-											<li><a href="pages-pricing-tables.html"><i class="sl sl-icon-tag"></i> Pricing Tables</a></li>
-											<li><a href="pages-typography.html"><i class="sl sl-icon-pencil"></i> Typography</a></li>
-											<li><a href="pages-icons.html"><i class="sl sl-icon-diamond"></i> Icons</a></li>
-										</ul>
-									</div>
-									
-							</div>
-						</li>
-						
-					</ul>
-				</nav>
-				<div class="clearfix"></div>
-				<!-- Main Navigation / End -->
-				
-			</div>
-			<!-- Left Side Content / End -->
-
-			<!-- Right Side Content / End -->
-			<div class="right-side">
-				<!-- Header Widget -->
-				<div class="header-widget">
-					
-					<!-- User Menu -->
-					<div class="user-menu">
-						<div class="user-name"><span><img src="/img/dashboard-avatar.jpg" alt=""></span>Hi, Tom!</div>
-						<ul>
-							<li><a href="dashboard.html"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
-							<li><a href="dashboard-messages.html"><i class="sl sl-icon-envelope-open"></i> Messages</a></li>
-							<li><a href="dashboard-bookings.html"><i class="fa fa-calendar-check-o"></i> Bookings</a></li>
-							<li><a href="index.html"><i class="sl sl-icon-power"></i> Logout</a></li>
-						</ul>
-					</div>
-
-					<a href="dashboard-add-listing.html" class="button border with-icon">Add Listing <i class="sl sl-icon-plus"></i></a>
-				</div>
-				<!-- Header Widget / End -->
-			</div>
-			<!-- Right Side Content / End -->
-
-		</div>
-	</div>
-	<!-- Header / End -->
+        </div>
+    </div>
+    <!-- Header / End -->
 
 </header>
 <div class="clearfix"></div>
 <!-- Header Container / End -->
+<a href="#" class="dashboard-responsive-nav-trigger"><i
+			class="fa fa-reorder"></i> Dashboard Navigation</a>
 
+		<div class="dashboard-nav">
+			<div class="dashboard-nav-inner">
+				<ul id="sidebar">
+					<!------------------------------------------------->
+					<!------------- side bar content ------------------>
+					<!------------------------------------------------->
+				</ul>
+			</div>
+		</div>
+
+		<!-- Navigation / End -->
+
+		<script type="text/javascript">
+	// 세션에서 받은 유저 권한
+	var userRole ="<%=roleStr%>";
+	console.log("사이드바>>>", userRole);
+
+	if(userRole === "ROLE_CUSTOMER"){
+
+		var customerSideBarContent =
+				'<ul data-submenu-title="">'
+				+'<li><a id="sideBarBookmarks" href="#"><i class="sl sl-icon-heart"></i> 나의 수강 관리</a></li>'
+				+'<li class="active"><a id="sideBarMyPage" href="/customer/mypage"><i class="sl sl-icon-user"></i> 마이페이지</a></li>'
+				+'<li><a id="sideBarLogout" href="/logout"><i class="sl sl-icon-power"></i> 로그아웃</a></li></ul>';
+
+		document.querySelector('#sidebar').innerHTML = customerSideBarContent;
+
+	} else if(userRole === "ROLE_PROVIDER"){
+
+		var providerSideBarContent =
+
+				'<ul data-submenu-title="">'
+				+'<li class="active"><a><i class="sl sl-icon-layers"></i> 나의 수업 관리</a>'
+				+'<ul><li><a href="/provider/pending-listing"><span class="nav-tag green"></span>&nbsp;&nbsp;&nbsp;&nbsp;대기중 </a></li>'
+				+'<li><a href="/provider/active-listing"><span class="nav-tag yellow"></span>&nbsp;&nbsp;&nbsp;&nbsp;진행중 </a></li>'
+				+'<li><a href="/provider/expired-listing"><span class="nav-tag red"></span>&nbsp;&nbsp;&nbsp;&nbsp;완료  </a></li></ul></li>'
+				+'<li><a id="sideBarAddListing" href="/provider/add-service"><i class="sl sl-icon-plus"></i> 수업 추가하기</a></li>'
+				+'<li class="active"><a id="sideBarMyPage" href="/provider/mypage"><i class="sl sl-icon-user"></i>마이페이지</a></li>'
+				+'<li><a id="sideBarLogout" href="/logout"><i class="sl sl-icon-power"></i> 로그아웃</a></li></ul>';
+
+		document.querySelector('#sidebar').innerHTML = providerSideBarContent;
+	}
+</script>
 
 <!-- Dashboard -->
 <div id="dashboard">
@@ -216,39 +178,7 @@
 	<!-- Navigation
 	================================================== -->
 
-	<!-- Responsive Navigation Trigger -->
-	<a href="#" class="dashboard-responsive-nav-trigger"><i class="fa fa-reorder"></i> Dashboard Navigation</a>
-	
-	<div class="dashboard-nav">
-		<div class="dashboard-nav-inner">
 
-			<ul data-submenu-title="Main">
-				<li><a href="dashboard.html"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
-				<li><a href="dashboard-messages.html"><i class="sl sl-icon-envelope-open"></i> Messages <span class="nav-tag messages">2</span></a></li>
-				<li><a href="dashboard-bookings.html"><i class="fa fa-calendar-check-o"></i> Bookings</a></li>
-				<li><a href="dashboard-wallet.html"><i class="sl sl-icon-wallet"></i> Wallet</a></li>
-			</ul>
-			
-			<ul data-submenu-title="Listings">
-				<li><a><i class="sl sl-icon-layers"></i> My Listings</a>
-					<ul>
-						<li><a href="dashboard-my-listings.html">Active <span class="nav-tag green">6</span></a></li>
-						<li><a href="dashboard-my-listings.html">Pending <span class="nav-tag yellow">1</span></a></li>
-						<li><a href="dashboard-my-listings.html">Expired <span class="nav-tag red">2</span></a></li>
-					</ul>	
-				</li>
-				<li><a href="dashboard-reviews.html"><i class="sl sl-icon-star"></i> Reviews</a></li>
-				<li><a href="dashboard-bookmarks.html"><i class="sl sl-icon-heart"></i> Bookmarks</a></li>
-				<li class="active"><a href="dashboard-add-listing.html"><i class="sl sl-icon-plus"></i> Add Listing</a></li>
-			</ul>	
-
-			<ul data-submenu-title="Account">
-				<li><a href="dashboard-my-profile.html"><i class="sl sl-icon-user"></i> My Profile</a></li>
-				<li><a href="index.html"><i class="sl sl-icon-power"></i> Logout</a></li>
-			</ul>
-
-		</div>
-	</div>
 	<!-- Navigation / End -->
 
 
@@ -379,6 +309,7 @@
 
 <!--								<div type="text" class="tags-input" data-name="tags-input"></div>-->
 									<input type="text" id="testInput" />
+								<p id="sorry"></p>
 
 							</div>
 						</div>
@@ -796,7 +727,7 @@
 
 			<!-- Copyrights -->
 			<div class="col-md-12">
-				<div class="footer-copyright text-center py-3"> © 2019 BucketList. All Rights Reserved.</div>
+				<div class="footer-copyright text-center py-3"> © 2019 Bucket Class. All Rights Reserved.</div>
 			</div>
 
 		</div>
@@ -918,7 +849,48 @@ $(".opening-day.js-demo-hours .chosen-select").each(function() {
 	}
 
 </script>
+<script>
 
+    var userRoleData ="<%=roleStr%>";
+    var getNickName = "<%=memberNickname%>";
+    var getImgUri = "<%=memberImgUri%>";
+
+    console.log("대쉬보드버전>>>", userRoleData);
+    console.log("대쉬보드버전>>>", getNickName);
+    console.log("대쉬보드버전>>>", getImgUri);
+
+    if (userRoleData === "ROLE_CUSTOMER") {
+
+        var headerContentCustomer = '<div class="user-name"><span><img src="../img/' + getImgUri + '" alt=""></span>'
+            + getNickName
+            + '님에게 맞는 수업을 만나보세요!</div>'
+            + '<ul><li><a href="/customer/mypage"><i class="sl sl-icon-settings"></i> 마이페이지</a></li>'
+            + '<li><a href=#><i class="fa fa-calendar-check-o"></i> 나의 수강 관리</a></li>'
+            + '<li><a href="/logout"><i class="sl sl-icon-power"></i> 로그아웃</a></li></ul>';
+
+        console.log(headerContentCustomer);
+        document.querySelector('#user-menu').innerHTML = headerContentCustomer;
+
+    } else if (userRoleData === "ROLE_PROVIDER") {
+
+        var headerContentProvider = '<div class="user-name"><span><img src="../img/' + getImgUri + '" alt=""></span>'
+            + getNickName
+            + '님만의 수업을 개설해보세요!</div>'
+            + '<ul><li><a href="/provider/mypage"><i class="sl sl-icon-settings"></i> 마이페이지</a></li>'
+            + '<li><a href="/provider/active-listing"><i class="fa fa-calendar-check-o"></i> 나의 수업 관리</a></li>'
+            + '<li><a href="/logout"><i class="sl sl-icon-power"></i> 로그아웃</a></li></ul>';
+
+        console.log(typeof headerContentProvider, headerContentProvider);
+        document.querySelector('#user-menu').innerHTML = headerContentProvider;
+
+    } else {
+        var headerContent = '<a href="/login" class="sign-in">로그인</a>'
+            + '<a href="/signup" class="sign-in">회원가입</a>';
+
+        console.log(headerContent);
+        document.querySelector('#user-menu').innerHTML = headerContent;
+    }
+	</script>
 </body>
 </html>
 <!-- 별칭 테이블이 없어서 주석처리함. 휴대폰번호, 홈페이지, email, 트위터 등 부분 사용하는 부분 없어서 주석처리함.-->

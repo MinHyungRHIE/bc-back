@@ -1,5 +1,7 @@
 package com.pap.bucketclass.model;
 
+import java.util.List;
+
 import com.pap.bucketclass.entity.Member;
 import com.pap.bucketclass.entity.ServiceAddress;
 import com.pap.bucketclass.entity.ServiceCategory;

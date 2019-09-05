@@ -350,7 +350,9 @@ public class ServicesController {
 					MediaType.APPLICATION_ATOM_XML_VALUE	
 			})
 	public @ResponseBody ResponseModel createTemplate(@RequestBody CreateTemplateModel model, Principal principal) {
+		
 		ServiceTemplate getService = templateService.createTemplate(model, principal);
+		
 		ResponseModel resModel = new ResponseModel();
 		if (getService != null) {resModel.setRes("success");}else{resModel.setRes("fail");}
 		return resModel;

@@ -36,14 +36,24 @@ public class JavaTest {
 		strArr.add("B");
 		strArr.add("C");
 
-		System.out.println(strArr);
-
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonInString = mapper.writeValueAsString(strArr);
 		System.out.println(jsonInString);
 
 		List<String> result = mapper.readValue(jsonInString, List.class);
 		System.out.println(result);
+	}
+	
+	public static String convertToDatabaseColumn(List<String> attribute) {
+		String jsonInString = null;
+		ObjectMapper objectMapper = new ObjectMapper();
+		try {
+			jsonInString = objectMapper.writeValueAsString(attribute);
+			System.out.println(jsonInString instanceof String);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return jsonInString;        
 	}
 
 	public static void stringPriceConverter(String price) {
@@ -190,7 +200,12 @@ public class JavaTest {
 	}
 
 	public static void main(String[] args) throws IOException {
-		//		JSONtester();
+//				JSONtester();
+		List<String> lit = new ArrayList<String>();
+		lit.add("A");
+		lit.add("B");
+		lit.add("C");
+		System.out.println(convertToDatabaseColumn(lit));
 		//		stringPriceConverter("1543827932498800"); 
 		//		stringToTimestampConverter("20170827181200");
 		//		timestampToStringConverter(1503825120000L);

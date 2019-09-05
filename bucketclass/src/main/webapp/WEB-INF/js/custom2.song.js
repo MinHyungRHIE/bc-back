@@ -128,6 +128,15 @@ function showJsonData(response) {
         document.getElementById("chosen-select").value = account_bank;
         document.getElementById("account_num").value = account_number;
     }
+    
+    //해시태그 넣기
+    var hasTagContent="";
+    var arrHash = hash.split("⨂");
+
+    for(var hashValue of arrHash){
+        hasTagContent+= "# "+hashValue+" ";
+    }
+    document.getElementById("sorry").innerText = hasTagContent;
 
 }
 
