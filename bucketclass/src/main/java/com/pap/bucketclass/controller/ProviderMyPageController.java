@@ -39,7 +39,7 @@ public class ProviderMyPageController {
 		}
 		Member member = (Member) memberDetailsService.loadUserByUsername(principal.getName());
 		model.addAttribute("member", member);
-		return "provider-mypage";
+		return "provider-mypage.page";
 	}
 
 	//페이지 전환 후, 프로필 정보에 나타낼 멤버 정보 보내기

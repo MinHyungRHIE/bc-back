@@ -289,8 +289,9 @@ INSERT INTO `member_role`
 	SELECT @providerId, 'role_provider' FROM DUAL;
 
 USE back;
-
+SELECT * FROM member;
 SELECT * FROM service_template;
+
 SELECT service_price FROM service ORDER BY service_price;
 SELECT * FROM service;
 SELECT * FROM service_address;

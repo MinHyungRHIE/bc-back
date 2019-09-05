@@ -72,6 +72,7 @@
 	</mvc:interceptors>
 
 	<!-- Configures the static resources -->
+	<mvc:resources mapping="/tiles/**" location="/WEB-INF/tiles/" />
 	<mvc:resources mapping="/css/**" location="/WEB-INF/css/" />
 	<mvc:resources mapping="/img/**" location="/WEB-INF/img/" />
 	<mvc:resources mapping="/js/**" location="/WEB-INF/js/" />
@@ -80,7 +81,25 @@
 <!-- 	<mvc:resources mapping="/css/**" location="/WEB-INF/css/" />
 	<mvc:resources mapping="/images/**" location="/WEB-INF/images/" />
 	<mvc:resources mapping="/js/**" location="/WEB-INF/js/" /> -->
-	
+	    <!-- Tiles 3 Configurer -->
+    <bean id="tilesConfigurer"
+          class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <property name="definitions">
+            <list>
+                <value>/WEB-INF/spring/default-layout.xml</value>
+                <value>/WEB-INF/spring/dashboard-layout.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Tiles 3  ViewResolver-->
+    <bean id="tilesViewResolver"
+          class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass"
+                  value="org.springframework.web.servlet.view.tiles3.TilesView" />
+        <property name="order" value="1" />
+    </bean>
+    
 
 	<!-- Resolves view names to protected .jsp resources within the /WEB-INF/views 
 		directory -->
@@ -94,6 +113,7 @@
 		<property name="suffix">
 			<value>.jsp</value>
 		</property>
+		<property name="order" value="1" />
 	</bean>
 
 	<!-- Configure the data source bean -->

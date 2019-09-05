@@ -28,7 +28,7 @@ public class SignUpController {
 	
 	@GetMapping("/signup")
 	public String signUpForm() {
-		return "member-register";
+		return "member-register.tiles";
 	}
 
 	@RequestMapping(path="/signup", method=RequestMethod.POST,

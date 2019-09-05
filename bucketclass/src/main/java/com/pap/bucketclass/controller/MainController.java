@@ -21,25 +21,29 @@ public class MainController {
 	@Autowired
 	MemberService memberSerivce;
 	
+//	@GetMapping("/")
+//	public String loginToMain(Authentication auth, ModelMap modelMap) {
+//		if(auth != null) {
+//			Object principal = auth.getPrincipal();
+//			Set<Role> userRole = new HashSet<>();
+//			if(principal != null && principal instanceof Member){
+//				userRole = ((Member)principal).getRoles();
+//			}
+//			System.out.println(userRole);
+//			String roleStr = null; 
+//			Iterator<Role> itr = userRole.iterator();
+//			while(itr.hasNext()) {
+//				roleStr = itr.next().getRoleName();
+//			}
+//			modelMap.addAttribute("rolename", roleStr);
+//			modelMap.addAttribute("nick",((Member)principal).getMemberNickname());
+//			return "main";
+//		}
+//		return "main";
+//	}
+
 	@GetMapping("/")
-	public String loginToMain(Authentication auth, ModelMap modelMap) {
-		if(auth != null) {
-			Object principal = auth.getPrincipal();
-			Set<Role> userRole = new HashSet<>();
-			if(principal != null && principal instanceof Member){
-				userRole = ((Member)principal).getRoles();
-			}
-			System.out.println(userRole);
-			String roleStr = null; 
-			Iterator<Role> itr = userRole.iterator();
-			while(itr.hasNext()) {
-				roleStr = itr.next().getRoleName();
-			}
-			modelMap.addAttribute("rolename", roleStr);
-			modelMap.addAttribute("nick",((Member)principal).getMemberNickname());
-			return "main";
-		}
-		return "main";
+	public String loginToMain() {
+		return "main.tiles";
 	}
-	
 }

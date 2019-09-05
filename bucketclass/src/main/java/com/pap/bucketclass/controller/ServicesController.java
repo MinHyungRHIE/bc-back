@@ -55,7 +55,7 @@ public class ServicesController {
 			path="/service-listing",
 			method= RequestMethod.GET)
 	public String formServiceList() {
-		return "listings-list-full-width";
+		return "listings-list-full-width.page";
 	}
 
 	/***리스팅 뷰어 POST***/
@@ -168,7 +168,7 @@ public class ServicesController {
 					name="serviceId",
 					required=false) String serviceId){
 		System.out.println("1234124123412341234");
-		return "listings-single-page";
+		return "listings-single-page.page";
 	}
 
 	/***싱글 뷰어 POST + PATH(serviceId)***/
@@ -197,7 +197,7 @@ public class ServicesController {
 			path="/provider/pending-listing",
 			method= RequestMethod.GET)
 	public String providerServiceListFormPending() {
-		return "pending-listing";
+		return "pending-listing.page";
 	}
 
 	/***pending page POST***/
@@ -243,7 +243,7 @@ public class ServicesController {
 			path="/provider/active-listing",
 			method= RequestMethod.GET)
 	public String providerServiceListFormActive() {
-		return "active-listing";
+		return "active-listing.page";
 	}
 
 	/***active page POST***/
@@ -290,7 +290,7 @@ public class ServicesController {
 			path="/provider/expired-listing",
 			method= RequestMethod.GET)
 	public String providerServiceListFormExpired() {
-		return "expired-listing";
+		return "expired-listing.page";
 	}
 
 	/***expired page POST***/
@@ -339,7 +339,7 @@ public class ServicesController {
 			path="/provider/add-service",
 			method= RequestMethod.GET)
 	public String templateForm() {
-		return "dashboard-add-listing";
+		return "dashboard-add-listing.page";
 	}
 
 	@RequestMapping(
@@ -363,7 +363,7 @@ public class ServicesController {
 			path="/provider/my-template/{serviceTemplateId}/regist",
 			method= RequestMethod.GET)
 	public String createServiceForm(@PathVariable("serviceTemplateId") Long serviceTemplateId) {
-		return "dashboard-registration-listings";
+		return "dashboard-registration-listings.page";
 	}
 
 	@RequestMapping(
@@ -397,7 +397,7 @@ public class ServicesController {
 			path= "/provider/my-listing/{serviceId}/read",
 			method= RequestMethod.GET)
 	public String serviceViewForm(@PathVariable("serviceId") int serviceId) {
-		return "my-listing-edit-readonly";
+		return "my-listing-edit-readonly.page";
 	}
 
 	@RequestMapping(
@@ -416,7 +416,7 @@ public class ServicesController {
 			path= "/provider/my-listing/{serviceId}/update",
 			method= RequestMethod.GET)
 	public String serviceUpdateForm(@PathVariable("serviceId") int serviceId) {
-		return "my-listing-edit";
+		return "my-listing-edit.page";
 	}
 
 	@RequestMapping(
@@ -461,7 +461,7 @@ public class ServicesController {
 			path= "/provider/my-template/{serviceTemplateId}/read",
 			method= RequestMethod.GET)
 	public String templateViewForm(@PathVariable("serviceTemplateId") int serviceTemplateId) {
-		return "dashboard-add-listing-readonly";
+		return "dashboard-add-listing-readonly.page";
 	}
 
 	@RequestMapping(
@@ -480,7 +480,7 @@ public class ServicesController {
 			path= "/provider/my-template/{serviceTemplateId}/update",
 			method= RequestMethod.GET)
 	public String templateUpdateForm(@PathVariable("serviceTemplateId") int serviceTemplateId) {
-		return "dashboard-add-listing-edit";
+		return "dashboard-add-listing-edit.page";
 	}
 
 	@RequestMapping(

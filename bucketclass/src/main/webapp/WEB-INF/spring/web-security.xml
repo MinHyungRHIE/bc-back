@@ -17,6 +17,7 @@
         <intercept-url pattern="/js/**" access="permitAll" />
         <intercept-url pattern="/img/**" access="permitAll" />
         <intercept-url pattern="/fonts/**" access="permitAll" />
+        <intercept-url pattern="/tiles/**" access="permitAll" />
         
         <!-- public uri -->
         <intercept-url pattern="/signup/**" access="isAnonymous()" />
